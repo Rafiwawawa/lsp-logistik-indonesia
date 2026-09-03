@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - LSP LOGISTIK INDONESIA</title>
+  
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/cards.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/components/timeline.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../assets/css/pages/profil.css">
+</head>
+<body>
+
+  <!-- BLOG_HEADER -->
+  <!-- HEADER & STICKY NAVIGATION -->
+  <header class="site-header" id="mainHeader">
+    <!-- BLOG_MENU -->
+    <!-- Main Navbar -->
+    <div class="container header-main">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="layanan.html" class="nav-link">Skema Sertifikasi</a></li>
+                    <li class="nav-item">
+            <a href="berita.html" class="nav-link">
+              Informasi Terbaru
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
+              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
+              <li class="dropdown-item"><a href="dokumen.html">📄 Unduh Dokumen</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+
+        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
+
+        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Off Canvas Mobile Sidebar Navigation -->
+  <div class="mobile-nav-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="header-logo">
+          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
+        </a>
+        <button class="modal-close mobile-nav-close">&times;</button>
+      </div>
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
+        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
+        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
+        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
+        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
+        <li class="mobile-nav-item"><a href="dokumen.html">Unduh Dokumen</a></li>
+        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
+        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary) 0%, #001C5E 100%);">
+    <div class="container">
+      <!-- BLOG_BREADCRUMB -->
+      <div class="breadcrumb">
+        <a href="../index.html">Beranda</a>
+        <span class="separator">/</span>
+        <span class="current">Profil Organisasi</span>
+      </div>
+      <h1>Profil & Identitas LSP LOGISTIK INDONESIA</h1>
+      <p>Lembaga Sertifikasi Profesi P3 yang didirikan oleh Asosiasi Logistik Indonesia (ALI).</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container">
+      
+      <!-- BAGIAN 1: GAMBARAN UMUM LSP LOGISTIK INDONESIA -->
+      <div id="tentang" style="margin-bottom: 4rem;">
+        <div class="section-title-wrapper" style="text-align: left; margin-bottom: 2rem;">
+          <span class="section-subtitle" style="color:var(--color-secondary); background:var(--color-secondary-soft);">GAMBARAN UMUM</span>
+          <h2 class="section-title" style="text-align: left;">Tentang LSP Logistik Indonesia (P3)</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center;">
+          <div>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-main); margin-bottom: 1rem;">
+              <strong>LSP Logistik Indonesia</strong> merupakan Lembaga Sertifikasi Profesi Pihak Ketiga (LSP-P3) yang didirikan oleh <strong>Asosiasi Logistik Indonesia (ALI)</strong>. Lembaga ini memegang lisensi resmi dari <strong>Badan Nasional Sertifikasi Profesi (BNSP)</strong> dengan nomor <strong>BNSP-LSP-093-ID</strong> yang pertama kali diterbitkan pada 28 Desember 2012 dan diperpanjang melalui Keputusan Ketua BNSP No. <strong>KEP.1757/BNSP/IX/2022</strong>.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-muted); margin-bottom: 1.5rem;">
+              Fungsi utama LSP Logistik Indonesia adalah <strong>menyelenggarakan sertifikasi kompetensi profesi di bidang logistik dan manajemen rantai pasok secara independen, objektif, dan terstandar nasional</strong> (bukan sebagai lembaga pendidikan formal atau perusahaan penyedia jasa ekspedisi/logistik).
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div class="badge badge-info" style="font-size: 0.85rem; padding: 0.5rem 1rem;">🏛️ Didirikan oleh ALI</div>
+              <div class="badge badge-success" style="font-size: 0.85rem; padding: 0.5rem 1rem;">🦅 Terlisensi BNSP-LSP-093-ID</div>
+              <div class="badge" style="font-size: 0.85rem; padding: 0.5rem 1rem; background: var(--color-secondary-soft); color: var(--color-secondary);">📦 Standar SKKNI &amp; SKKK</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            <h3 style="font-size: 1.15rem; color: var(--color-primary); margin-bottom: 1.25rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">📜 Legalitas &amp; Ketetapan Lisensi</h3>
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <div>
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700;">Nomor Lisensi BNSP Perdana</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-text-main); margin-top: 0.2rem;">BNSP-LSP-093-ID</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted);">Tertanggal: 28 Desember 2012</div>
+              </div>
+              <div style="border-top: 1px dashed var(--color-border); padding-top: 1rem;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700;">SK Perpanjangan Lisensi</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-secondary); margin-top: 0.2rem;">KEP.1757/BNSP/IX/2022</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted);">Surat Keputusan Ketua BNSP RI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BAGIAN 2: TUJUAN & MANFAAT SERTIFIKASI (VALIDASI KOMPETENSI) -->
+      <div id="visimisi" style="margin-bottom: 4.5rem; background: var(--color-surface); padding: 3rem 2.5rem; border-radius: var(--radius-xl); border: 1px solid var(--color-border);">
+        <div class="section-title-wrapper" style="margin-bottom: 2.5rem;">
+          <span class="section-subtitle" style="color:var(--color-secondary); background:var(--color-secondary-soft);">NILAI TAMBAH &amp; TUJUAN</span>
+          <h2 class="section-title">Manfaat Sertifikasi Kompetensi Logistik</h2>
+          <p class="section-desc" style="max-width: 720px; margin: 0.5rem auto 0 auto;">
+            Sertifikasi tidak sekadar memberikan lembar sertifikat kepada individu, melainkan berfungsi strategis sebagai <strong>alat validasi kompetensi tenaga kerja</strong> bagi dunia industri dan perusahaan.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <!-- Manfaat Bagi Perusahaan -->
+          <div class="card hover-lift" style="padding: 2rem; border-top: 4px solid var(--color-secondary); background: var(--color-bg);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🏢</div>
+            <h3 style="font-size: 1.2rem; color: var(--color-text-main); margin-bottom: 0.75rem;">Bagi Perusahaan</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-muted); margin: 0;">
+              Menjadi bukti sah dan terverifikasi bahwa tenaga kerja memiliki standar kualifikasi profesional yang kredibel dalam menjalankan operasional pergudangan, armada, dan rantai pasok secara efektif dan efisien.
+            </p>
+          </div>
+
+          <!-- Manfaat Bagi Atasan & Manajemen -->
+          <div class="card hover-lift" style="padding: 2rem; border-top: 4px solid var(--color-primary); background: var(--color-bg);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">👔</div>
+            <h3 style="font-size: 1.2rem; color: var(--color-text-main); margin-bottom: 0.75rem;">Bagi Atasan &amp; Manajemen</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-muted); margin: 0;">
+              Membantu pimpinan mengetahui tingkat profesionalisme personel secara terukur dan objektif, sehingga memudahkan penempatan karyawan pada posisi kerja yang tepat (<em>right man on the right place</em>).
+            </p>
+          </div>
+
+          <!-- Manfaat Bagi Peserta / Asesi -->
+          <div class="card hover-lift" style="padding: 2rem; border-top: 4px solid #10B981; background: var(--color-bg);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🎓</div>
+            <h3 style="font-size: 1.2rem; color: var(--color-text-main); margin-bottom: 0.75rem;">Bagi Peserta / Asesi</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-muted); margin: 0;">
+              Memberikan pengakuan kompetensi resmi berstandar nasional (BNSP), meningkatkan wawasan pengetahuan dan sikap kerja profesional, serta membuka peluang akselerasi jenjang karier di industri logistik.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BAGIAN 3: PENGURUS -->
+      <div id="struktur" style="margin-bottom: 4.5rem;">
+        <div class="section-title-wrapper" style="margin-bottom: 2.5rem;">
+          <span class="section-subtitle" style="color:var(--color-secondary); background:var(--color-secondary-soft);">PENGURUS</span>
+          <h2 class="section-title">Pengurus</h2>
+          <p class="section-desc" style="max-width: 720px; margin: 0.5rem auto 0 auto;">
+            Jajaran pimpinan dan manajemen pelaksana yang bertanggung jawab atas tata kelola mutu, penyelenggaraan asesmen, dan kepatuhan sertifikasi LSP Logistik Indonesia.
+          </p>
+        </div>
+
+        <!-- Grid 3 Kartu Pengurus -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
+          
+          <!-- 1. DIREKTUR -->
+          <div class="card hover-lift" style="background: var(--color-surface); border: 2px solid var(--color-primary); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-md);">
+            <div style="background: linear-gradient(135deg, var(--color-primary) 0%, #001C5E 100%); padding: 1.75rem 1.5rem 1.5rem 1.5rem; color: #FFF; text-align: center;">
+              <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.15); margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 3px solid #93C5FD;">👔</div>
+              <span style="background: var(--color-secondary); color: #FFF; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.25rem 0.85rem; border-radius: 9999px; display: inline-block; margin-bottom: 0.6rem;">1. DIREKTUR</span>
+              <h3 style="font-size: 1.2rem; color: #FFF; margin: 0; line-height: 1.3;">Ir. Mahendra Rianto, CSLP</h3>
+              <span style="font-size: 0.82rem; color: #93C5FD; font-weight: 600; display: block; margin-top: 0.25rem;">Direktur LSP Logistik Indonesia</span>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <p style="font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted); margin: 0 0 1.25rem 0;">
+                Memimpin seluruh tata kelola operasional dan strategis LSP Logistik Indonesia, menetapkan kebijakan mutu pelaksanaan asesmen, dan mewakili lembaga dalam kemitraan industri serta hubungan kelembagaan dengan BNSP.
+              </p>
+              <div style="border-top: 1px solid var(--color-border); padding-top: 0.85rem; font-size: 0.82rem; color: var(--color-secondary); font-weight: 600;">
+                ✓ Penanggung Jawab Operasional Lembaga
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. MANAJER SERTIFIKASI -->
+          <div class="card hover-lift" style="background: var(--color-surface); border: 2px solid var(--color-secondary); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-md);">
+            <div style="background: linear-gradient(135deg, var(--color-secondary) 0%, #C2410C 100%); padding: 1.75rem 1.5rem 1.5rem 1.5rem; color: #FFF; text-align: center;">
+              <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.15); margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 3px solid rgba(255,255,255,0.4);">🎓</div>
+              <span style="background: rgba(255,255,255,0.22); color: #FFF; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.25rem 0.85rem; border-radius: 9999px; display: inline-block; margin-bottom: 0.6rem;">2. MANAJER SERTIFIKASI</span>
+              <h3 style="font-size: 1.2rem; color: #FFF; margin: 0; line-height: 1.3;">I Nyoman Purnaya, ST., M.B.A</h3>
+              <span style="font-size: 0.82rem; color: #FFEDD5; font-weight: 600; display: block; margin-top: 0.25rem;">Manajer Sertifikasi</span>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <p style="font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted); margin: 0 0 1.25rem 0;">
+                Mengelola perencanaan jadwal uji kompetensi, penugasan Tim Asesor Kompetensi independen berlisensi BNSP, verifikasi Tempat Uji Kompetensi (TUK), serta pengelolaan administrasi hasil uji asesi.
+              </p>
+              <div style="border-top: 1px solid var(--color-border); padding-top: 0.85rem; font-size: 0.82rem; color: var(--color-secondary); font-weight: 600;">
+                ✓ Pengelolaan Asesmen &amp; Asesor TUK
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. MANAJER MUTU -->
+          <div class="card hover-lift" style="background: var(--color-surface); border: 2px solid #059669; border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-md);">
+            <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 1.75rem 1.5rem 1.5rem 1.5rem; color: #FFF; text-align: center;">
+              <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.15); margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 3px solid rgba(255,255,255,0.4);">⚖️</div>
+              <span style="background: rgba(255,255,255,0.22); color: #FFF; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.25rem 0.85rem; border-radius: 9999px; display: inline-block; margin-bottom: 0.6rem;">3. MANAJER MUTU</span>
+              <h3 style="font-size: 1.2rem; color: #FFF; margin: 0; line-height: 1.3;">Dian Anom Baskoro, SE, MMTR</h3>
+              <span style="font-size: 0.82rem; color: #D1FAE5; font-weight: 600; display: block; margin-top: 0.25rem;">Manajer Mutu</span>
+            </div>
+            <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <p style="font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted); margin: 0 0 1.25rem 0;">
+                Menjamin kepatuhan sistem manajemen mutu sertifikasi (ISO 17024 &amp; Pedoman BNSP 201), pelaksanaan audit internal, penanganan banding dan keluhan, serta pengawasan surveilan berkala.
+              </p>
+              <div style="border-top: 1px solid var(--color-border); padding-top: 0.85rem; font-size: 0.82rem; color: #059669; font-weight: 600;">
+                ✓ Penjaminan Mutu &amp; Audit Internal BNSP
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BAGIAN 4: PROSES & ALUR SERTIFIKASI LENGKAP -->
+      <div id="alur" style="margin-top: 4.5rem; border-top: 1px solid var(--color-border); padding-top: 3.5rem;">
+        <div class="section-title-wrapper">
+          <span class="section-subtitle" style="color:var(--color-secondary); background:var(--color-secondary-soft);">PROSES SERTIFIKASI</span>
+          <h2 class="section-title">Alur Proses Sertifikasi Kompetensi</h2>
+          <p class="section-desc" style="max-width: 760px; margin: 0.5rem auto 0 auto;">
+            Sertifikasi di LSP Logistik Indonesia bukan sekadar ujian sekali selesai, melainkan rangkaian proses asesmen profesional dengan tahapan pengambilan keputusan yang terstruktur dan akuntabel.
+          </p>
+        </div>
+
+        <!-- 7-Step Certification Workflow -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2.5rem;">
+          
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid var(--color-secondary); background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: var(--color-secondary);">01</span>
+              <span style="font-size: 1.25rem;">📝</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Permohonan Asesi</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              Peserta mengajukan permohonan sertifikasi, mengisi formulir <strong>FR. APL-01</strong> dan <strong>FR. APL-02</strong>, serta melengkapi seluruh dokumen bukti pendukung.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid var(--color-primary); background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: var(--color-primary);">02</span>
+              <span style="font-size: 1.25rem;">👨‍💼</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Penunjukan Asesor</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              LSP Logistik Indonesia memverifikasi kelayakan berkas permohonan dan menugaskan <strong>Tim Asesor Kompetensi</strong> berlisensi BNSP yang independen.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid #8B5CF6; background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: #8B5CF6;">03</span>
+              <span style="font-size: 1.25rem;">🏢</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Asesmen di TUK</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              Peserta mengikuti asesmen di Tempat Uji Kompetensi (TUK) terverifikasi sesuai jadwal, melalui metode verifikasi portofolio, tes tertulis/lisan, demonstrasi, atau wawancara.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid #0EA5E9; background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: #0EA5E9;">04</span>
+              <span style="font-size: 1.25rem;">📊</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Laporan Asesor</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              Setelah proses asesmen selesai, Asesor memberikan umpan balik (feedback) dan menyusun laporan rekomendasi hasil asesmen (Kompeten / Belum Kompeten) kepada LSP.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid #F59E0B; background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: #F59E0B;">05</span>
+              <span style="font-size: 1.25rem;">⚖️</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Rekomendasi Komite Teknis</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              Komite Teknis / Pleno Sertifikasi meninjau laporan hasil asesmen untuk memvalidasi kepatuhan prosedur dan memberikan rekomendasi penetapan sertifikasi.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid #10B981; background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: #10B981;">06</span>
+              <span style="font-size: 1.25rem;">🎓</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Penerbitan Sertifikat BNSP</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              LSP Logistik Indonesia menerbitkan <strong>Sertifikat Kompetensi resmi berlisensi BNSP</strong> kepada peserta yang dinyatakan memenuhi seluruh standar kompetensi.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-top: 3px solid #6366F1; background: var(--color-surface);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="font-weight: 800; font-size: 1.2rem; color: #6366F1;">07</span>
+              <span style="font-size: 1.25rem;">🔄</span>
+            </div>
+            <h4 style="font-size: 1rem; color: var(--color-text-main); margin-bottom: 0.5rem;">Surveilan Berkala</h4>
+            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); margin: 0;">
+              LSP melaksanakan pengawasan dan pemeliharaan kompetensi (<em>surveillance</em>) secara berkala guna memastikan standar profesionalisme pemegang sertifikat tetap terjaga.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- BLOG_FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Injected dynamically by footer.js -->
+    </div>
+  </footer>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Pencarian LSP Logistik Indonesia</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-modal-field">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" placeholder="Ketik kata kunci...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back To Top Button -->
+  <div class="back-to-top" id="backToTopBtn" title="Kembali ke atas">
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </div>
+
+  <!-- Component Scripts -->
+  <script src="../assets/js/components/header.js"></script>
+
+  <!-- Feature Scripts -->
+  <script src="../assets/js/components/toast.js"></script>
+  <script src="../assets/js/components/search.js"></script>
+  <script src="../assets/js/components/modal.js"></script>
+  <script src="../assets/js/components/counter.js"></script>
+  <script src="../assets/js/components/reveal.js"></script>
+  <script src="../assets/js/components/footer.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <!-- BOD/BOC Filter Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const filterBtns = document.querySelectorAll('#bodBocFilters [data-bod-filter]');
+      const cards = document.querySelectorAll('#bodGrid .bod-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const filter = this.getAttribute('data-bod-filter');
+
+          // Update active button styling
+          filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'var(--color-surface)';
+            b.style.color = 'var(--color-text-main)';
+          });
+          this.classList.add('active');
+          this.style.background = 'var(--color-primary)';
+          this.style.color = '#FFF';
+
+          // Filter cards
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'flex';
+              card.style.animation = 'fadeInUp 0.35s ease forwards';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

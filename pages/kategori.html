@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kategori - LSP LOGISTIK INDONESIA</title>
+  
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/cards.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../assets/css/pages/berita.css">
+</head>
+<body>
+
+  <!-- BLOG_HEADER -->
+  <!-- HEADER & STICKY NAVIGATION -->
+  <header class="site-header" id="mainHeader">
+    <!-- BLOG_MENU -->
+    <!-- Main Navbar -->
+    <div class="container header-main">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="layanan.html" class="nav-link">Skema Sertifikasi</a></li>
+                    <li class="nav-item">
+            <a href="berita.html" class="nav-link active">
+              Informasi Terbaru
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
+              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
+              <li class="dropdown-item"><a href="dokumen.html">📄 Unduh Dokumen</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+
+        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
+
+        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Off Canvas Mobile Sidebar Navigation -->
+  <div class="mobile-nav-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="header-logo">
+          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
+        </a>
+        <button class="modal-close mobile-nav-close">&times;</button>
+      </div>
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
+        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
+        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
+        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
+        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
+        <li class="mobile-nav-item"><a href="dokumen.html">Unduh Dokumen</a></li>
+        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
+        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary) 0%, #001C5E 100%);">
+    <div class="container">
+      <!-- BLOG_BREADCRUMB -->
+      <div class="breadcrumb">
+        <a href="../index.html">Beranda</a>
+        <span class="separator">/</span>
+        <a href="berita.html">Informasi Terbaru</a>
+        <span class="separator">/</span>
+        <span class="current">Kategori</span>
+      </div>
+      <h1>Kategori: <!-- BLOG_LABEL -->Edukasi Logistik</h1>
+      <p>Menampilkan semua artikel informasi terbaru di bawah kategori Edukasi Logistik.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container news-page-layout">
+      <!-- BLOG_POST_LIST -->
+      <div>
+        <div class="grid grid-cols-2 gap-6">
+          <article class="news-card card">
+            <div class="news-thumb">
+              <span class="news-badge badge badge-primary" style="background:var(--color-secondary); color:#FFF;">Edukasi</span>
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Sertifikasi Profesi P3">
+            </div>
+            <div class="news-content">
+              <div class="news-meta"><span>05 April 2024</span></div>
+              <h3 class="news-title"><a href="detail-berita.html">Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Pengelolaan Proyek</a></h3>
+              <p class="news-excerpt">Pengelolaan Proyek Profesional (P3) merupakan disiplin penting dalam dunia bisnis saat ini...</p>
+              <a href="detail-berita.html" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- BLOG_SIDEBAR -->
+      <aside class="sidebar">
+        <div class="widget">
+          <h4 class="widget-title">Kategori Lainnya</h4>
+          <ul class="widget-category-list">
+            <li class="widget-category-item"><a href="kategori.html"><span>Edukasi & Pelatihan</span> <span class="widget-category-count">8</span></a></li>
+            <li class="widget-category-item"><a href="kategori.html"><span>Regulasi SKKNI</span> <span class="widget-category-count">5</span></a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- BLOG_FOOTER -->
+  <!-- FOOTER (4-Column Layout) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="header-logo">
+            <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 60px;">
+          </div>
+          <p style="margin-top: 1rem;">
+            LSP Logistik Indonesia (P3) didirikan oleh <strong>Asosiasi Logistik Indonesia (ALI)</strong>. Terlisensi resmi BNSP No. <strong>BNSP-LSP-093-ID</strong> tanggal 28 Desember 2012, SK Perpanjangan No. <strong>KEP.1757/BNSP/IX/2022</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigasi Utama</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">&rarr; Beranda</a></li>
+            <li><a href="profil.html">&rarr; Profil LSP Logistik</a></li>
+            <li><a href="layanan.html">&rarr; Skema Sertifikasi</a></li>
+            <li><a href="berita.html">&rarr; Informasi Terbaru</a></li>
+            <li><a href="faq.html">&rarr; FAQ</a></li>
+            <li><a href="kontak.html">&rarr; Kontak Sekretariat</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Skema Sertifikasi (PDF)</h4>
+          <ul class="footer-links">
+            <li><a href="layanan.html#supervisor-gudang">&rarr; Supervisor Gudang</a></li>
+            <li><a href="layanan.html#distribusi">&rarr; Distribusi</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Sekretariat LSP Logistik</h4>
+          <div class="footer-contact-info">
+            <div class="footer-contact-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+              <span>Sekretariat Asosiasi Logistik Indonesia, Gedung 1 Lt. 7 Kementerian Perdagangan RI, Jl. M.I. Ridwan Rais No. 5 Jakarta Pusat</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <span>lsp.logistikindonesia@gmail.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              <span>0812-8877-1150 (Layanan Asesi)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 LSP Logistik Indonesia. Seluruh Hak Cipta Dilindungi.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Pencarian LSP Logistik Indonesia</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-modal-field">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" placeholder="Ketik kata kunci...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Component Scripts -->
+  <script src="../assets/js/components/header.js"></script>
+  <script src="../assets/js/components/footer.js"></script>
+
+  <!-- Feature Scripts -->
+  <script src="../assets/js/components/toast.js"></script>
+  <script src="../assets/js/components/search.js"></script>
+  <script src="../assets/js/components/modal.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak - LSP LOGISTIK INDONESIA</title>
+  
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/cards.css">
+  <link rel="stylesheet" href="../assets/css/components/toast.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../assets/css/pages/kontak.css">
+</head>
+<body>
+
+  <!-- BLOG_HEADER -->
+  <!-- HEADER & STICKY NAVIGATION -->
+  <header class="site-header" id="mainHeader">
+    <!-- BLOG_MENU -->
+    <!-- Main Navbar -->
+    <div class="container header-main">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="layanan.html" class="nav-link">Skema Sertifikasi</a></li>
+                    <li class="nav-item">
+            <a href="berita.html" class="nav-link">
+              Informasi Terbaru
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
+              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
+              <li class="dropdown-item"><a href="dokumen.html">📄 Unduh Dokumen</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="kontak.html" class="nav-link active">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+
+        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
+
+        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Off Canvas Mobile Sidebar Navigation -->
+  <div class="mobile-nav-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="header-logo">
+          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
+        </a>
+        <button class="modal-close mobile-nav-close">&times;</button>
+      </div>
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
+        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
+        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
+        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
+        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
+        <li class="mobile-nav-item"><a href="dokumen.html">Unduh Dokumen</a></li>
+        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
+        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary) 0%, #001C5E 100%);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Beranda</a>
+        <span class="separator">/</span>
+        <span class="current">Kontak Sekretariat</span>
+      </div>
+      <h1>Hubungi Sekretariat LSP Logistik Indonesia</h1>
+      <p>Dapatkan informasi selengkapnya mengenai jadwal asesmen dan pendaftaran skema logistik.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container contact-layout">
+      <!-- LEFT COLUMN: CONTACT INFO & TUK LOCATIONS -->
+      <div class="contact-info-cards">
+        <!-- TUK Location Selector Tabs -->
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1.25rem;">
+          <h4 style="margin-bottom: 0.75rem; color: var(--color-primary);">Alamat Sekretariat & Kontak Pengaduan</h4>
+
+          <div id="tukDetailBox">
+            <div class="contact-card" style="margin-bottom: 0.75rem;">
+              <div class="contact-icon" style="background:var(--color-secondary-soft); color:var(--color-secondary);">📍</div>
+              <div>
+                <h3 class="contact-title" id="tukTitle">Sekretariat Asosiasi Logistik Indonesia</h3>
+                <p class="contact-details" id="tukAddress">Gedung 1 Lt. 7 Kementerian Perdagangan RI, Jl. M.I. Ridwan Rais No. 5 Jakarta Pusat</p>
+              </div>
+            </div>
+
+            <div class="contact-card" style="margin-bottom: 0.75rem;">
+              <div class="contact-icon" style="background:var(--color-secondary-soft); color:var(--color-secondary);">💬</div>
+              <div>
+                <h3 class="contact-title">Nomor Ponsel & WhatsApp Hotline</h3>
+                <p class="contact-details" id="tukPhone">0812-8877-1150 (Layanan Pendaftaran Asesi & Konsultasi)</p>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon" style="background:var(--color-secondary-soft); color:var(--color-secondary);">✉️</div>
+              <div>
+                <h3 class="contact-title">Email Resmi</h3>
+                <p class="contact-details">lsp.logistikindonesia@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps Frame Box -->
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h4 style="margin: 0; font-size: 0.95rem; color:var(--color-primary);">Peta Lokasi Sekretariat ALI (Kemendag RI)</h4>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kementerian+Perdagangan+RI,+Jl.+M.I.+Ridwan+Rais+No.+5,+Jakarta+Pusat" target="_blank" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Buka Maps &rarr;</a>
+          </div>
+          <div style="width: 100%; height: 200px; border-radius: var(--radius-md); overflow:hidden; border: 1px solid var(--color-border);">
+            <iframe src="https://maps.google.com/maps?q=Kementerian+Perdagangan+RI,+Jl.+M.I.+Ridwan+Rais+No.+5,+Jakarta+Pusat&t=&z=16&ie=UTF8&iwloc=B&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Peta Lokasi Sekretariat Asosiasi Logistik Indonesia"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: INTERACTIVE FORM -->
+      <div class="contact-form-card">
+        <h2 style="margin-bottom: 0.5rem;">Kirim Pesan Sekretariat</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">Isi formulir di bawah ini, tim LSP Logistik Indonesia akan memberikan konfirmasi secepatnya.</p>
+
+        <form id="contactForm">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Nama Lengkap *</label>
+            <input type="text" id="contactName" class="form-control" required placeholder="Budi Santoso">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Alamat Email *</label>
+              <input type="email" id="contactEmail" class="form-control" required placeholder="budi@domain.com">
+            </div>
+            <div>
+              <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">No. WhatsApp *</label>
+              <input type="tel" id="contactPhone" class="form-control" required placeholder="081234567890">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Topik Pertanyaan / Keperluan *</label>
+            <select id="contactSubject" class="form-control" required>
+              <option value="Informasi Pendaftaran APL-01">Informasi Pendaftaran APL-01</option>
+              <option value="Jadwal Uji Asesmen Logistik">Jadwal Uji Asesmen Logistik</option>
+              <option value="Bimtek Asesor BNSP">Bimtek Asesor BNSP</option>
+              <option value="Kerjasama Institusi / ASPERINDO">Kerjasama Institusi / Perusahaan</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Pesan / Pertanyaan *</label>
+            <textarea id="contactMessage" class="form-control" rows="4" required placeholder="Tuliskan pertanyaan atau permohonan Anda di sini..."></textarea>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <button type="submit" class="btn btn-primary btn-lg" style="flex: 1; background: var(--color-secondary); border-color: var(--color-secondary);">Kirim Pesan Sekarang</button>
+            <button type="button" id="btnDirectWa" class="btn btn-secondary btn-lg" style="background: #25D366; color: #FFF; border-color: #25D366;" title="Kirim via WhatsApp Direct">💬 WA Direct</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- BLOG_FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Injected by footer.js -->
+    </div>
+  </footer>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Pencarian LSP Logistik Indonesia</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-modal-field">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" placeholder="Ketik kata kunci...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back To Top Button -->
+  <div class="back-to-top" id="backToTopBtn" title="Kembali ke atas">
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </div>
+
+  <!-- Component Scripts -->
+  <script src="../assets/js/components/header.js"></script>
+
+  <!-- Feature Scripts -->
+  <script src="../assets/js/components/toast.js"></script>
+  <script src="../assets/js/components/search.js"></script>
+  <script src="../assets/js/components/modal.js"></script>
+  <script src="../assets/js/components/reveal.js"></script>
+  <script src="../assets/js/components/footer.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Page Logic Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. TUK Location Switcher
+      const tukPills = document.querySelectorAll('#tukLocationPills .gallery-filter-btn');
+      const tukTitle = document.getElementById('tukTitle');
+      const tukAddress = document.getElementById('tukAddress');
+      const tukPhone = document.getElementById('tukPhone');
+
+      const TUK_DATA = {
+        sembada: {
+          title: 'Sembada Pratama - School of Supply Chain',
+          address: 'Sekretariat LSP Logistik Indonesia (P3), Sembada Pratama Indonesia',
+          phone: '0812-8877-1150 (Hotline Sekretariat)'
+        },
+        ali: {
+          title: 'Sekretariat Asosiasi Logistik Indonesia (ALI)',
+          address: 'Gedung Asosiasi Logistik Indonesia, Jakarta',
+          phone: '+62 812-9876-5432 (Layanan Sertifikasi ALI)'
+        },
+        regional: {
+          title: 'Jaringan Tempat Uji Kompetensi (TUK) Regional',
+          address: 'TUK Terverifikasi di Jakarta, Bandung, Surabaya, Medan, dan Makassar',
+          phone: '+62 856-1122-3344 (Layanan TUK Regional)'
+        }
+      };
+
+      tukPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          tukPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          const key = pill.getAttribute('data-tuk');
+          const data = TUK_DATA[key];
+
+          if (data) {
+            tukTitle.textContent = data.title;
+            tukAddress.textContent = data.address;
+            tukPhone.textContent = data.phone;
+          }
+        });
+      });
+
+      // 2. Form Submission with Toast
+      const contactForm = document.getElementById('contactForm');
+      const btnDirectWa = document.getElementById('btnDirectWa');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('contactName').value;
+          if (window.showToast) {
+            window.showToast(`Terima kasih Sdr/i ${name}! Pesan Anda telah terkirim. Tim Sekretariat LSP Logistik Indonesia akan membalas via email/WhatsApp.`, 'success');
+          }
+          contactForm.reset();
+        });
+      }
+
+      // 3. Direct WA Launcher
+      if (btnDirectWa) {
+        btnDirectWa.addEventListener('click', () => {
+          const name = document.getElementById('contactName').value || 'Calon Asesi';
+          const subject = document.getElementById('contactSubject').value;
+          const msg = document.getElementById('contactMessage').value || 'Saya ingin bertanya mengenai permohonan sertifikasi LSP Logistik Indonesia.';
+
+          const waText = encodeURIComponent(`Halo Sekretariat LSP LOGISTIK INDONESIA,\nSaya ${name}.\nTopik: ${subject}\nPesan: ${msg}`);
+          window.open(`https://wa.me/6281288771150?text=${waText}`, '_blank');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

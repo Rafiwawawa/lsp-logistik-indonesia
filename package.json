@@ -1,0 +1,33 @@
+{
+  "name": "lsp-logistik-backend",
+  "version": "1.0.0",
+  "description": "Backend Admin Panel LSP Logistik Indonesia",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.0.0 <25.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test test/**/*.test.js",
+    "migrate": "node database/migrate.js",
+    "db:check": "node database/check.js",
+    "admin:reset-password": "node scripts/reset-password.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.11.1",
+    "better-sqlite3-session-store": "^0.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-rate-limit": "^7.2.0",
+    "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
+    "uuid": "^11.0.5",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2"
+  }
+}

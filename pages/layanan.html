@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skema Sertifikasi - LSP LOGISTIK INDONESIA</title>
+  
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/cards.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+</head>
+<body>
+
+  <!-- BLOG_HEADER -->
+  <!-- HEADER & STICKY NAVIGATION -->
+  <header class="site-header" id="mainHeader">
+    <!-- BLOG_MENU -->
+    <!-- Main Navbar -->
+    <div class="container header-main">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="layanan.html" class="nav-link active">Skema Sertifikasi</a></li>
+                    <li class="nav-item">
+            <a href="berita.html" class="nav-link">
+              Informasi Terbaru
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
+              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
+              <li class="dropdown-item"><a href="dokumen.html">📄 Unduh Dokumen</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+
+        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
+
+        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Off Canvas Mobile Sidebar Navigation -->
+  <div class="mobile-nav-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="header-logo">
+          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
+        </a>
+        <button class="modal-close mobile-nav-close">&times;</button>
+      </div>
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
+        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
+        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
+        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
+        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
+        <li class="mobile-nav-item"><a href="dokumen.html">Unduh Dokumen</a></li>
+        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
+        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary) 0%, #2D2654 100%);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Beranda</a>
+        <span class="separator">/</span>
+        <span class="current">Skema Sertifikasi</span>
+      </div>
+      <h1>Skema Sertifikasi Profesi Logistik</h1>
+      <p>1 Skema sertifikasi utama tersedia: Supervisor Gudang dan Distribusi — mengacu pada SKKNI &amp; SKKK dengan lisensi resmi BNSP Indonesia.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container">
+
+      <div style="max-width: 780px; margin: 0 auto;" id="schemeGrid">
+        <!-- Scheme Card: Supervisor Gudang dan Distribusi -->
+        <div class="service-card card hover-lift" data-category="pergudangan" id="supervisor-gudang-distribusi" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div class="service-icon" style="background:var(--color-secondary-soft); color:var(--color-secondary); width: 60px; height: 60px; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">📦</div>
+            <span class="badge badge-info">SKKNI No. 354/2014 &amp; Standar SKKK</span>
+          </div>
+          <h3 class="service-title" style="margin-top:0.75rem; font-size: 1.5rem;">Supervisor Gudang dan Distribusi</h3>
+          <p class="service-desc" style="font-size: 1rem; line-height: 1.6; color: var(--color-text-main);">
+            Skema ini terdiri dari <strong>7 unit kompetensi</strong> yang banyak berhubungan langsung dengan operasional fisik gudang dan distribusi. Karakter skema ini sangat operasional, sehingga fokus utamanya adalah kemampuan mengawasi aktivitas pergudangan dan rantai distribusi sehari-hari.
+          </p>
+          <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--color-text-muted);">
+            <span>Standar SKKNI &amp; SKKK • 7 Unit Kompetensi Operasional</span>
+          </div>
+          <div style="margin-top:1.5rem; width: 100%;">
+            <button class="btn btn-primary open-scheme-detail-btn" style="width: 100%; background: var(--color-primary); border-color: var(--color-primary);" 
+                    data-title="Supervisor Gudang dan Distribusi" 
+                    data-skkni="SKKNI No. 354/2014 &amp; Standar SKKK (7 Unit Kompetensi)" 
+                    data-units="Membuat Rekapitulasi Hasil Stock Take dan Cycle Count|Mengatur Pergerakan Barang di Gudang|Mengeluarkan Barang dari Gudang untuk Distribusi|Melaksanakan Pemberangkatan atau Penarikan Barang|Mengatur Kendaraan di Area Gudang dan Distribusi|Mengelola Dokumen Pengiriman, Penolakan, dan Retur|Mengendalikan Persediaan yang Tidak Memenuhi Standar Kualitas" 
+                    data-prereq="Pendidikan min. SMA/SMK sederajat dengan pengalaman kerja di bidang operasional fisik pergudangan atau distribusi logistik, serta memiliki bukti portofolio pengawasan aktivitas kerja sehari-hari.">
+              Lihat Detail Unit (7) &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL: SCHEME DETAIL UNIT -->
+    <div class="modal-backdrop" id="schemeDetailModal">
+      <div class="modal-dialog" style="max-width: 650px;">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalSchemeTitle">Detail Skema Sertifikasi</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <span class="badge badge-info" id="modalSchemeSkkni">SKKNI No. 354</span>
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; color: var(--color-primary); margin-bottom: 0.5rem;">Unit Kompetensi Yang Diuji:</h4>
+            <ol id="modalSchemeUnitsList" style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6; display: flex; flex-direction: column; gap: 0.25rem;">
+            </ol>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--color-secondary);">
+            <h4 style="font-size: 0.9rem; color: var(--color-text-main); margin-bottom: 0.25rem;">Persyaratan Asesi:</h4>
+            <p id="modalSchemePrereq" style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;"></p>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.5rem; border-top: 1px solid var(--color-border); display: flex; justify-content: flex-end; gap: 0.5rem;">
+          <button class="btn btn-secondary modal-close">Tutup</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG_FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Injected by footer.js -->
+    </div>
+  </footer>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Pencarian LSP Logistik Indonesia</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-modal-field">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" placeholder="Ketik kata kunci...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back To Top Button -->
+  <div class="back-to-top" id="backToTopBtn" title="Kembali ke atas">
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </div>
+
+  <!-- Component Scripts -->
+  <script src="../assets/js/components/header.js"></script>
+
+  <!-- Feature Scripts -->
+  <script src="../assets/js/components/toast.js"></script>
+  <script src="../assets/js/components/search.js"></script>
+  <script src="../assets/js/components/modal.js"></script>
+  <script src="../assets/js/components/reveal.js"></script>
+  <script src="../assets/js/components/footer.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Page Interactive Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Category Filter Pills
+      const filterPills = document.querySelectorAll('#schemeFilterPills .gallery-filter-btn');
+      const schemeCards = document.querySelectorAll('#schemeGrid .service-card');
+
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          const filter = pill.getAttribute('data-filter');
+
+          schemeCards.forEach(card => {
+            const cat = card.getAttribute('data-category');
+            if (filter === 'all' || cat === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 2. Scheme Detail Modal
+      const detailModal = document.getElementById('schemeDetailModal');
+      const detailTitle = document.getElementById('modalSchemeTitle');
+      const detailSkkni = document.getElementById('modalSchemeSkkni');
+      const detailUnitsList = document.getElementById('modalSchemeUnitsList');
+      const detailPrereq = document.getElementById('modalSchemePrereq');
+      const detailRegisterBtn = document.getElementById('modalSchemeRegisterBtn');
+
+      let currentSelectedScheme = '';
+
+      document.querySelectorAll('.open-scheme-detail-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const title = btn.getAttribute('data-title');
+          const skkni = btn.getAttribute('data-skkni');
+          const units = btn.getAttribute('data-units').split('|');
+          const prereq = btn.getAttribute('data-prereq');
+
+          currentSelectedScheme = title;
+          detailTitle.textContent = 'Skema Sertifikasi: ' + title;
+          detailSkkni.textContent = skkni;
+          detailPrereq.textContent = prereq;
+          detailUnitsList.innerHTML = units.map(u => `<li>${u}</li>`).join('');
+
+          detailModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      });
+  </script>
+</body>
+</html>

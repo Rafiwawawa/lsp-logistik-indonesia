@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - LSP Logistik Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="sidebar-logo-text">Admin Panel</div>
+        <div class="sidebar-logo-sub">LSP Logistik Indonesia</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Konten</div>
+      <a href="#" class="nav-item active" data-section="dashboard">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item" data-section="berita">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+        Berita & Artikel
+      </a>
+      <a href="#" class="nav-item" data-section="pengurus">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Pengurus
+      </a>
+      <a href="#" class="nav-item" data-section="galeri">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Galeri Foto
+      </a>
+      <a href="#" class="nav-item" data-section="dokumen">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        Dokumen
+      </a>
+
+      <div class="nav-section-label" style="margin-top: 1.5rem;">Akun</div>
+      <a href="#" class="nav-item" data-section="settings">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Pengaturan
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-pill">
+        <div class="user-avatar">A</div>
+        <div class="user-info">
+          <div class="user-name">Administrator</div>
+          <div class="user-role">LSP Logistik</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="btnLogout" title="Keluar">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-bar">
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <div class="top-bar-title" id="pageTitle">Dashboard</div>
+      <div class="top-bar-right">
+        <a href="/" target="_blank" class="btn-view-site">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+          Lihat Website
+        </a>
+      </div>
+    </header>
+
+    <!-- ── DASHBOARD ─────────────────────────────────────────────────── -->
+    <section class="section" id="sec-dashboard">
+      <div class="section-header">
+        <h2>Selamat Datang 👋</h2>
+        <p>Kelola konten website LSP Logistik Indonesia dari panel ini.</p>
+      </div>
+
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-value" id="stat-berita">—</div>
+            <div class="stat-label">Artikel Berita</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-value" id="stat-galeri">—</div>
+            <div class="stat-label">Foto Galeri</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-value" id="stat-dokumen">—</div>
+            <div class="stat-label">Dokumen</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Pengurus</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <h3>Aksi Cepat</h3>
+        <div class="quick-grid">
+          <button class="quick-btn" onclick="switchSection('berita'); openModal('modal-berita-form')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Tulis Artikel Baru
+          </button>
+          <button class="quick-btn" onclick="switchSection('galeri')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Upload Foto Galeri
+          </button>
+          <button class="quick-btn" onclick="switchSection('dokumen')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Upload Dokumen
+          </button>
+          <button class="quick-btn" onclick="switchSection('pengurus')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            Edit Data Pengurus
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BERITA ─────────────────────────────────────────────────────── -->
+    <section class="section hidden" id="sec-berita">
+      <div class="section-header">
+        <h2>Berita & Artikel</h2>
+        <button class="btn-primary" onclick="openModal('modal-berita-form'); resetBeritaForm()">+ Artikel Baru</button>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table class="data-table" id="berita-table">
+            <thead>
+              <tr>
+                <th>Judul</th>
+                <th>Kategori</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="berita-tbody">
+              <tr><td colspan="5" class="loading-row">Memuat data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PENGURUS ───────────────────────────────────────────────────── -->
+    <section class="section hidden" id="sec-pengurus">
+      <div class="section-header">
+        <h2>Data Pengurus</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Klik Edit pada pengurus yang ingin diperbarui datanya.</p>
+      </div>
+      <div id="pengurus-grid" class="pengurus-grid">
+        <div class="loading-row">Memuat data pengurus...</div>
+      </div>
+    </section>
+
+    <!-- ── GALERI ─────────────────────────────────────────────────────── -->
+    <section class="section hidden" id="sec-galeri">
+      <div class="section-header">
+        <h2>Galeri Foto</h2>
+        <button class="btn-primary" onclick="openModal('modal-galeri-form')">+ Upload Foto</button>
+      </div>
+      <div id="galeri-grid" class="galeri-grid">
+        <div class="loading-row" style="grid-column:1/-1">Memuat galeri...</div>
+      </div>
+    </section>
+
+    <!-- ── DOKUMEN ────────────────────────────────────────────────────── -->
+    <section class="section hidden" id="sec-dokumen">
+      <div class="section-header">
+        <h2>Kelola Dokumen</h2>
+        <button class="btn-primary" onclick="openModal('modal-dokumen-form')">+ Upload Dokumen</button>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Nama Dokumen</th><th>Kategori</th><th>Ukuran</th><th>Tanggal</th><th>Aksi</th></tr>
+            </thead>
+            <tbody id="dokumen-tbody">
+              <tr><td colspan="5" class="loading-row">Memuat data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SETTINGS ───────────────────────────────────────────────────── -->
+    <section class="section hidden" id="sec-settings">
+      <div class="section-header"><h2>Pengaturan</h2></div>
+      <div class="card settings-card">
+        <h3>🔐 Ganti Password Admin</h3>
+        <p class="hint-text">Disarankan mengganti password default segera setelah login pertama.</p>
+        <form id="changePasswordForm">
+          <div class="form-group">
+            <label>Password Saat Ini</label>
+            <input type="password" id="currentPw" placeholder="Password sekarang" required>
+          </div>
+          <div class="form-group">
+            <label>Password Baru</label>
+            <input type="password" id="newPw" placeholder="Minimal 8 karakter" required minlength="8">
+          </div>
+          <div class="form-group">
+            <label>Konfirmasi Password Baru</label>
+            <input type="password" id="confirmPw" placeholder="Ulangi password baru" required>
+          </div>
+          <div class="form-msg" id="pwMsg"></div>
+          <button type="submit" class="btn-primary">Simpan Password Baru</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── MODALS ─────────────────────────────────────────────────────────── -->
+
+  <!-- Modal: Berita Form -->
+  <div class="modal-overlay hidden" id="modal-berita-form">
+    <div class="modal-box large">
+      <div class="modal-header">
+        <h3 id="berita-modal-title">Artikel Baru</h3>
+        <button class="modal-close" onclick="closeModal('modal-berita-form')">&times;</button>
+      </div>
+      <form id="beritaForm" class="modal-body">
+        <input type="hidden" id="berita-id">
+        <div class="form-group">
+          <label>Judul Artikel *</label>
+          <input type="text" id="berita-judul" placeholder="Judul berita atau artikel" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="berita-kategori">
+              <option>Berita</option>
+              <option>Pengumuman</option>
+              <option>Artikel</option>
+              <option>Informasi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tanggal</label>
+            <input type="date" id="berita-tanggal">
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="berita-status">
+              <option value="draft">Draft</option>
+              <option value="terbit">Terbit (Publik)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Ringkasan (ditampilkan di list)</label>
+          <textarea id="berita-ringkasan" rows="2" placeholder="Ringkasan singkat artikel..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Isi Artikel *</label>
+          <textarea id="berita-isi" rows="10" placeholder="Tulis isi artikel di sini..." required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal('modal-berita-form')">Batal</button>
+          <button type="submit" class="btn-primary" id="berita-submit-btn">Simpan Artikel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Pengurus -->
+  <div class="modal-overlay hidden" id="modal-pengurus-form">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Edit Data Pengurus</h3>
+        <button class="modal-close" onclick="closeModal('modal-pengurus-form')">&times;</button>
+      </div>
+      <form id="pengurusForm" class="modal-body">
+        <input type="hidden" id="pengurus-id">
+        <div class="form-group">
+          <label>Jabatan</label>
+          <input type="text" id="pengurus-jabatan" placeholder="Jabatan" required>
+        </div>
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" id="pengurus-nama" placeholder="Nama lengkap" required>
+        </div>
+        <div class="form-group">
+          <label>Gelar / Sertifikasi</label>
+          <input type="text" id="pengurus-gelar" placeholder="Contoh: ST., M.B.A, CSLP">
+        </div>
+        <div class="form-group">
+          <label>Biografi Singkat</label>
+          <textarea id="pengurus-bio" rows="3" placeholder="Deskripsi singkat tentang pengurus ini..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>URL Foto (opsional)</label>
+          <input type="text" id="pengurus-foto" placeholder="https://... atau /uploads/images/...">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal('modal-pengurus-form')">Batal</button>
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Upload Galeri -->
+  <div class="modal-overlay hidden" id="modal-galeri-form">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Upload Foto Galeri</h3>
+        <button class="modal-close" onclick="closeModal('modal-galeri-form')">&times;</button>
+      </div>
+      <form id="galeriForm" class="modal-body" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Judul Foto *</label>
+          <input type="text" id="galeri-judul" placeholder="Deskripsi foto" required>
+        </div>
+        <div class="form-group">
+          <label>Kategori</label>
+          <select id="galeri-kategori">
+            <option>Kegiatan</option>
+            <option>Sertifikasi</option>
+            <option>Workshop</option>
+            <option>Umum</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>File Gambar (JPG/PNG/WebP, maks 5MB) *</label>
+          <div class="upload-zone" id="galeri-drop-zone">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <p>Klik atau drag foto ke sini</p>
+            <input type="file" id="galeri-file" accept="image/jpeg,image/png,image/webp" required style="display:none">
+          </div>
+          <div id="galeri-preview" style="margin-top:0.75rem; display:none;">
+            <img id="galeri-preview-img" style="max-width:100%; max-height:200px; border-radius:8px; object-fit:cover;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal('modal-galeri-form')">Batal</button>
+          <button type="submit" class="btn-primary">Upload Foto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Upload Dokumen -->
+  <div class="modal-overlay hidden" id="modal-dokumen-form">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Upload Dokumen</h3>
+        <button class="modal-close" onclick="closeModal('modal-dokumen-form')">&times;</button>
+      </div>
+      <form id="dokumenForm" class="modal-body" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Nama Dokumen *</label>
+          <input type="text" id="dokumen-nama" placeholder="Nama dokumen yang ditampilkan" required>
+        </div>
+        <div class="form-group">
+          <label>Kategori</label>
+          <select id="dokumen-kategori">
+            <option>Formulir</option>
+            <option>Kebijakan</option>
+            <option>Panduan</option>
+            <option>Skema</option>
+            <option>Umum</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>File (PDF/Word/Excel, maks 10MB) *</label>
+          <div class="upload-zone" id="dokumen-drop-zone">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <p>Klik atau drag dokumen ke sini</p>
+            <input type="file" id="dokumen-file" accept=".pdf,.doc,.docx,.xls,.xlsx" required style="display:none">
+          </div>
+          <div id="dokumen-filename" style="margin-top:0.5rem; font-size:0.85rem; color:var(--text-muted);"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal('modal-dokumen-form')">Batal</button>
+          <button type="submit" class="btn-primary">Upload Dokumen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/admin/assets/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informasi Terbaru - LSP LOGISTIK INDONESIA</title>
+  
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/cards.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../assets/css/pages/berita.css">
+</head>
+<body>
+
+  <!-- BLOG_HEADER -->
+  <!-- HEADER & STICKY NAVIGATION -->
+  <header class="site-header" id="mainHeader">
+    <!-- BLOG_MENU -->
+    <!-- Main Navbar -->
+    <div class="container header-main">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="layanan.html" class="nav-link">Skema Sertifikasi</a></li>
+                    <li class="nav-item">
+            <a href="berita.html" class="nav-link active">
+              Informasi Terbaru
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
+              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
+              <li class="dropdown-item"><a href="dokumen.html">📄 Unduh Dokumen</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+
+        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
+
+        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Off Canvas Mobile Sidebar Navigation -->
+  <div class="mobile-nav-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="header-logo">
+          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
+        </a>
+        <button class="modal-close mobile-nav-close">&times;</button>
+      </div>
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
+        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
+        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
+        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
+        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
+        <li class="mobile-nav-item"><a href="dokumen.html">Unduh Dokumen</a></li>
+        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
+        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary) 0%, #001C5E 100%);">
+    <div class="container">
+      <!-- BLOG_BREADCRUMB -->
+      <div class="breadcrumb">
+        <a href="../index.html">Beranda</a>
+        <span class="separator">/</span>
+        <span class="current">Informasi Terbaru</span>
+      </div>
+      <h1>Informasi & Publikasi LSP Logistik Indonesia</h1>
+      <p>Berita seputar pengembangan kompetensi SDM logistik, regulasi SKKNI, dan pendaftaran asesmen.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container news-page-layout">
+      <!-- 70% MAIN CONTENT AREA -->
+      <div>
+        <div class="grid grid-cols-2 gap-6" id="newsGrid">
+          <article class="news-card card hover-lift" data-category="Edukasi" data-title="Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Pengelolaan Proyek">
+            <div class="news-thumb">
+              <span class="news-badge badge badge-primary" style="background:var(--color-secondary); color:#FFF;">Edukasi</span>
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Sertifikasi Profesi P3">
+            </div>
+            <div class="news-content">
+              <div class="news-meta"><span>05 April 2026</span> • Tim LSP Logistik</div>
+              <h3 class="news-title"><a href="detail-berita.html?id=1">Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Logistik Indonesia</a></h3>
+              <p class="news-excerpt">LSP Logistik Indonesia Indonesia memperkuat daya saing tenaga kerja pos dan kurir nasional melalui sertifikasi kompetensi berlisensi resmi BNSP...</p>
+              <a href="detail-berita.html?id=1" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
+            </div>
+          </article>
+
+          <article class="news-card card hover-lift" data-category="Standarisasi" data-title="Sosialisasi SKKNI No. 354 Tahun 2014 Bidang Keahlian Pos & Kurir">
+            <div class="news-thumb">
+              <span class="news-badge badge badge-accent">Standarisasi</span>
+              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="SKKNI 354">
+            </div>
+            <div class="news-content">
+              <div class="news-meta"><span>28 Maret 2026</span> • Tim Standarisasi</div>
+              <h3 class="news-title"><a href="detail-berita.html?id=2">Sosialisasi SKKNI No. 354 Tahun 2014 Bidang Keahlian Pos & Kurir</a></h3>
+              <p class="news-excerpt">Penjelasan teknis unit kompetensi bagi pengantar pos, counter officer, customer service, & collecting supervisor.</p>
+              <a href="detail-berita.html?id=2" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
+            </div>
+          </article>
+
+          <article class="news-card card hover-lift" data-category="ASPERINDO" data-title="Kerjasama LSP Logistik Indonesia & ASPERINDO Dorong Digitalisasi Logistik Nasional">
+            <div class="news-thumb">
+              <span class="news-badge badge badge-success">ASPERINDO</span>
+              <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80" alt="ASPERINDO Collaboration">
+            </div>
+            <div class="news-content">
+              <div class="news-meta"><span>15 Februari 2026</span> • Humas LSP Logistik</div>
+              <h3 class="news-title"><a href="detail-berita.html?id=3">Kerjasama LSP Logistik Indonesia & ASPERINDO Dorong Digitalisasi Logistik Nasional</a></h3>
+              <p class="news-excerpt">Sinergi bersama PosIND dan ASPERINDO dalam menyiapkan ribuan SDM logistik tersertifikasi menghadapi tantangan e-commerce global.</p>
+              <a href="detail-berita.html?id=3" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
+            </div>
+          </article>
+
+          <article class="news-card card hover-lift" data-category="Edukasi" data-title="Bimtek Asesor Kompetensi Sektor Pos Dan Kurir Gelombang IV Bandung">
+            <div class="news-thumb">
+              <span class="news-badge badge badge-info">Edukasi</span>
+              <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Bimtek Asesor">
+            </div>
+            <div class="news-content">
+              <div class="news-meta"><span>10 Januari 2026</span> • Sekretariat LSP</div>
+              <h3 class="news-title"><a href="detail-berita.html?id=4">Bimtek Asesor Kompetensi Sektor Pos Dan Kurir Gelombang IV Bandung</a></h3>
+              <p class="news-excerpt">Bimbingan teknis perancangan instrumen asesmen APL-02 bagi calon asesor kompetensi dari berbagai perusahaan anggota ASPERINDO.</p>
+              <a href="detail-berita.html?id=4" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- 30% SIDEBAR AREA -->
+      <aside class="sidebar">
+        <div class="widget">
+          <h4 class="widget-title">Cari Artikel</h4>
+          <input type="text" id="newsSearchInput" class="form-control" placeholder="Ketik kata kunci artikel...">
+        </div>
+
+        <div class="widget">
+          <h4 class="widget-title">Kategori</h4>
+          <ul class="widget-category-list">
+            <li class="widget-category-item"><a href="#" class="news-cat-link active" data-cat="all"><span>Semua Kategori</span> <span class="widget-category-count">4</span></a></li>
+            <li class="widget-category-item"><a href="#" class="news-cat-link" data-cat="Edukasi"><span>Edukasi & Pelatihan</span> <span class="widget-category-count">2</span></a></li>
+            <li class="widget-category-item"><a href="#" class="news-cat-link" data-cat="Standarisasi"><span>Regulasi SKKNI</span> <span class="widget-category-count">1</span></a></li>
+            <li class="widget-category-item"><a href="#" class="news-cat-link" data-cat="ASPERINDO"><span>ASPERINDO & PosIND</span> <span class="widget-category-count">1</span></a></li>
+          </ul>
+        </div>
+
+        <div class="widget">
+          <h4 class="widget-title">Pengumuman Terkait</h4>
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <a href="pengumuman.html" style="font-size:0.85rem; font-weight:600; color:var(--color-text-main); text-decoration:none; display:block; padding:0.5rem; background:var(--color-surface); border-radius:var(--radius-sm);">📢 Pendaftaran Uji Asesmen Kolektif Angkatan 2026 Buka Kembali</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- BLOG_FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Injected by footer.js -->
+    </div>
+  </footer>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Pencarian LSP Logistik Indonesia</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-modal-field">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" placeholder="Ketik kata kunci...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back To Top Button -->
+  <div class="back-to-top" id="backToTopBtn" title="Kembali ke atas">
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </div>
+
+  <!-- Component Scripts -->
+  <script src="../assets/js/components/header.js"></script>
+
+  <!-- Feature Scripts -->
+  <script src="../assets/js/components/toast.js"></script>
+  <script src="../assets/js/components/search.js"></script>
+  <script src="../assets/js/components/modal.js"></script>
+  <script src="../assets/js/components/reveal.js"></script>
+  <script src="../assets/js/components/footer.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Page Logic Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const newsCards = document.querySelectorAll('#newsGrid .news-card');
+      const searchInput = document.getElementById('newsSearchInput');
+      const categoryLinks = document.querySelectorAll('.news-cat-link');
+
+      function filterArticles() {
+        const activeLink = document.querySelector('.news-cat-link.active');
+        const filterCategory = activeLink ? activeLink.getAttribute('data-cat') : 'all';
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+        newsCards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          const title = card.getAttribute('data-title').toLowerCase();
+          const matchesCategory = (filterCategory === 'all' || cat === filterCategory);
+          const matchesQuery = (!query || title.includes(query));
+
+          if (matchesCategory && matchesQuery) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      categoryLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          categoryLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          filterArticles();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterArticles);
+      }
+
+      // Check URL parameters for ?cat=...
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialCat = urlParams.get('cat');
+      if (initialCat) {
+        categoryLinks.forEach(link => {
+          if (link.getAttribute('data-cat').toLowerCase() === initialCat.toLowerCase()) {
+            link.click();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* ==========================================================================
+   DESIGN TOKENS & CSS VARIABLES
+   LSP IND Logistik Indonesia (LSPIND LOGIN) - Template Ready
+   ========================================================================== */
+
+:root {
+  /* Brand Color Palette — Multi-Color Refresh */
+  --color-primary: #1E3A5F;          /* Deep Ocean Blue */
+  --color-primary-light: #2B5F8A;    /* Lighter Ocean Blue */
+  --color-primary-dark: #0F2440;     /* Deep Midnight Ocean */
+  
+  --color-secondary: #E8563A;        /* Warm Coral */
+  --color-secondary-hover: #C94428;  /* Darker Coral */
+  --color-secondary-soft: #FFF0EC;   /* Soft Coral Tint */
+  
+  --color-accent: #6C5CE7;           /* Soft Purple */
+  --color-accent-hover: #5A4BD1;     /* Deeper Purple */
+  --color-accent-light: #EDE9FE;     /* Light Purple Tint */
+
+  --color-tertiary: #00B894;         /* Mint / Teal */
+  --color-tertiary-light: #D1FAE5;   /* Light Mint */
+  
+  /* Neutral Color Tokens */
+  --color-background: #FAFBFF;       /* Body Background — subtle blue hint */
+  --color-surface: #FFFFFF;          /* Card & Modal Surface */
+  --color-surface-hover: #F1F5F9;    /* Hover State Surface */
+  --color-surface-translucent: rgba(255, 255, 255, 0.65);
+  
+  /* Typography Colors */
+  --color-text-main: #0F172A;        /* Primary Text */
+  --color-text-muted: #475569;       /* Secondary Text */
+  --color-text-light: #94A3B8;       /* Subtle Text */
+  --color-text-inverse: #FFFFFF;     /* Text on Dark Backgrounds */
+  
+  /* Borders & Dividers */
+  --color-border: #E2E8F0;          /* Soft Border */
+  --color-border-hover: #CBD5E1;    /* Emphasized Border */
+  
+  /* Status Colors */
+  --color-success: #00B894;         /* Mint Teal */
+  --color-success-light: #D1FAE5;
+  --color-warning: #F59E0B;         /* Amber Orange */
+  --color-warning-light: #FEF3C7;
+  --color-danger: #EF4444;          /* Rose Red */
+  --color-danger-light: #FEE2E2;
+  --color-info: #6C5CE7;            /* Informational Purple */
+  --color-info-light: #EDE9FE;
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Elevation & Shadows — warmer ocean blue tint */
+  --shadow-xs: 0 1px 2px 0 rgba(30, 58, 95, 0.05);
+  --shadow-sm: 0 2px 4px 0 rgba(30, 58, 95, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(30, 58, 95, 0.08), 0 2px 6px -1px rgba(30, 58, 95, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(30, 58, 95, 0.10), 0 4px 8px -2px rgba(30, 58, 95, 0.05);
+  --shadow-xl: 0 20px 32px -6px rgba(30, 58, 95, 0.14), 0 8px 16px -4px rgba(30, 58, 95, 0.07);
+
+  /* Transitions & Animation Duration */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layout Dimensions */
+  --container-max-width: 1280px;
+  --header-height-normal: 90px;
+  --header-height-scrolled: 68px;
+  --topbar-height: 40px;
+}
+
+/* Dark Mode Theme Tokens */
+[data-theme="dark"] {
+  --color-primary: #0D1B2E;
+  --color-primary-light: #1E3A5F;
+  --color-background: #080D1A;
+  --color-surface: #0F172A;
+  --color-surface-hover: #1E293B;
+  --color-surface-translucent: rgba(15, 23, 42, 0.65);
+  --color-text-main: #F8FAFC;
+  --color-text-muted: #94A3B8;
+  --color-text-light: #64748B;
+  --color-border: #1E293B;
+  --color-border-hover: #334155;
+  --color-accent: #8B7CF7;
+  --color-accent-light: #2D2654;
+  --color-tertiary: #2ED8A3;
+  --color-tertiary-light: #0D3B2E;
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.5);
+}

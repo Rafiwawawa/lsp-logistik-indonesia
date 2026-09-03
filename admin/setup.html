@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Administrator - LSP Logistik Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0e1a;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(16, 85, 180, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0, 180, 120, 0.1) 0%, transparent 50%);
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .setup-card {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 480px;
+      margin: 2rem 1.5rem;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, #2563eb, #10b981);
+      border-radius: 18px;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 1.4rem; font-weight: 700; color: #f8fafc; }
+    p.subtitle { color: #94a3b8; font-size: 0.875rem; margin-top: 0.25rem; }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.875rem;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .alert {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-size: 0.8125rem;
+      margin-bottom: 1.25rem;
+      display: none;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <div class="setup-card">
+    <div class="logo-area">
+      <div class="logo-badge">🛡️</div>
+      <h1>Setup Administrator</h1>
+      <p class="subtitle">LSP Logistik Indonesia</p>
+    </div>
+
+    <div id="alertBox" class="alert"></div>
+
+    <form id="setupForm">
+      <div class="form-group">
+        <label for="setupToken">Setup Token</label>
+        <input type="password" id="setupToken" required autocomplete="off" placeholder="Masukkan token dari .env">
+        <div class="helper-text">Token rahasia yang diatur di variabel environment SETUP_TOKEN.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username Admin</label>
+        <input type="text" id="username" required autocomplete="username" placeholder="Contoh: admin">
+        <div class="helper-text">3-50 karakter (huruf kecil, angka, titik, strip).</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password Baru</label>
+        <input type="password" id="password" required autocomplete="new-password" placeholder="Minimal 12 karakter">
+        <div class="helper-text">Minimal 12 karakter, maksimal 72 byte UTF-8.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Konfirmasi Password</label>
+        <input type="password" id="confirmPassword" required autocomplete="new-password" placeholder="Ulangi password">
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn-submit">Daftarkan Administrator</button>
+    </form>
+  </div>
+
+  <script>
+    const alertBox = document.getElementById('alertBox');
+    const form = document.getElementById('setupForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showAlert(msg, isSuccess = false) {
+      alertBox.textContent = msg;
+      alertBox.className = 'alert ' + (isSuccess ? 'alert-success' : 'alert-error');
+      alertBox.style.display = 'block';
+    }
+
+    // Check if setup is already completed
+    fetch('/api/auth/setup-status')
+      .then(res => res.json())
+      .then(res => {
+        if (res.success && !res.data.setupRequired) {
+          showAlert('Administrator sudah terdaftar. Setup telah dikunci. Mengalihkan ke login...', false);
+          form.style.display = 'none';
+          setTimeout(() => {
+            window.location.href = '/admin/login.html';
+          }, 2000);
+        }
+      })
+      .catch(() => {});
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alertBox.style.display = 'none';
+
+      const setupToken = document.getElementById('setupToken').value;
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        return showAlert('Konfirmasi password tidak cocok.');
+      }
+
+      if (password.length < 12) {
+        return showAlert('Password minimal 12 karakter.');
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Memproses...';
+
+      try {
+        const res = await fetch('/api/auth/setup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Setup-Token': setupToken,
+          },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          showAlert(data.error?.message || 'Gagal melakukan setup admin.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Daftarkan Administrator';
+          return;
+        }
+
+        showAlert('Administrator berhasil didaftarkan! Mengalihkan ke login...', true);
+        setTimeout(() => {
+          window.location.href = '/admin/login.html';
+        }, 1500);
+      } catch (err) {
+        showAlert('Terjadi kesalahan jaringan atau server.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Daftarkan Administrator';
+      }
+    });
+  </script>
+</body>
+</html>
