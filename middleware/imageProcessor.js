@@ -8,24 +8,90 @@ const sharp = require('sharp');
 const MAX_SIZE = 5 * 1024 * 1024; // 5 MiB
 const MAX_DIMENSION = 5000; // max width/height
 const ALLOWED_EXTS = ['.jpg', '.jpeg', '.png', '.webp'];
+const ALLOWED_CATEGORIES = [
+  'berita',
+  'pengurus',
+  'galeri',
+];
+
+function getUploadRoot() {
+  return process.env.UPLOAD_DIR
+    ? path.resolve(process.env.UPLOAD_DIR)
+    : path.resolve(__dirname, '..', 'uploads');
+}
+
+function getCategoryUploadDir(category) {
+  if (!ALLOWED_CATEGORIES.includes(category)) {
+    throw new Error('Invalid upload category');
+  }
+
+  const root = getUploadRoot();
+  const dir = path.resolve(root, category);
+
+  if (!dir.startsWith(`${root}${path.sep}`)) {
+    throw new Error('Invalid upload path');
+  }
+
+  return dir;
+}
 
 function createMulterForCategory(category) {
-  const uploadDir = path.resolve(__dirname, '..', 'uploads', category);
-  fs.mkdirSync(uploadDir, { recursive: true });
+  if (!ALLOWED_CATEGORIES.includes(category)) {
+    throw new Error('Invalid upload category');
+  }
+
   const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, uploadDir),
+    destination: (req, file, cb) => {
+      try {
+        const uploadDir = getCategoryUploadDir(category);
+
+        fs.mkdirSync(uploadDir, {
+          recursive: true,
+        });
+
+        cb(null, uploadDir);
+      } catch (error) {
+        cb(error);
+      }
+    },
+
     filename: (req, file, cb) => {
-      const ext = path.extname(file.originalname).toLowerCase();
-      const safeExt = ALLOWED_EXTS.includes(ext) ? ext : '';
-      cb(null, crypto.randomUUID() + safeExt);
+      const ext = path
+        .extname(file.originalname)
+        .toLowerCase();
+
+      const safeExt =
+        ALLOWED_EXTS.includes(ext)
+          ? ext
+          : '';
+
+      cb(
+        null,
+        crypto.randomUUID() + safeExt
+      );
     },
   });
+
   return multer({
     storage,
-    limits: { fileSize: MAX_SIZE },
+
+    limits: {
+      fileSize: MAX_SIZE,
+    },
+
     fileFilter: (req, file, cb) => {
-      const ext = path.extname(file.originalname).toLowerCase();
-      if (!ALLOWED_EXTS.includes(ext)) return cb(new Error('Unsupported file extension'));
+      const ext = path
+        .extname(file.originalname)
+        .toLowerCase();
+
+      if (!ALLOWED_EXTS.includes(ext)) {
+        return cb(
+          new Error(
+            'Unsupported file extension'
+          )
+        );
+      }
+
       cb(null, true);
     },
   });
