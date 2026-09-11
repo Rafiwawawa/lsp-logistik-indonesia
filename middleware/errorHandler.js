@@ -7,7 +7,14 @@
  */
 function errorHandler(err, req, res, next) {
   const isApi = req.path.startsWith('/api') || req.xhr || (req.headers.accept && req.headers.accept.includes('application/json'));
-  const statusCode = err.statusCode || err.status || (err.type === 'entity.too.large' ? 413 : 500);
+  const isPayloadTooLarge =
+    err.type === 'entity.too.large' ||
+    err.code === 'LIMIT_FILE_SIZE';
+
+  const statusCode =
+    err.statusCode ||
+    err.status ||
+    (isPayloadTooLarge ? 413 : 500);
 
   // Log error details internally (redacted from secrets)
   if (statusCode >= 500) {

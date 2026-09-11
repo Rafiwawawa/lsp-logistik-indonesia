@@ -62,9 +62,13 @@ function createApp(options = {}) {
 
   // ─── API Routes ─────────────────────────────────────────────────────────────
   app.use('/api/auth', require('./api/auth'));
+  app.use('/api/galeri', require('./api/galeri'));
 
   // Admin API boundary guard (Phase 2 placeholder for Phase 4 admin routes)
   app.use('/api/admin', requireAuth);
+
+  // Serve uploaded images safely
+  app.get('/media/images/:category/:filename', require('./middleware/serveImage'));
 
   // ─── Admin UI Guard & Static Routing ───────────────────────────────────────
   app.get('/admin/setup', (req, res) => {
