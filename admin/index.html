@@ -41,10 +41,6 @@
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         Galeri Foto
       </a>
-      <a href="#" class="nav-item" data-section="dokumen">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-        Dokumen
-      </a>
 
       <div class="nav-section-label" style="margin-top: 1.5rem;">Akun</div>
       <a href="#" class="nav-item" data-section="settings">
@@ -115,15 +111,6 @@
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon orange">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-          </div>
-          <div class="stat-body">
-            <div class="stat-value" id="stat-dokumen">—</div>
-            <div class="stat-label">Dokumen</div>
-          </div>
-        </div>
-        <div class="stat-card">
           <div class="stat-icon purple">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
@@ -144,10 +131,6 @@
           <button class="quick-btn" onclick="switchSection('galeri')">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             Upload Foto Galeri
-          </button>
-          <button class="quick-btn" onclick="switchSection('dokumen')">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            Upload Dokumen
           </button>
           <button class="quick-btn" onclick="switchSection('pengurus')">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
@@ -202,26 +185,6 @@
       </div>
       <div id="galeri-grid" class="galeri-grid">
         <div class="loading-row" style="grid-column:1/-1">Memuat galeri...</div>
-      </div>
-    </section>
-
-    <!-- ── DOKUMEN ────────────────────────────────────────────────────── -->
-    <section class="section hidden" id="sec-dokumen">
-      <div class="section-header">
-        <h2>Kelola Dokumen</h2>
-        <button class="btn-primary" onclick="openModal('modal-dokumen-form')">+ Upload Dokumen</button>
-      </div>
-      <div class="card">
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead>
-              <tr><th>Nama Dokumen</th><th>Kategori</th><th>Ukuran</th><th>Tanggal</th><th>Aksi</th></tr>
-            </thead>
-            <tbody id="dokumen-tbody">
-              <tr><td colspan="5" class="loading-row">Memuat data...</td></tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </section>
 
@@ -381,44 +344,6 @@
     </div>
   </div>
 
-  <!-- Modal: Upload Dokumen -->
-  <div class="modal-overlay hidden" id="modal-dokumen-form">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>Upload Dokumen</h3>
-        <button class="modal-close" onclick="closeModal('modal-dokumen-form')">&times;</button>
-      </div>
-      <form id="dokumenForm" class="modal-body" enctype="multipart/form-data">
-        <div class="form-group">
-          <label>Nama Dokumen *</label>
-          <input type="text" id="dokumen-nama" placeholder="Nama dokumen yang ditampilkan" required>
-        </div>
-        <div class="form-group">
-          <label>Kategori</label>
-          <select id="dokumen-kategori">
-            <option>Formulir</option>
-            <option>Kebijakan</option>
-            <option>Panduan</option>
-            <option>Skema</option>
-            <option>Umum</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>File (PDF/Word/Excel, maks 10MB) *</label>
-          <div class="upload-zone" id="dokumen-drop-zone">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            <p>Klik atau drag dokumen ke sini</p>
-            <input type="file" id="dokumen-file" accept=".pdf,.doc,.docx,.xls,.xlsx" required style="display:none">
-          </div>
-          <div id="dokumen-filename" style="margin-top:0.5rem; font-size:0.85rem; color:var(--text-muted);"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeModal('modal-dokumen-form')">Batal</button>
-          <button type="submit" class="btn-primary">Upload Dokumen</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- Toast Notification -->
   <div class="toast" id="toast"></div>

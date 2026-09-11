@@ -54,7 +54,6 @@
                 <ul class="dropdown-menu">
                   <li class="dropdown-item"><a href="${pagesPath}berita.html">📰 Berita &amp; Artikel</a></li>
                   <li class="dropdown-item"><a href="${pagesPath}galeri.html">🖼️ Galeri Media</a></li>
-                  <li class="dropdown-item"><a href="${pagesPath}dokumen.html">📄 Unduh Dokumen</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a href="${pagesPath}faq.html" class="nav-link ${isFaq ? 'active' : ''}">FAQ</a></li>
@@ -106,7 +105,6 @@
           <li class="mobile-nav-item"><a href="${pagesPath}layanan.html">Skema Sertifikasi</a></li>
           <li class="mobile-nav-item"><a href="${pagesPath}berita.html">Informasi Terbaru</a></li>
           <li class="mobile-nav-item"><a href="${pagesPath}galeri.html">Galeri Media</a></li>
-          <li class="mobile-nav-item"><a href="${pagesPath}dokumen.html">Unduh Dokumen</a></li>
           <li class="mobile-nav-item"><a href="${pagesPath}faq.html">FAQ</a></li>
           <li class="mobile-nav-item"><a href="${pagesPath}kontak.html">Kontak Kami</a></li>
         </ul>

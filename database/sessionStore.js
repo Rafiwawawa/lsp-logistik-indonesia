@@ -6,6 +6,21 @@ const createSqliteStore = require('better-sqlite3-session-store');
 
 const SqliteStore = createSqliteStore(session);
 
+// Safeguard against unref/hanging interval timers in better-sqlite3-session-store
+SqliteStore.prototype.startInterval = function () {
+  if (this.expired && this.expired.clear === false) {
+    return;
+  }
+  const timer = setInterval(
+    this.clearExpiredSessions.bind(this),
+    this.expired.intervalMs
+  );
+  if (timer && timer.unref) {
+    timer.unref();
+  }
+  this._clearTimer = timer;
+};
+
 let sessionDbInstance = null;
 let sessionStoreInstance = null;
 let currentSessionDbPath = null;
@@ -96,6 +111,10 @@ function clearAllSessions(targetDb) {
  * Closes the session database cleanly.
  */
 function closeSessionDB() {
+  if (sessionStoreInstance && sessionStoreInstance._clearTimer) {
+    clearInterval(sessionStoreInstance._clearTimer);
+    sessionStoreInstance._clearTimer = null;
+  }
   if (sessionDbInstance) {
     try {
       sessionDbInstance.close();

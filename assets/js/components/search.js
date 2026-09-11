@@ -40,31 +40,6 @@ window.LSP_SEARCH_DATA = [
     tags: ['mahendra rianto', 'organisasi', 'direktur', 'manajer mutu', 'komite skema']
   },
 
-  // Dokumen
-  {
-    id: 'doc-1',
-    title: 'Formulir Permohonan Sertifikasi APL-01 LSP LOGISTIK INDONESIA',
-    category: 'Dokumen',
-    desc: 'Formulir pendaftaran resmi permohonan sertifikasi kompetensi (APL-01) format PDF interaktif.',
-    url: 'dokumen.html#apl-01',
-    tags: ['apl-01', 'formulir', 'pendaftaran', 'unduh', 'pdf']
-  },
-  {
-    id: 'doc-2',
-    title: 'Formulir Asesmen Mandiri APL-02 Logistik',
-    category: 'Dokumen',
-    desc: 'Lembar asesmen mandiri bukti portofolio kerja asesi sesuai unit kompetensi SKKNI.',
-    url: 'dokumen.html#apl-02',
-    tags: ['apl-02', 'asesmen mandiri', 'portofolio', 'pdf']
-  },
-  {
-    id: 'doc-3',
-    title: 'Salinan SKKNI No. 354 Tahun 2014 Sektor Pos dan Logistik',
-    category: 'Dokumen',
-    desc: 'Dokumen standar kompetensi kerja nasional Indonesia resmi Keputusan Kementerian Ketenagakerjaan.',
-    url: 'dokumen.html#skkni-354',
-    tags: ['skkni', 'regulasi', 'kepmennaker', 'pdf']
-  },
 
   // Profil & FAQ
   {

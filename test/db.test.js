@@ -39,7 +39,6 @@ describe('Phase 1: Database & Schema Validation', () => {
       'berita',
       'pengurus',
       'galeri',
-      'dokumen',
       'activity_logs',
     ];
 
@@ -47,9 +46,15 @@ describe('Phase 1: Database & Schema Validation', () => {
       assert.ok(tables.includes(tbl), `Table ${tbl} should exist in database`);
     }
 
-    const migrationRecord = env.db.prepare('SELECT * FROM schema_migrations WHERE version = 1').get();
-    assert.ok(migrationRecord, 'Migration 1 should be recorded');
-    assert.match(migrationRecord.applied_at, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
+    assert.ok(!tables.includes('dokumen'), 'Table dokumen should NOT exist in database after migration 002');
+
+    const migration1 = env.db.prepare('SELECT * FROM schema_migrations WHERE version = 1').get();
+    assert.ok(migration1, 'Migration 1 should be recorded');
+    assert.match(migration1.applied_at, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
+
+    const migration2 = env.db.prepare('SELECT * FROM schema_migrations WHERE version = 2').get();
+    assert.ok(migration2, 'Migration 2 should be recorded');
+    assert.match(migration2.applied_at, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
   });
 
   test('verifies source_key column and UNIQUE semantics (allows multiple NULLs)', () => {

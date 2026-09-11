@@ -24,7 +24,6 @@ function switchSection(name) {
     berita: 'Berita & Artikel',
     pengurus: 'Data Pengurus',
     galeri: 'Galeri Foto',
-    dokumen: 'Dokumen',
     settings: 'Pengaturan'
   }[name] || name;
 
@@ -33,7 +32,6 @@ function switchSection(name) {
   if (name === 'berita') loadBerita();
   if (name === 'pengurus') loadPengurus();
   if (name === 'galeri') loadGaleri();
-  if (name === 'dokumen') loadDokumen();
 
   // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
@@ -95,14 +93,12 @@ document.getElementById('btnLogout').addEventListener('click', async () => {
 // ─── Dashboard ──────────────────────────────────────────────────────
 async function loadDashboard() {
   try {
-    const [b, g, d] = await Promise.all([
+    const [b, g] = await Promise.all([
       fetch('/api/berita?limit=100', { credentials: 'include' }).then(r => r.json()),
       fetch('/api/galeri', { credentials: 'include' }).then(r => r.json()),
-      fetch('/api/dokumen', { credentials: 'include' }).then(r => r.json()),
     ]);
     document.getElementById('stat-berita').textContent = b.data?.length ?? 0;
     document.getElementById('stat-galeri').textContent = g.data?.length ?? 0;
-    document.getElementById('stat-dokumen').textContent = d.data?.length ?? 0;
   } catch (e) {}
 }
 
@@ -401,83 +397,6 @@ async function deleteGaleri(id) {
   }
 }
 
-// ─── DOKUMEN ─────────────────────────────────────────────────────────
-async function loadDokumen() {
-  const tbody = document.getElementById('dokumen-tbody');
-  tbody.innerHTML = '<tr><td colspan="5" class="loading-row">Memuat data...</td></tr>';
-  try {
-    const res = await fetch('/api/dokumen', { credentials: 'include' });
-    const { data } = await res.json();
-    if (!data || data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5" class="loading-row">Belum ada dokumen. Upload dokumen pertama!</td></tr>';
-      return;
-    }
-    tbody.innerHTML = data.map(d => `
-      <tr>
-        <td>
-          <a href="${d.url}" target="_blank" style="color:#58a6ff; text-decoration:none;">
-            📄 ${escHtml(d.nama)}
-          </a>
-        </td>
-        <td>${escHtml(d.kategori)}</td>
-        <td>${d.ukuran || '—'}</td>
-        <td>${d.dibuat ? d.dibuat.split(' ')[0] : '—'}</td>
-        <td><button class="btn-danger" onclick="deleteDokumen(${d.id}, '${escHtml(d.nama).replace(/'/g, "\\'")}')">Hapus</button></td>
-      </tr>
-    `).join('');
-  } catch (e) {
-    tbody.innerHTML = '<tr><td colspan="5" class="loading-row">Gagal memuat data.</td></tr>';
-  }
-}
-
-// Upload zone for dokumen
-document.getElementById('dokumen-drop-zone').addEventListener('click', () => {
-  document.getElementById('dokumen-file').click();
-});
-
-document.getElementById('dokumen-file').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    document.getElementById('dokumen-filename').textContent = `📎 ${file.name}`;
-  }
-});
-
-document.getElementById('dokumenForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const fd = new FormData();
-  fd.append('nama', document.getElementById('dokumen-nama').value);
-  fd.append('kategori', document.getElementById('dokumen-kategori').value);
-  fd.append('file', document.getElementById('dokumen-file').files[0]);
-
-  try {
-    const res = await fetch('/api/dokumen', { method: 'POST', credentials: 'include', body: fd });
-    const data = await res.json();
-    if (data.success) {
-      showToast('Dokumen berhasil diupload!');
-      closeModal('modal-dokumen-form');
-      document.getElementById('dokumenForm').reset();
-      document.getElementById('dokumen-filename').textContent = '';
-      loadDokumen();
-      loadDashboard();
-    } else {
-      showToast(data.error || 'Gagal upload', 'error');
-    }
-  } catch (e) {
-    showToast('Terjadi kesalahan', 'error');
-  }
-});
-
-async function deleteDokumen(id, nama) {
-  if (!confirm(`Hapus dokumen "${nama}"?`)) return;
-  try {
-    const res = await fetch(`/api/dokumen/${id}`, { method: 'DELETE', credentials: 'include' });
-    const data = await res.json();
-    if (data.success) { showToast('Dokumen berhasil dihapus'); loadDokumen(); loadDashboard(); }
-    else showToast(data.error || 'Gagal menghapus', 'error');
-  } catch (e) {
-    showToast('Terjadi kesalahan', 'error');
-  }
-}
 
 // ─── SETTINGS ────────────────────────────────────────────────────────
 document.getElementById('changePasswordForm').addEventListener('submit', async (e) => {
