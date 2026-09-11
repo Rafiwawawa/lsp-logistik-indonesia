@@ -1,131 +1,968 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 const xss = require('xss');
-const { getDB, saveDB } = require('../database/db');
+
+const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
+const {
+  createMulterForCategory,
+  processImage,
+} = require('../middleware/imageProcessor');
+
 const router = express.Router();
 
-// Helper: generate slug from title
-function slugify(text) {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
-    + '-' + Date.now();
+const upload = createMulterForCategory('berita');
+
+const ALLOWED_STATUS = new Set([
+  'draft',
+  'terbit',
+]);
+
+function sanitizeText(value, fallback = '') {
+  if (typeof value !== 'string') {
+    return fallback;
+  }
+
+  return xss(value.trim());
 }
 
-// GET /api/berita - public (list published articles)
-router.get('/', (req, res) => {
-  const db = getDB();
-  const { kategori, status, limit = 10, offset = 0 } = req.query;
+function isAdmin(req) {
+  return Boolean(
+    req.session &&
+    req.session.adminId
+  );
+}
 
-  let query = 'SELECT id, judul, slug, ringkasan, kategori, thumbnail, status, tanggal FROM berita';
-  const params = [];
-  const conditions = [];
+function slugify(text) {
+  const base = text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
 
-  // Public only sees published, admin can see all
-  if (!req.session || !req.session.isAdmin) {
-    conditions.push("status = 'terbit'");
-  } else if (status) {
-    conditions.push('status = ?');
-    params.push(status);
+  const suffix = crypto
+    .randomUUID()
+    .slice(0, 8);
+
+  return `${
+    base || 'artikel'
+  }-${suffix}`;
+}
+
+function getBeritaUploadDir() {
+  const root = process.env.UPLOAD_DIR
+    ? path.resolve(
+        process.env.UPLOAD_DIR
+      )
+    : path.resolve(
+        __dirname,
+        '..',
+        'uploads'
+      );
+
+  return path.resolve(
+    root,
+    'berita'
+  );
+}
+
+async function removeManagedThumbnail(
+  thumbnail
+) {
+  if (
+    typeof thumbnail !== 'string' ||
+    !thumbnail.startsWith('berita/')
+  ) {
+    return;
   }
 
-  if (kategori) {
-    conditions.push('kategori = ?');
-    params.push(kategori);
-  }
+  const filename =
+    path.basename(thumbnail);
 
-  if (conditions.length > 0) {
-    query += ' WHERE ' + conditions.join(' AND ');
-  }
-  query += ' ORDER BY tanggal DESC LIMIT ? OFFSET ?';
-  params.push(parseInt(limit), parseInt(offset));
+  const uploadDir =
+    getBeritaUploadDir();
 
-  try {
-    const result = db.exec(query, params);
-    const rows = result.length > 0 ? result[0].values.map(r => ({
-      id: r[0], judul: r[1], slug: r[2], ringkasan: r[3],
-      kategori: r[4], thumbnail: r[5], status: r[6], tanggal: r[7]
-    })) : [];
-    res.json({ success: true, data: rows });
-  } catch (e) {
-    res.status(500).json({ error: 'Database error' });
-  }
-});
-
-// GET /api/berita/:slug - public
-router.get('/:slug', (req, res) => {
-  const db = getDB();
-  const result = db.exec('SELECT * FROM berita WHERE slug = ?', [req.params.slug]);
-  if (!result.length || !result[0].values.length) {
-    return res.status(404).json({ error: 'Artikel tidak ditemukan' });
-  }
-  const cols = result[0].columns;
-  const vals = result[0].values[0];
-  const row = {};
-  cols.forEach((c, i) => row[c] = vals[i]);
-
-  if (row.status !== 'terbit' && (!req.session || !req.session.isAdmin)) {
-    return res.status(404).json({ error: 'Artikel tidak ditemukan' });
-  }
-  res.json({ success: true, data: row });
-});
-
-// POST /api/berita - admin only
-router.post('/', requireAuth, (req, res) => {
-  const { judul, isi, ringkasan, kategori, thumbnail, status, tanggal } = req.body;
-  if (!judul || !isi) {
-    return res.status(400).json({ error: 'Judul dan isi wajib diisi' });
-  }
-
-  const db = getDB();
-  const slug = slugify(judul);
-  const cleanIsi = xss(isi);
-  const cleanJudul = xss(judul);
-  const today = tanggal || new Date().toISOString().split('T')[0];
-
-  try {
-    db.run(
-      'INSERT INTO berita (judul, slug, isi, ringkasan, kategori, thumbnail, status, tanggal) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [cleanJudul, slug, cleanIsi, xss(ringkasan || ''), kategori || 'Berita', thumbnail || null, status || 'draft', today]
+  const filePath =
+    path.resolve(
+      uploadDir,
+      filename
     );
-    const idResult = db.exec('SELECT last_insert_rowid() as id');
-    const id = idResult[0].values[0][0];
-    db.run("INSERT INTO activity_log (aksi, detail) VALUES (?, ?)", ['BUAT_BERITA', `Artikel: ${cleanJudul}`]);
-    saveDB();
-    res.json({ success: true, id, slug });
-  } catch (e) {
-    res.status(500).json({ error: 'Gagal menyimpan artikel: ' + e.message });
+
+  if (
+    !filePath.startsWith(
+      `${uploadDir}${path.sep}`
+    )
+  ) {
+    return;
   }
-});
 
-// PUT /api/berita/:id - admin only
-router.put('/:id', requireAuth, (req, res) => {
-  const { judul, isi, ringkasan, kategori, thumbnail, status, tanggal } = req.body;
-  const db = getDB();
+  await fs.promises
+    .unlink(filePath)
+    .catch((error) => {
+      if (error.code !== 'ENOENT') {
+        console.error(
+          '[Berita] Failed to remove thumbnail:',
+          error.message
+        );
+      }
+    });
+}
 
-  try {
-    db.run(
-      'UPDATE berita SET judul=?, isi=?, ringkasan=?, kategori=?, thumbnail=?, status=?, tanggal=?, diperbarui=datetime(\'now\') WHERE id=?',
-      [xss(judul), xss(isi), xss(ringkasan || ''), kategori, thumbnail || null, status, tanggal, req.params.id]
-    );
-    db.run("INSERT INTO activity_log (aksi, detail) VALUES (?, ?)", ['EDIT_BERITA', `ID: ${req.params.id}`]);
-    saveDB();
-    res.json({ success: true });
-  } catch (e) {
-    res.status(500).json({ error: 'Gagal memperbarui artikel' });
+function buildBeritaResponse(row) {
+  return {
+    id: row.id,
+    judul: row.judul,
+    slug: row.slug,
+    isi: row.isi,
+    ringkasan: row.ringkasan,
+    kategori: row.kategori,
+    thumbnail: row.thumbnail,
+    thumbnail_url:
+      row.thumbnail &&
+      row.thumbnail.startsWith(
+        'berita/'
+      )
+        ? `/media/images/${row.thumbnail}`
+        : row.thumbnail,
+    status: row.status,
+    published_at:
+      row.published_at,
+    created_at:
+      row.created_at,
+    updated_at:
+      row.updated_at,
+  };
+}
+
+/**
+ * GET /api/berita
+ *
+ * Public:
+ * only published articles.
+ *
+ * Admin:
+ * can see drafts and filter by status.
+ */
+router.get(
+  '/',
+  (req, res, next) => {
+    try {
+      const db = getDB();
+
+      const kategori =
+        typeof req.query.kategori ===
+        'string'
+          ? req.query.kategori.trim()
+          : '';
+
+      const requestedStatus =
+        typeof req.query.status ===
+        'string'
+          ? req.query.status.trim()
+          : '';
+
+      let limit =
+        Number.parseInt(
+          req.query.limit,
+          10
+        );
+
+      let offset =
+        Number.parseInt(
+          req.query.offset,
+          10
+        );
+
+      if (
+        !Number.isInteger(limit) ||
+        limit <= 0
+      ) {
+        limit = 10;
+      }
+
+      if (limit > 100) {
+        limit = 100;
+      }
+
+      if (
+        !Number.isInteger(offset) ||
+        offset < 0
+      ) {
+        offset = 0;
+      }
+
+      const conditions = [];
+      const params = [];
+
+      if (!isAdmin(req)) {
+        conditions.push(
+          "status = 'terbit'"
+        );
+      } else if (
+        requestedStatus
+      ) {
+        if (
+          !ALLOWED_STATUS.has(
+            requestedStatus
+          )
+        ) {
+          return res
+            .status(400)
+            .json({
+              success: false,
+              error: {
+                code:
+                  'INVALID_STATUS',
+                message:
+                  'Status berita tidak valid.',
+              },
+            });
+        }
+
+        conditions.push(
+          'status = ?'
+        );
+
+        params.push(
+          requestedStatus
+        );
+      }
+
+      if (kategori) {
+        conditions.push(
+          'kategori = ?'
+        );
+
+        params.push(kategori);
+      }
+
+      let sql = `
+        SELECT
+          id,
+          judul,
+          slug,
+          isi,
+          ringkasan,
+          kategori,
+          thumbnail,
+          status,
+          published_at,
+          created_at,
+          updated_at
+        FROM berita
+      `;
+
+      if (
+        conditions.length > 0
+      ) {
+        sql +=
+          ` WHERE ${conditions.join(
+            ' AND '
+          )}`;
+      }
+
+      sql += `
+        ORDER BY
+          COALESCE(
+            published_at,
+            created_at
+          ) DESC,
+          id DESC
+        LIMIT ?
+        OFFSET ?
+      `;
+
+      params.push(
+        limit,
+        offset
+      );
+
+      const rows = db
+        .prepare(sql)
+        .all(...params);
+
+      return res.json({
+        success: true,
+        data: rows.map(
+          buildBeritaResponse
+        ),
+      });
+    } catch (error) {
+      return next(error);
+    }
   }
-});
+);
 
-// DELETE /api/berita/:id - admin only
-router.delete('/:id', requireAuth, (req, res) => {
-  const db = getDB();
-  db.run('DELETE FROM berita WHERE id = ?', [req.params.id]);
-  db.run("INSERT INTO activity_log (aksi, detail) VALUES (?, ?)", ['HAPUS_BERITA', `ID: ${req.params.id}`]);
-  saveDB();
-  res.json({ success: true });
-});
+/**
+ * GET /api/berita/:slug
+ */
+router.get(
+  '/:slug',
+  (req, res, next) => {
+    try {
+      const db = getDB();
+
+      const row = db
+        .prepare(`
+          SELECT
+            id,
+            judul,
+            slug,
+            isi,
+            ringkasan,
+            kategori,
+            thumbnail,
+            status,
+            published_at,
+            created_at,
+            updated_at
+          FROM berita
+          WHERE slug = ?
+        `)
+        .get(req.params.slug);
+
+      if (
+        !row ||
+        (
+          row.status !== 'terbit' &&
+          !isAdmin(req)
+        )
+      ) {
+        return res
+          .status(404)
+          .json({
+            success: false,
+            error: {
+              code:
+                'BERITA_NOT_FOUND',
+              message:
+                'Artikel tidak ditemukan.',
+            },
+          });
+      }
+
+      return res.json({
+        success: true,
+        data:
+          buildBeritaResponse(row),
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+);
+
+/**
+ * POST /api/berita
+ *
+ * Admin only.
+ * Thumbnail is optional.
+ */
+router.post(
+  '/',
+  requireAuth,
+  upload.single('thumbnail'),
+  async (req, res, next) => {
+    const judul =
+      sanitizeText(
+        req.body.judul
+      );
+
+    const isi =
+      sanitizeText(
+        req.body.isi
+      );
+
+    const ringkasan =
+      sanitizeText(
+        req.body.ringkasan
+      );
+
+    const kategori =
+      sanitizeText(
+        req.body.kategori,
+        'Berita'
+      ) || 'Berita';
+
+    const status =
+      sanitizeText(
+        req.body.status,
+        'draft'
+      ) || 'draft';
+
+    if (!judul || !isi) {
+      if (req.file) {
+        await fs.promises
+          .unlink(req.file.path)
+          .catch(() => {});
+      }
+
+      return res
+        .status(400)
+        .json({
+          success: false,
+          error: {
+            code:
+              'REQUIRED_FIELDS_MISSING',
+            message:
+              'Judul dan isi wajib diisi.',
+          },
+        });
+    }
+
+    if (
+      !ALLOWED_STATUS.has(status)
+    ) {
+      if (req.file) {
+        await fs.promises
+          .unlink(req.file.path)
+          .catch(() => {});
+      }
+
+      return res
+        .status(400)
+        .json({
+          success: false,
+          error: {
+            code:
+              'INVALID_STATUS',
+            message:
+              'Status berita tidak valid.',
+          },
+        });
+    }
+
+    try {
+      let thumbnail = null;
+
+      if (req.file) {
+        await processImage(
+          req.file.path
+        );
+
+        thumbnail =
+          `berita/${req.file.filename}`;
+      }
+
+      const db = getDB();
+
+      const slug =
+        slugify(judul);
+
+      const publishedAt =
+        status === 'terbit'
+          ? new Date().toISOString()
+          : null;
+
+      const insertBerita =
+        db.prepare(`
+          INSERT INTO berita (
+            judul,
+            slug,
+            isi,
+            ringkasan,
+            kategori,
+            thumbnail,
+            status,
+            published_at
+          )
+          VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?
+          )
+        `);
+
+      const insertLog =
+        db.prepare(`
+          INSERT INTO activity_logs (
+            action,
+            entity_type,
+            entity_id,
+            metadata,
+            ip_address
+          )
+          VALUES (
+            ?, ?, ?, ?, ?
+          )
+        `);
+
+      const getBeritaById =
+        db.prepare(`
+          SELECT
+            id,
+            judul,
+            slug,
+            isi,
+            ringkasan,
+            kategori,
+            thumbnail,
+            status,
+            published_at,
+            created_at,
+            updated_at
+          FROM berita
+          WHERE id = ?
+        `);
+
+      const createBerita =
+        db.transaction(() => {
+          const result =
+            insertBerita.run(
+              judul,
+              slug,
+              isi,
+              ringkasan || null,
+              kategori,
+              thumbnail,
+              status,
+              publishedAt
+            );
+
+          const id = Number(
+            result.lastInsertRowid
+          );
+
+          insertLog.run(
+            'BERITA_CREATE',
+            'berita',
+            String(id),
+            JSON.stringify({
+              judul,
+              slug,
+              status,
+            }),
+            req.ip || null
+          );
+
+          const row =
+            getBeritaById.get(id);
+
+          if (!row) {
+            throw new Error(
+              'Failed to retrieve created berita row'
+            );
+          }
+
+          return row;
+        });
+
+      const row =
+        createBerita();
+
+      return res
+        .status(201)
+        .json({
+          success: true,
+          data:
+            buildBeritaResponse(row),
+        });
+    } catch (error) {
+      if (req.file) {
+        await fs.promises
+          .unlink(req.file.path)
+          .catch(() => {});
+      }
+
+      return next(error);
+    }
+  }
+);
+
+/**
+ * PUT /api/berita/:id
+ *
+ * Admin only.
+ */
+router.put(
+  '/:id',
+  requireAuth,
+  upload.single('thumbnail'),
+  async (req, res, next) => {
+    const id =
+      Number(req.params.id);
+
+    if (
+      !Number.isInteger(id) ||
+      id <= 0
+    ) {
+      if (req.file) {
+        await fs.promises
+          .unlink(req.file.path)
+          .catch(() => {});
+      }
+
+      return res
+        .status(400)
+        .json({
+          success: false,
+          error: {
+            code: 'INVALID_ID',
+            message:
+              'ID berita tidak valid.',
+          },
+        });
+    }
+
+    try {
+      const db = getDB();
+
+      const existing = db
+        .prepare(`
+          SELECT *
+          FROM berita
+          WHERE id = ?
+        `)
+        .get(id);
+
+      if (!existing) {
+        if (req.file) {
+          await fs.promises
+            .unlink(req.file.path)
+            .catch(() => {});
+        }
+
+        return res
+          .status(404)
+          .json({
+            success: false,
+            error: {
+              code:
+                'BERITA_NOT_FOUND',
+              message:
+                'Artikel tidak ditemukan.',
+            },
+          });
+      }
+
+      const judul =
+        req.body.judul !== undefined
+          ? sanitizeText(
+              req.body.judul
+            )
+          : existing.judul;
+
+      const isi =
+        req.body.isi !== undefined
+          ? sanitizeText(
+              req.body.isi
+            )
+          : existing.isi;
+
+      const ringkasan =
+        req.body.ringkasan !==
+        undefined
+          ? sanitizeText(
+              req.body.ringkasan
+            )
+          : existing.ringkasan;
+
+      const kategori =
+        req.body.kategori !==
+        undefined
+          ? sanitizeText(
+              req.body.kategori
+            )
+          : existing.kategori;
+
+      const status =
+        req.body.status !== undefined
+          ? sanitizeText(
+              req.body.status
+            )
+          : existing.status;
+
+      if (!judul || !isi) {
+        if (req.file) {
+          await fs.promises
+            .unlink(req.file.path)
+            .catch(() => {});
+        }
+
+        return res
+          .status(400)
+          .json({
+            success: false,
+            error: {
+              code:
+                'REQUIRED_FIELDS_MISSING',
+              message:
+                'Judul dan isi wajib diisi.',
+            },
+          });
+      }
+
+      if (
+        !ALLOWED_STATUS.has(status)
+      ) {
+        if (req.file) {
+          await fs.promises
+            .unlink(req.file.path)
+            .catch(() => {});
+        }
+
+        return res
+          .status(400)
+          .json({
+            success: false,
+            error: {
+              code:
+                'INVALID_STATUS',
+              message:
+                'Status berita tidak valid.',
+            },
+          });
+      }
+
+      let newThumbnail =
+        existing.thumbnail;
+
+      if (req.file) {
+        await processImage(
+          req.file.path
+        );
+
+        newThumbnail =
+          `berita/${req.file.filename}`;
+      }
+
+      const publishedAt =
+        status === 'terbit'
+          ? (
+              existing.published_at ||
+              new Date().toISOString()
+            )
+          : null;
+
+      const updateBerita =
+        db.prepare(`
+          UPDATE berita
+          SET
+            judul = ?,
+            isi = ?,
+            ringkasan = ?,
+            kategori = ?,
+            thumbnail = ?,
+            status = ?,
+            published_at = ?,
+            updated_at = strftime(
+              '%Y-%m-%dT%H:%M:%fZ',
+              'now'
+            )
+          WHERE id = ?
+        `);
+
+      const insertLog =
+        db.prepare(`
+          INSERT INTO activity_logs (
+            action,
+            entity_type,
+            entity_id,
+            metadata,
+            ip_address
+          )
+          VALUES (
+            ?, ?, ?, ?, ?
+          )
+        `);
+
+      const getBeritaById =
+        db.prepare(`
+          SELECT
+            id,
+            judul,
+            slug,
+            isi,
+            ringkasan,
+            kategori,
+            thumbnail,
+            status,
+            published_at,
+            created_at,
+            updated_at
+          FROM berita
+          WHERE id = ?
+        `);
+
+      const updateTransaction =
+        db.transaction(() => {
+          updateBerita.run(
+            judul,
+            isi,
+            ringkasan || null,
+            kategori || 'Berita',
+            newThumbnail,
+            status,
+            publishedAt,
+            id
+          );
+
+          insertLog.run(
+            'BERITA_UPDATE',
+            'berita',
+            String(id),
+            JSON.stringify({
+              judul,
+              status,
+            }),
+            req.ip || null
+          );
+
+          const row =
+            getBeritaById.get(id);
+
+          if (!row) {
+            throw new Error(
+              'Failed to retrieve updated berita row'
+            );
+          }
+
+          return row;
+        });
+
+      const row =
+        updateTransaction();
+
+      if (
+        req.file &&
+        existing.thumbnail &&
+        existing.thumbnail !==
+          newThumbnail
+      ) {
+        await removeManagedThumbnail(
+          existing.thumbnail
+        );
+      }
+
+      return res.json({
+        success: true,
+        data:
+          buildBeritaResponse(row),
+      });
+    } catch (error) {
+      if (req.file) {
+        await fs.promises
+          .unlink(req.file.path)
+          .catch(() => {});
+      }
+
+      return next(error);
+    }
+  }
+);
+
+/**
+ * DELETE /api/berita/:id
+ *
+ * Admin only.
+ */
+router.delete(
+  '/:id',
+  requireAuth,
+  async (req, res, next) => {
+    try {
+      const id =
+        Number(req.params.id);
+
+      if (
+        !Number.isInteger(id) ||
+        id <= 0
+      ) {
+        return res
+          .status(400)
+          .json({
+            success: false,
+            error: {
+              code:
+                'INVALID_ID',
+              message:
+                'ID berita tidak valid.',
+            },
+          });
+      }
+
+      const db = getDB();
+
+      const existing = db
+        .prepare(`
+          SELECT
+            id,
+            judul,
+            slug,
+            thumbnail
+          FROM berita
+          WHERE id = ?
+        `)
+        .get(id);
+
+      if (!existing) {
+        return res
+          .status(404)
+          .json({
+            success: false,
+            error: {
+              code:
+                'BERITA_NOT_FOUND',
+              message:
+                'Artikel tidak ditemukan.',
+            },
+          });
+      }
+
+      const deleteBerita =
+        db.prepare(`
+          DELETE FROM berita
+          WHERE id = ?
+        `);
+
+      const insertLog =
+        db.prepare(`
+          INSERT INTO activity_logs (
+            action,
+            entity_type,
+            entity_id,
+            metadata,
+            ip_address
+          )
+          VALUES (
+            ?, ?, ?, ?, ?
+          )
+        `);
+
+      const removeBerita =
+        db.transaction(() => {
+          deleteBerita.run(id);
+
+          insertLog.run(
+            'BERITA_DELETE',
+            'berita',
+            String(id),
+            JSON.stringify({
+              judul:
+                existing.judul,
+              slug:
+                existing.slug,
+            }),
+            req.ip || null
+          );
+        });
+
+      removeBerita();
+
+      await removeManagedThumbnail(
+        existing.thumbnail
+      );
+
+      return res.json({
+        success: true,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+);
 
 module.exports = router;

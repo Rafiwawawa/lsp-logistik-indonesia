@@ -63,6 +63,7 @@ function createApp(options = {}) {
   // ─── API Routes ─────────────────────────────────────────────────────────────
   app.use('/api/auth', require('./api/auth'));
   app.use('/api/galeri', require('./api/galeri'));
+  app.use('/api/berita', require('./api/berita'));
 
   // Admin API boundary guard (Phase 2 placeholder for Phase 4 admin routes)
   app.use('/api/admin', requireAuth);
