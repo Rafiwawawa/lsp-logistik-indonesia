@@ -1,97 +1,23 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
-const xss = require('xss');
 
 const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
+
 const {
   createMulterForCategory,
   processImage,
 } = require('../middleware/imageProcessor');
 
+const {
+  sanitizeText,
+  removeManagedImage,
+} = require('../utils/apiHelpers');
+
 const router = express.Router();
 
-const upload = createMulterForCategory('pengurus');
-
-/**
- * Sanitize text input.
- */
-function sanitizeText(value, fallback = '') {
-  if (typeof value !== 'string') {
-    return fallback;
-  }
-
-  return xss(value.trim());
-}
-
-/**
- * Resolve runtime upload directory.
- *
- * Production:
- *   <project>/uploads/pengurus
- *
- * Test:
- *   process.env.UPLOAD_DIR/pengurus
- */
-function getPengurusUploadDir() {
-  const root = process.env.UPLOAD_DIR
-    ? path.resolve(process.env.UPLOAD_DIR)
-    : path.resolve(
-        __dirname,
-        '..',
-        'uploads'
-      );
-
-  return path.resolve(
-    root,
-    'pengurus'
-  );
-}
-
-/**
- * Remove only images managed by the
- * Pengurus secure-upload directory.
- */
-async function removeManagedFoto(foto) {
-  if (
-    typeof foto !== 'string' ||
-    !foto.startsWith('pengurus/')
-  ) {
-    return;
-  }
-
-  const filename =
-    path.basename(foto);
-
-  const uploadDir =
-    getPengurusUploadDir();
-
-  const filePath =
-    path.resolve(
-      uploadDir,
-      filename
-    );
-
-  if (
-    !filePath.startsWith(
-      `${uploadDir}${path.sep}`
-    )
-  ) {
-    return;
-  }
-
-  await fs.promises
-    .unlink(filePath)
-    .catch((error) => {
-      if (error.code !== 'ENOENT') {
-        console.error(
-          '[Pengurus] Failed to remove photo:',
-          error.message
-        );
-      }
-    });
-}
+const upload =
+  createMulterForCategory('pengurus');
 
 /**
  * Convert DB row into public API format.
@@ -106,9 +32,7 @@ function buildPengurusResponse(row) {
 
     foto_url:
       row.foto &&
-      row.foto.startsWith(
-        'pengurus/'
-      )
+      row.foto.startsWith('pengurus/')
         ? `/media/images/${row.foto}`
         : row.foto,
 
@@ -284,9 +208,8 @@ router.put(
       if (
         req.body.urutan !== undefined
       ) {
-        urutan = Number(
-          req.body.urutan
-        );
+        urutan =
+          Number(req.body.urutan);
 
         if (
           !Number.isInteger(urutan) ||
@@ -337,7 +260,7 @@ router.put(
 
       /*
        * Process replacement image
-       * only when a new photo is uploaded.
+       * only when new photo exists.
        */
       if (req.file) {
         await processImage(
@@ -438,15 +361,16 @@ router.put(
         updateTransaction();
 
       /*
-       * Delete old photo only AFTER the
-       * database transaction succeeded.
+       * Delete old photo only after
+       * database transaction succeeds.
        */
       if (
         req.file &&
         existing.foto &&
         existing.foto !== newFoto
       ) {
-        await removeManagedFoto(
+        await removeManagedImage(
+          'pengurus',
           existing.foto
         );
       }
@@ -458,10 +382,10 @@ router.put(
       });
     } catch (error) {
       /*
-       * If processing or DB update fails,
-       * remove the newly uploaded photo.
+       * Processing/database failure:
+       * remove newly uploaded image.
        *
-       * The existing photo remains untouched.
+       * Existing image remains intact.
        */
       if (req.file) {
         await fs.promises

@@ -1,7 +1,5 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
-const xss = require('xss');
 
 const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
@@ -9,38 +7,14 @@ const {
   createMulterForCategory,
   processImage,
 } = require('../middleware/imageProcessor');
+const {
+  sanitizeText,
+  removeManagedImage,
+} = require('../utils/apiHelpers');
 
 const router = express.Router();
 
 const upload = createMulterForCategory('galeri');
-
-/**
- * Resolve Galeri upload directory dynamically.
- *
- * Production:
- *   <project>/uploads/galeri
- *
- * Test:
- *   process.env.UPLOAD_DIR/galeri
- */
-function getGaleriUploadDir() {
-  const root = process.env.UPLOAD_DIR
-    ? path.resolve(process.env.UPLOAD_DIR)
-    : path.resolve(__dirname, '..', 'uploads');
-
-  return path.resolve(root, 'galeri');
-}
-
-/**
- * Sanitize text input.
- */
-function sanitizeText(value, fallback = '') {
-  if (typeof value !== 'string') {
-    return fallback;
-  }
-
-  return xss(value.trim());
-}
 
 /**
  * Convert database row into API response format.
@@ -116,15 +90,14 @@ router.post(
       });
     }
 
-    const judul = sanitizeText(req.body.judul);
+    const judul =
+      sanitizeText(req.body.judul);
 
-    const caption = sanitizeText(
-      req.body.caption
-    );
+    const caption =
+      sanitizeText(req.body.caption);
 
-    const altText = sanitizeText(
-      req.body.alt_text
-    );
+    const altText =
+      sanitizeText(req.body.alt_text);
 
     const kategori =
       sanitizeText(
@@ -133,8 +106,8 @@ router.post(
       ) || 'Umum';
 
     /*
-     * Multer has already written the file at this point.
-     * Remove it if required form data is invalid.
+     * Multer has already written the file.
+     * Remove it if form validation fails.
      */
     if (!judul) {
       await fs.promises
@@ -167,7 +140,6 @@ router.post(
 
       /*
        * Store only a logical relative path.
-       * Never store an absolute Windows/Linux filesystem path.
        */
       const imagePath =
         `galeri/${req.file.filename}`;
@@ -209,8 +181,8 @@ router.post(
       `);
 
       /*
-       * Galeri row + activity log + result lookup
-       * are treated as one database transaction.
+       * Galeri row + activity log +
+       * result lookup are atomic.
        */
       const createGaleri =
         db.transaction(() => {
@@ -241,11 +213,6 @@ router.post(
           const row =
             getGaleriById.get(id);
 
-          /*
-           * Keep this inside the transaction.
-           * If the created row unexpectedly cannot be read,
-           * both INSERTs will roll back.
-           */
           if (!row) {
             throw new Error(
               'Failed to retrieve created galeri row'
@@ -263,9 +230,8 @@ router.post(
       });
     } catch (error) {
       /*
-       * If image processing or DB transaction fails,
-       * remove the newly uploaded image so we do not
-       * leave an orphan file.
+       * Image processing or DB failure:
+       * remove newly uploaded file.
        */
       await fs.promises
         .unlink(req.file.path)
@@ -286,7 +252,9 @@ router.delete(
   requireAuth,
   async (req, res, next) => {
     try {
-      const id = Number(req.params.id);
+      const id = Number(
+        req.params.id
+      );
 
       if (
         !Number.isInteger(id) ||
@@ -296,7 +264,8 @@ router.delete(
           success: false,
           error: {
             code: 'INVALID_ID',
-            message: 'ID galeri tidak valid.',
+            message:
+              'ID galeri tidak valid.',
           },
         });
       }
@@ -318,8 +287,10 @@ router.delete(
         return res.status(404).json({
           success: false,
           error: {
-            code: 'GALERI_NOT_FOUND',
-            message: 'Foto tidak ditemukan.',
+            code:
+              'GALERI_NOT_FOUND',
+            message:
+              'Foto tidak ditemukan.',
           },
         });
       }
@@ -343,8 +314,8 @@ router.delete(
         `);
 
       /*
-       * Database deletion and activity logging
-       * happen atomically.
+       * Database deletion and activity
+       * logging happen atomically.
        */
       const removeGaleri =
         db.transaction(() => {
@@ -356,71 +327,29 @@ router.delete(
             String(id),
             JSON.stringify({
               judul: row.judul,
-              image_path: row.image_path,
+              image_path:
+                row.image_path,
             }),
             req.ip || null
           );
         });
 
       /*
-       * Commit DB operation first.
-       *
-       * This avoids deleting the physical image
-       * and then discovering the DB transaction failed.
+       * Commit DB operation before
+       * removing physical image.
        */
       removeGaleri();
 
       /*
-       * Only attempt physical deletion for files
-       * belonging to the managed Galeri directory.
+       * Shared helper handles:
+       * - category validation
+       * - path boundary protection
+       * - ENOENT
        */
-      if (
-        typeof row.image_path === 'string' &&
-        row.image_path.startsWith(
-          'galeri/'
-        )
-      ) {
-        const filename =
-          path.basename(
-            row.image_path
-          );
-
-        const uploadDir =
-          getGaleriUploadDir();
-
-        const filePath =
-          path.resolve(
-            uploadDir,
-            filename
-          );
-
-        /*
-         * Filesystem boundary protection.
-         */
-        if (
-          filePath.startsWith(
-            `${uploadDir}${path.sep}`
-          )
-        ) {
-          await fs.promises
-            .unlink(filePath)
-            .catch((error) => {
-              /*
-               * File may already be missing.
-               * That should not invalidate a successful
-               * database deletion.
-               */
-              if (
-                error.code !== 'ENOENT'
-              ) {
-                console.error(
-                  '[Galeri] Failed to remove image:',
-                  error.message
-                );
-              }
-            });
-        }
-      }
+      await removeManagedImage(
+        'galeri',
+        row.image_path
+      );
 
       return res.json({
         success: true,

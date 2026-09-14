@@ -1,32 +1,29 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const crypto = require('crypto');
-const xss = require('xss');
 
 const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
+
 const {
   createMulterForCategory,
   processImage,
 } = require('../middleware/imageProcessor');
 
+const {
+  sanitizeText,
+  removeManagedImage,
+} = require('../utils/apiHelpers');
+
 const router = express.Router();
 
-const upload = createMulterForCategory('berita');
+const upload =
+  createMulterForCategory('berita');
 
 const ALLOWED_STATUS = new Set([
   'draft',
   'terbit',
 ]);
-
-function sanitizeText(value, fallback = '') {
-  if (typeof value !== 'string') {
-    return fallback;
-  }
-
-  return xss(value.trim());
-}
 
 function isAdmin(req) {
   return Boolean(
@@ -54,65 +51,6 @@ function slugify(text) {
   }-${suffix}`;
 }
 
-function getBeritaUploadDir() {
-  const root = process.env.UPLOAD_DIR
-    ? path.resolve(
-        process.env.UPLOAD_DIR
-      )
-    : path.resolve(
-        __dirname,
-        '..',
-        'uploads'
-      );
-
-  return path.resolve(
-    root,
-    'berita'
-  );
-}
-
-async function removeManagedThumbnail(
-  thumbnail
-) {
-  if (
-    typeof thumbnail !== 'string' ||
-    !thumbnail.startsWith('berita/')
-  ) {
-    return;
-  }
-
-  const filename =
-    path.basename(thumbnail);
-
-  const uploadDir =
-    getBeritaUploadDir();
-
-  const filePath =
-    path.resolve(
-      uploadDir,
-      filename
-    );
-
-  if (
-    !filePath.startsWith(
-      `${uploadDir}${path.sep}`
-    )
-  ) {
-    return;
-  }
-
-  await fs.promises
-    .unlink(filePath)
-    .catch((error) => {
-      if (error.code !== 'ENOENT') {
-        console.error(
-          '[Berita] Failed to remove thumbnail:',
-          error.message
-        );
-      }
-    });
-}
-
 function buildBeritaResponse(row) {
   return {
     id: row.id,
@@ -122,6 +60,7 @@ function buildBeritaResponse(row) {
     ringkasan: row.ringkasan,
     kategori: row.kategori,
     thumbnail: row.thumbnail,
+
     thumbnail_url:
       row.thumbnail &&
       row.thumbnail.startsWith(
@@ -129,6 +68,7 @@ function buildBeritaResponse(row) {
       )
         ? `/media/images/${row.thumbnail}`
         : row.thumbnail,
+
     status: row.status,
     published_at:
       row.published_at,
@@ -832,7 +772,8 @@ router.put(
         existing.thumbnail !==
           newThumbnail
       ) {
-        await removeManagedThumbnail(
+        await removeManagedImage(
+          'berita',
           existing.thumbnail
         );
       }
@@ -952,7 +893,8 @@ router.delete(
 
       removeBerita();
 
-      await removeManagedThumbnail(
+      await removeManagedImage(
+        'berita',
         existing.thumbnail
       );
 
