@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>Admin Dashboard - LSP Logistik Indonesia</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/admin/assets/admin.css">
 </head>
+
 <body>
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
         </svg>
       </div>
+
       <div>
         <div class="sidebar-logo-text">Admin Panel</div>
         <div class="sidebar-logo-sub">LSP Logistik Indonesia</div>
@@ -25,97 +31,136 @@
 
     <nav class="sidebar-nav">
       <div class="nav-section-label">Konten</div>
-      <a href="#" class="nav-item active" data-section="dashboard">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+
+      <a href="#dashboard" class="nav-item active" data-section="dashboard">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+        </svg>
         Dashboard
       </a>
-      <a href="#" class="nav-item" data-section="berita">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+
+      <a href="#berita" class="nav-item" data-section="berita">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+        </svg>
         Berita & Artikel
       </a>
-      <a href="#" class="nav-item" data-section="pengurus">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+
+      <a href="#pengurus" class="nav-item" data-section="pengurus">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
         Pengurus
       </a>
-      <a href="#" class="nav-item" data-section="galeri">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+
+      <a href="#galeri" class="nav-item" data-section="galeri">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
         Galeri Foto
       </a>
 
       <div class="nav-section-label" style="margin-top: 1.5rem;">Akun</div>
-      <a href="#" class="nav-item" data-section="settings">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+
+      <a href="#settings" class="nav-item" data-section="settings">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
         Pengaturan
       </a>
     </nav>
 
     <div class="sidebar-bottom">
       <div class="user-pill">
-        <div class="user-avatar">A</div>
+        <div class="user-avatar" id="adminAvatar">A</div>
         <div class="user-info">
-          <div class="user-name">Administrator</div>
+          <div class="user-name" id="adminUsername">Administrator</div>
           <div class="user-role">LSP Logistik</div>
         </div>
       </div>
-      <button class="btn-logout" id="btnLogout" title="Keluar">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+
+      <button type="button" class="btn-logout" id="btnLogout" title="Keluar" aria-label="Keluar dari panel admin">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
         </svg>
       </button>
     </div>
   </aside>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <main class="main-content">
     <header class="top-bar">
-      <button class="sidebar-toggle" id="sidebarToggle">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+      <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Buka menu">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
+
       <div class="top-bar-title" id="pageTitle">Dashboard</div>
+
       <div class="top-bar-right">
-        <a href="/" target="_blank" class="btn-view-site">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        <a href="/" class="btn-view-site">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
           </svg>
-          Lihat Website
+          Kembali ke Website
         </a>
       </div>
     </header>
 
-    <!-- ── DASHBOARD ─────────────────────────────────────────────────── -->
+    <!-- Dashboard -->
     <section class="section" id="sec-dashboard">
       <div class="section-header">
-        <h2>Selamat Datang 👋</h2>
-        <p>Kelola konten website LSP Logistik Indonesia dari panel ini.</p>
+        <div>
+          <h2>Selamat Datang 👋</h2>
+          <p class="section-description">Kelola konten website LSP Logistik Indonesia dari panel ini.</p>
+        </div>
       </div>
 
       <div class="stats-grid" id="statsGrid">
         <div class="stat-card">
           <div class="stat-icon blue">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+            </svg>
           </div>
           <div class="stat-body">
             <div class="stat-value" id="stat-berita">—</div>
-            <div class="stat-label">Artikel Berita</div>
+            <div class="stat-label">Berita &amp; Artikel</div>
           </div>
         </div>
+
         <div class="stat-card">
           <div class="stat-icon green">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
           </div>
           <div class="stat-body">
             <div class="stat-value" id="stat-galeri">—</div>
             <div class="stat-label">Foto Galeri</div>
           </div>
         </div>
+
         <div class="stat-card">
           <div class="stat-icon purple">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
           </div>
           <div class="stat-body">
-            <div class="stat-value">3</div>
+            <div class="stat-value" id="stat-pengurus">—</div>
             <div class="stat-label">Pengurus</div>
           </div>
         </div>
@@ -123,230 +168,348 @@
 
       <div class="quick-actions">
         <h3>Aksi Cepat</h3>
+
         <div class="quick-grid">
-          <button class="quick-btn" onclick="switchSection('berita'); openModal('modal-berita-form')">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Tulis Artikel Baru
+          <button type="button" class="quick-btn" id="quickAddBerita">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Tambah Berita / Artikel
           </button>
-          <button class="quick-btn" onclick="switchSection('galeri')">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+
+          <button type="button" class="quick-btn" id="quickAddGaleri">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6z"/>
+            </svg>
             Upload Foto Galeri
           </button>
-          <button class="quick-btn" onclick="switchSection('pengurus')">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+
+          <button type="button" class="quick-btn" id="quickEditPengurus">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
             Edit Data Pengurus
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ── BERITA ─────────────────────────────────────────────────────── -->
+    <!-- Berita -->
     <section class="section hidden" id="sec-berita">
       <div class="section-header">
-        <h2>Berita & Artikel</h2>
-        <button class="btn-primary" onclick="openModal('modal-berita-form'); resetBeritaForm()">+ Artikel Baru</button>
+        <div>
+          <h2>Berita & Artikel</h2>
+          <p class="section-description">Kelola berita dan artikel, baik draft maupun konten yang sudah terbit.</p>
+        </div>
+        <button type="button" class="btn-primary" id="btnNewBerita">+ Tambah Konten</button>
       </div>
+
       <div class="card">
         <div class="table-wrap">
           <table class="data-table" id="berita-table">
             <thead>
               <tr>
                 <th>Judul</th>
-                <th>Kategori</th>
+                <th>Jenis</th>
                 <th>Tanggal</th>
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody id="berita-tbody">
-              <tr><td colspan="5" class="loading-row">Memuat data...</td></tr>
+              <tr>
+                <td colspan="5" class="loading-row">Memuat data...</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- ── PENGURUS ───────────────────────────────────────────────────── -->
+    <!-- Pengurus -->
     <section class="section hidden" id="sec-pengurus">
       <div class="section-header">
-        <h2>Data Pengurus</h2>
-        <p style="color:var(--text-muted); font-size:0.85rem;">Klik Edit pada pengurus yang ingin diperbarui datanya.</p>
+        <div>
+          <h2>Data Pengurus</h2>
+          <p class="section-description">Klik Edit Data pada pengurus yang ingin diperbarui.</p>
+        </div>
       </div>
+
       <div id="pengurus-grid" class="pengurus-grid">
         <div class="loading-row">Memuat data pengurus...</div>
       </div>
     </section>
 
-    <!-- ── GALERI ─────────────────────────────────────────────────────── -->
+    <!-- Galeri -->
     <section class="section hidden" id="sec-galeri">
       <div class="section-header">
-        <h2>Galeri Foto</h2>
-        <button class="btn-primary" onclick="openModal('modal-galeri-form')">+ Upload Foto</button>
+        <div>
+          <h2>Galeri Foto</h2>
+          <p class="section-description">Kelola dokumentasi kegiatan LSP Logistik Indonesia.</p>
+        </div>
+        <button type="button" class="btn-primary" id="btnNewGaleri">+ Upload Foto</button>
       </div>
+
       <div id="galeri-grid" class="galeri-grid">
-        <div class="loading-row" style="grid-column:1/-1">Memuat galeri...</div>
+        <div class="loading-row" style="grid-column: 1 / -1;">Memuat galeri...</div>
       </div>
     </section>
 
-    <!-- ── SETTINGS ───────────────────────────────────────────────────── -->
+    <!-- Settings -->
     <section class="section hidden" id="sec-settings">
-      <div class="section-header"><h2>Pengaturan</h2></div>
+      <div class="section-header">
+        <div>
+          <h2>Pengaturan</h2>
+          <p class="section-description">Kelola keamanan akun administrator.</p>
+        </div>
+      </div>
+
       <div class="card settings-card">
-        <h3>🔐 Ganti Password Admin</h3>
-        <p class="hint-text">Disarankan mengganti password default segera setelah login pertama.</p>
-        <form id="changePasswordForm">
+        <h3>Ganti Password Admin</h3>
+        <p class="hint-text">
+          Setelah password diganti, seluruh sesi login akan dinonaktifkan dan Anda perlu login kembali.
+        </p>
+
+        <form id="changePasswordForm" autocomplete="off">
           <div class="form-group">
-            <label>Password Saat Ini</label>
-            <input type="password" id="currentPw" placeholder="Password sekarang" required>
+            <label for="currentPw">Password Saat Ini</label>
+            <input type="password" id="currentPw" name="currentPassword" autocomplete="current-password" required>
           </div>
+
           <div class="form-group">
-            <label>Password Baru</label>
-            <input type="password" id="newPw" placeholder="Minimal 8 karakter" required minlength="8">
+            <label for="newPw">Password Baru</label>
+            <input type="password" id="newPw" name="newPassword" minlength="12" maxlength="72"
+              autocomplete="new-password" placeholder="Minimal 12 karakter" required>
           </div>
+
           <div class="form-group">
-            <label>Konfirmasi Password Baru</label>
-            <input type="password" id="confirmPw" placeholder="Ulangi password baru" required>
+            <label for="confirmPw">Konfirmasi Password Baru</label>
+            <input type="password" id="confirmPw" autocomplete="new-password"
+              placeholder="Ulangi password baru" required>
           </div>
-          <div class="form-msg" id="pwMsg"></div>
-          <button type="submit" class="btn-primary">Simpan Password Baru</button>
+
+          <div class="form-msg" id="pwMsg" role="status" aria-live="polite"></div>
+
+          <button type="submit" class="btn-primary" id="changePasswordSubmit">
+            Simpan Password Baru
+          </button>
         </form>
       </div>
     </section>
   </main>
 
-  <!-- ── MODALS ─────────────────────────────────────────────────────────── -->
+  <!-- Modal Berita -->
+  <div class="modal-overlay hidden" id="modal-berita-form" role="dialog"
+    aria-modal="true" aria-labelledby="berita-modal-title">
 
-  <!-- Modal: Berita Form -->
-  <div class="modal-overlay hidden" id="modal-berita-form">
     <div class="modal-box large">
       <div class="modal-header">
-        <h3 id="berita-modal-title">Artikel Baru</h3>
-        <button class="modal-close" onclick="closeModal('modal-berita-form')">&times;</button>
+        <h3 id="berita-modal-title">Tambah Konten</h3>
+        <button type="button" class="modal-close" data-close-modal="modal-berita-form"
+          aria-label="Tutup">&times;</button>
       </div>
-      <form id="beritaForm" class="modal-body">
+
+      <form id="beritaForm" class="modal-body" enctype="multipart/form-data">
         <input type="hidden" id="berita-id">
+
         <div class="form-group">
-          <label>Judul Artikel *</label>
-          <input type="text" id="berita-judul" placeholder="Judul berita atau artikel" required>
+          <label for="berita-judul">Judul Konten *</label>
+          <input type="text" id="berita-judul" maxlength="250"
+            placeholder="Judul berita atau artikel" required>
         </div>
+
         <div class="form-row">
           <div class="form-group">
-            <label>Kategori</label>
-            <select id="berita-kategori">
-              <option>Berita</option>
-              <option>Pengumuman</option>
-              <option>Artikel</option>
-              <option>Informasi</option>
+            <label for="berita-kategori">Jenis Konten *</label>
+            <select id="berita-kategori" required>
+              <option value="Berita">Berita</option>
+              <option value="Artikel">Artikel</option>
             </select>
+            <p class="hint-text form-hint">
+              Berita untuk kabar/update aktual LSP. Artikel untuk konten edukatif atau informatif.
+            </p>
           </div>
+
           <div class="form-group">
-            <label>Tanggal</label>
-            <input type="date" id="berita-tanggal">
-          </div>
-          <div class="form-group">
-            <label>Status</label>
+            <label for="berita-status">Status Publikasi</label>
             <select id="berita-status">
               <option value="draft">Draft</option>
               <option value="terbit">Terbit (Publik)</option>
             </select>
           </div>
         </div>
+
         <div class="form-group">
-          <label>Ringkasan (ditampilkan di list)</label>
-          <textarea id="berita-ringkasan" rows="2" placeholder="Ringkasan singkat artikel..."></textarea>
+          <label for="berita-ringkasan">Ringkasan</label>
+          <textarea id="berita-ringkasan" rows="3" placeholder="Ringkasan singkat berita atau artikel..."></textarea>
         </div>
+
         <div class="form-group">
-          <label>Isi Artikel *</label>
-          <textarea id="berita-isi" rows="10" placeholder="Tulis isi artikel di sini..." required></textarea>
+          <label for="berita-thumbnail">Thumbnail</label>
+          <input type="file" id="berita-thumbnail" accept="image/jpeg,image/png,image/webp">
+
+          <p class="hint-text form-hint">
+            JPG, PNG, atau WebP. Maksimal 5 MB. Kosongkan saat edit jika thumbnail tidak ingin diganti.
+          </p>
+
+          <div class="image-preview hidden" id="berita-preview">
+            <img id="berita-preview-img" alt="Preview thumbnail artikel">
+          </div>
         </div>
+
+        <div class="form-group">
+          <label for="berita-isi">Isi Konten *</label>
+          <textarea id="berita-isi" rows="12" placeholder="Tulis isi berita atau artikel di sini..." required></textarea>
+        </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeModal('modal-berita-form')">Batal</button>
-          <button type="submit" class="btn-primary" id="berita-submit-btn">Simpan Artikel</button>
+          <button type="button" class="btn-secondary" data-close-modal="modal-berita-form">Batal</button>
+          <button type="submit" class="btn-primary" id="berita-submit-btn">Simpan Konten</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: Edit Pengurus -->
-  <div class="modal-overlay hidden" id="modal-pengurus-form">
+  <!-- Modal Pengurus -->
+  <div class="modal-overlay hidden" id="modal-pengurus-form" role="dialog"
+    aria-modal="true" aria-labelledby="pengurus-modal-title">
+
     <div class="modal-box">
       <div class="modal-header">
-        <h3>Edit Data Pengurus</h3>
-        <button class="modal-close" onclick="closeModal('modal-pengurus-form')">&times;</button>
+        <h3 id="pengurus-modal-title">Edit Data Pengurus</h3>
+        <button type="button" class="modal-close" data-close-modal="modal-pengurus-form"
+          aria-label="Tutup">&times;</button>
       </div>
-      <form id="pengurusForm" class="modal-body">
+
+      <form id="pengurusForm" class="modal-body" enctype="multipart/form-data">
         <input type="hidden" id="pengurus-id">
+
         <div class="form-group">
-          <label>Jabatan</label>
+          <label for="pengurus-jabatan">Jabatan *</label>
           <input type="text" id="pengurus-jabatan" placeholder="Jabatan" required>
         </div>
+
         <div class="form-group">
-          <label>Nama Lengkap</label>
+          <label for="pengurus-nama">Nama Lengkap *</label>
           <input type="text" id="pengurus-nama" placeholder="Nama lengkap" required>
         </div>
-        <div class="form-group">
-          <label>Gelar / Sertifikasi</label>
-          <input type="text" id="pengurus-gelar" placeholder="Contoh: ST., M.B.A, CSLP">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pengurus-gelar">Gelar / Sertifikasi</label>
+            <input type="text" id="pengurus-gelar" placeholder="Contoh: S.T., M.B.A.">
+          </div>
+
+          <div class="form-group">
+            <label for="pengurus-urutan">Urutan</label>
+            <input type="number" id="pengurus-urutan" min="0" step="1" value="0">
+          </div>
         </div>
+
         <div class="form-group">
-          <label>Biografi Singkat</label>
-          <textarea id="pengurus-bio" rows="3" placeholder="Deskripsi singkat tentang pengurus ini..."></textarea>
+          <label for="pengurus-bio">Biografi Singkat</label>
+          <textarea id="pengurus-bio" rows="4" placeholder="Deskripsi singkat pengurus..."></textarea>
         </div>
+
         <div class="form-group">
-          <label>URL Foto (opsional)</label>
-          <input type="text" id="pengurus-foto" placeholder="https://... atau /uploads/images/...">
+          <label for="pengurus-foto-alt">Alt Text Foto</label>
+          <input type="text" id="pengurus-foto-alt"
+            placeholder="Contoh: Foto Ketua LSP Logistik Indonesia">
+          <p class="hint-text form-hint">Gunakan deskripsi singkat foto untuk aksesibilitas.</p>
         </div>
+
+        <div class="form-group">
+          <label for="pengurus-foto-file">Foto Baru</label>
+          <input type="file" id="pengurus-foto-file" accept="image/jpeg,image/png,image/webp">
+
+          <p class="hint-text form-hint">
+            JPG, PNG, atau WebP. Maksimal 5 MB. Kosongkan jika foto tidak ingin diganti.
+          </p>
+
+          <div class="image-preview image-preview-square hidden" id="pengurus-preview">
+            <img id="pengurus-preview-img" alt="Preview foto pengurus">
+          </div>
+        </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeModal('modal-pengurus-form')">Batal</button>
-          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <button type="button" class="btn-secondary" data-close-modal="modal-pengurus-form">Batal</button>
+          <button type="submit" class="btn-primary" id="pengurus-submit-btn">Simpan Perubahan</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: Upload Galeri -->
-  <div class="modal-overlay hidden" id="modal-galeri-form">
+  <!-- Modal Galeri -->
+  <div class="modal-overlay hidden" id="modal-galeri-form" role="dialog"
+    aria-modal="true" aria-labelledby="galeri-modal-title">
+
     <div class="modal-box">
       <div class="modal-header">
-        <h3>Upload Foto Galeri</h3>
-        <button class="modal-close" onclick="closeModal('modal-galeri-form')">&times;</button>
+        <h3 id="galeri-modal-title">Upload Foto Galeri</h3>
+        <button type="button" class="modal-close" data-close-modal="modal-galeri-form"
+          aria-label="Tutup">&times;</button>
       </div>
+
       <form id="galeriForm" class="modal-body" enctype="multipart/form-data">
         <div class="form-group">
-          <label>Judul Foto *</label>
-          <input type="text" id="galeri-judul" placeholder="Deskripsi foto" required>
+          <label for="galeri-judul">Judul Foto *</label>
+          <input type="text" id="galeri-judul" placeholder="Judul foto" required>
         </div>
+
         <div class="form-group">
-          <label>Kategori</label>
+          <label for="galeri-caption">Caption</label>
+          <textarea id="galeri-caption" rows="3" placeholder="Keterangan singkat foto..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="galeri-alt">Alt Text</label>
+          <input type="text" id="galeri-alt" placeholder="Deskripsi foto untuk aksesibilitas">
+        </div>
+
+        <div class="form-group">
+          <label for="galeri-kategori">Kategori</label>
           <select id="galeri-kategori">
-            <option>Kegiatan</option>
-            <option>Sertifikasi</option>
-            <option>Workshop</option>
-            <option>Umum</option>
+            <option value="Kegiatan">Kegiatan</option>
+            <option value="Sertifikasi">Sertifikasi</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Umum">Umum</option>
           </select>
         </div>
+
         <div class="form-group">
-          <label>File Gambar (JPG/PNG/WebP, maks 5MB) *</label>
-          <div class="upload-zone" id="galeri-drop-zone">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <label>File Gambar *</label>
+
+          <div class="upload-zone" id="galeri-drop-zone" role="button" tabindex="0"
+            aria-label="Pilih atau jatuhkan file gambar">
+
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+
             <p>Klik atau drag foto ke sini</p>
-            <input type="file" id="galeri-file" accept="image/jpeg,image/png,image/webp" required style="display:none">
+            <span class="upload-zone-hint">JPG, PNG, atau WebP · Maksimal 5 MB</span>
+
+            <input type="file" id="galeri-file"
+              accept="image/jpeg,image/png,image/webp" required hidden>
           </div>
-          <div id="galeri-preview" style="margin-top:0.75rem; display:none;">
-            <img id="galeri-preview-img" style="max-width:100%; max-height:200px; border-radius:8px; object-fit:cover;">
+
+          <div class="image-preview hidden" id="galeri-preview">
+            <img id="galeri-preview-img" alt="Preview foto galeri">
           </div>
         </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeModal('modal-galeri-form')">Batal</button>
-          <button type="submit" class="btn-primary">Upload Foto</button>
+          <button type="button" class="btn-secondary" data-close-modal="modal-galeri-form">Batal</button>
+          <button type="submit" class="btn-primary" id="galeri-submit-btn">Upload Foto</button>
         </div>
       </form>
     </div>
   </div>
 
-
-  <!-- Toast Notification -->
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="/admin/assets/admin.js"></script>
 </body>

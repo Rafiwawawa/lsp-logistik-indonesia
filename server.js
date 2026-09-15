@@ -4,6 +4,7 @@ const { initDB, closeDB } = require('./database/db');
 const { initSessionStore, closeSessionDB } = require('./database/sessionStore');
 const { runMigrations } = require('./database/migrate');
 const { createApp } = require('./app');
+const path = require('path');
 
 // 1. Startup Environment Validation (Fail-Fast)
 try {

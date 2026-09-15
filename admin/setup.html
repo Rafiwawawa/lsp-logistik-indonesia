@@ -3,28 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
   <title>Setup Administrator - LSP Logistik Indonesia</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0a0e1a;
-      background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(16, 85, 180, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(0, 180, 120, 0.1) 0%, transparent 50%);
-      overflow-x: hidden;
+      padding: 2rem 1rem;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(16, 85, 180, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0, 180, 120, 0.1), transparent 50%),
+        #0a0e1a;
       color: #fff;
+      font-family: "Inter", sans-serif;
     }
 
     .bg-grid {
-      position: fixed; inset: 0; z-index: 0;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
       background-image:
         linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
@@ -32,35 +44,46 @@
     }
 
     .setup-card {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 480px;
-      margin: 2rem 1.5rem;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      padding: 2.5rem;
       background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 24px;
-      padding: 2.5rem;
+      backdrop-filter: blur(20px);
       box-shadow: 0 32px 80px rgba(0,0,0,0.5);
     }
 
     .logo-area {
-      text-align: center;
       margin-bottom: 2rem;
+      text-align: center;
     }
 
     .logo-badge {
+      width: 64px;
+      height: 64px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 64px; height: 64px;
+      margin-bottom: 1rem;
       background: linear-gradient(135deg, #2563eb, #10b981);
       border-radius: 18px;
       font-size: 1.75rem;
-      margin-bottom: 1rem;
     }
 
-    h1 { font-size: 1.4rem; font-weight: 700; color: #f8fafc; }
-    p.subtitle { color: #94a3b8; font-size: 0.875rem; margin-top: 0.25rem; }
+    h1 {
+      color: #f8fafc;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin-top: 0.25rem;
+      color: #94a3b8;
+      font-size: 0.875rem;
+    }
 
     .form-group {
       margin-bottom: 1.25rem;
@@ -68,10 +91,10 @@
 
     label {
       display: block;
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
       font-size: 0.8125rem;
       font-weight: 500;
-      color: #cbd5e1;
-      margin-bottom: 0.5rem;
     }
 
     input {
@@ -82,37 +105,37 @@
       border-radius: 12px;
       color: #fff;
       font-size: 0.875rem;
-      transition: all 0.2s;
+      outline: none;
+      transition: 0.2s ease;
     }
 
     input:focus {
-      outline: none;
-      border-color: #3b82f6;
       background: rgba(255,255,255,0.09);
+      border-color: #3b82f6;
       box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
     }
 
     .helper-text {
-      font-size: 0.75rem;
-      color: #64748b;
       margin-top: 0.35rem;
+      color: #64748b;
+      font-size: 0.75rem;
     }
 
     .btn-submit {
       width: 100%;
+      margin-top: 0.5rem;
       padding: 0.875rem;
       background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.9375rem;
       border: none;
       border-radius: 12px;
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 600;
       cursor: pointer;
-      margin-top: 0.5rem;
-      transition: all 0.2s;
+      transition: 0.2s ease;
     }
 
-    .btn-submit:hover {
+    .btn-submit:hover:not(:disabled) {
       background: linear-gradient(135deg, #1d4ed8, #1e40af);
       transform: translateY(-1px);
     }
@@ -120,144 +143,331 @@
     .btn-submit:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      transform: none;
     }
 
     .alert {
+      display: none;
+      margin-bottom: 1.25rem;
       padding: 0.75rem 1rem;
       border-radius: 12px;
       font-size: 0.8125rem;
-      margin-bottom: 1.25rem;
-      display: none;
+      line-height: 1.5;
     }
 
     .alert-error {
+      display: block;
       background: rgba(239, 68, 68, 0.15);
       border: 1px solid rgba(239, 68, 68, 0.3);
       color: #fca5a5;
     }
 
     .alert-success {
+      display: block;
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid rgba(16, 185, 129, 0.3);
       color: #6ee7b7;
     }
+
+    @media (max-width: 520px) {
+      .setup-card {
+        padding: 2rem 1.5rem;
+        border-radius: 18px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="bg-grid"></div>
 
-  <div class="setup-card">
+  <main class="setup-card">
     <div class="logo-area">
       <div class="logo-badge">🛡️</div>
       <h1>Setup Administrator</h1>
       <p class="subtitle">LSP Logistik Indonesia</p>
     </div>
 
-    <div id="alertBox" class="alert"></div>
+    <div id="alertBox" class="alert" role="alert" aria-live="polite"></div>
 
-    <form id="setupForm">
+    <form id="setupForm" autocomplete="off">
       <div class="form-group">
         <label for="setupToken">Setup Token</label>
-        <input type="password" id="setupToken" required autocomplete="off" placeholder="Masukkan token dari .env">
-        <div class="helper-text">Token rahasia yang diatur di variabel environment SETUP_TOKEN.</div>
+        <input
+          type="password"
+          id="setupToken"
+          placeholder="Masukkan token dari .env"
+          autocomplete="off"
+          required
+        >
+        <div class="helper-text">
+          Token rahasia yang diatur pada environment variable SETUP_TOKEN.
+        </div>
       </div>
 
       <div class="form-group">
         <label for="username">Username Admin</label>
-        <input type="text" id="username" required autocomplete="username" placeholder="Contoh: admin">
-        <div class="helper-text">3-50 karakter (huruf kecil, angka, titik, strip).</div>
+        <input
+          type="text"
+          id="username"
+          placeholder="Contoh: admin"
+          autocomplete="username"
+          minlength="3"
+          maxlength="50"
+          required
+        >
+        <div class="helper-text">
+          3–50 karakter: huruf kecil, angka, titik, dan strip.
+        </div>
       </div>
 
       <div class="form-group">
         <label for="password">Password Baru</label>
-        <input type="password" id="password" required autocomplete="new-password" placeholder="Minimal 12 karakter">
-        <div class="helper-text">Minimal 12 karakter, maksimal 72 byte UTF-8.</div>
+        <input
+          type="password"
+          id="password"
+          placeholder="Minimal 12 karakter"
+          autocomplete="new-password"
+          required
+        >
+        <div class="helper-text">
+          Minimal 12 byte dan maksimal 72 byte UTF-8.
+        </div>
       </div>
 
       <div class="form-group">
         <label for="confirmPassword">Konfirmasi Password</label>
-        <input type="password" id="confirmPassword" required autocomplete="new-password" placeholder="Ulangi password">
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Ulangi password"
+          autocomplete="new-password"
+          required
+        >
       </div>
 
-      <button type="submit" id="submitBtn" class="btn-submit">Daftarkan Administrator</button>
+      <button type="submit" id="submitBtn" class="btn-submit">
+        Daftarkan Administrator
+      </button>
     </form>
-  </div>
+  </main>
 
   <script>
-    const alertBox = document.getElementById('alertBox');
     const form = document.getElementById('setupForm');
+    const alertBox = document.getElementById('alertBox');
     const submitBtn = document.getElementById('submitBtn');
 
-    function showAlert(msg, isSuccess = false) {
-      alertBox.textContent = msg;
-      alertBox.className = 'alert ' + (isSuccess ? 'alert-success' : 'alert-error');
-      alertBox.style.display = 'block';
+    function showAlert(message, success = false) {
+      const safeMessage =
+        typeof message === 'string'
+          ? message
+          : getErrorMessage(message);
+
+      alertBox.textContent = safeMessage;
+      alertBox.className = `alert ${success ? 'alert-success' : 'alert-error'}`;
     }
 
-    // Check if setup is already completed
-    fetch('/api/auth/setup-status')
-      .then(res => res.json())
-      .then(res => {
-        if (res.success && !res.data.setupRequired) {
-          showAlert('Administrator sudah terdaftar. Setup telah dikunci. Mengalihkan ke login...', false);
-          form.style.display = 'none';
-          setTimeout(() => {
-            window.location.href = '/admin/login.html';
-          }, 2000);
+    function clearAlert() {
+      alertBox.textContent = '';
+      alertBox.className = 'alert';
+    }
+
+    async function parseResponse(response) {
+      const text = await response.text();
+
+      if (!text) return {};
+
+      try {
+        return JSON.parse(text);
+      } catch {
+        return { message: text };
+      }
+    }
+
+    function getErrorMessage(data, fallback = 'Terjadi kesalahan.') {
+      if (!data) return fallback;
+
+      if (typeof data === 'string') return data;
+
+      if (typeof data.error === 'string') {
+        return data.error;
+      }
+
+      if (data.error && typeof data.error === 'object') {
+        if (typeof data.error.message === 'string') {
+          return data.error.message;
         }
-      })
-      .catch(() => {});
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      alertBox.style.display = 'none';
+        if (typeof data.error.code === 'string') {
+          return data.error.code;
+        }
+      }
 
-      const setupToken = document.getElementById('setupToken').value;
+      if (typeof data.message === 'string') {
+        return data.message;
+      }
+
+      if (data.message && typeof data.message === 'object') {
+        if (typeof data.message.message === 'string') {
+          return data.message.message;
+        }
+
+        try {
+          return JSON.stringify(data.message);
+        } catch {
+          return fallback;
+        }
+      }
+
+      try {
+        return JSON.stringify(data);
+      } catch {
+        return fallback;
+      }
+    }
+
+    async function checkSetupStatus() {
+      try {
+        const response = await fetch('/api/auth/setup-status', {
+          credentials: 'same-origin',
+        });
+
+        const data = await parseResponse(response);
+
+        if (!response.ok) {
+          console.error('[Setup status]', response.status, data);
+          return;
+        }
+
+        if (data.success && data.data?.setupRequired === false) {
+          showAlert(
+            'Administrator sudah terdaftar. Setup telah dikunci. Mengalihkan ke login...'
+          );
+
+          form.style.display = 'none';
+
+          setTimeout(() => {
+            window.location.replace('/admin/login.html');
+          }, 1800);
+        }
+      } catch (error) {
+        console.error('[Setup status]', error);
+      }
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearAlert();
+
+      const setupToken = document.getElementById('setupToken').value.trim();
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
 
-      if (password !== confirmPassword) {
-        return showAlert('Konfirmasi password tidak cocok.');
+      if (!setupToken) {
+        showAlert('Setup token wajib diisi.');
+        return;
       }
 
-      if (password.length < 12) {
-        return showAlert('Password minimal 12 karakter.');
+      if (!/^[a-z0-9.-]{3,50}$/.test(username)) {
+        showAlert(
+          'Username harus 3–50 karakter dan hanya boleh berisi huruf kecil, angka, titik, atau strip.'
+        );
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showAlert('Konfirmasi password tidak cocok.');
+        return;
+      }
+
+      const passwordBytes = new TextEncoder().encode(password).length;
+
+      if (passwordBytes < 12) {
+        showAlert('Password minimal 12 byte UTF-8.');
+        return;
+      }
+
+      if (passwordBytes > 72) {
+        showAlert('Password maksimal 72 byte UTF-8.');
+        return;
       }
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Memproses...';
 
       try {
-        const res = await fetch('/api/auth/setup', {
+        const response = await fetch('/api/auth/setup', {
           method: 'POST',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
             'X-Setup-Token': setupToken,
           },
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify({
+            username,
+            password,
+          }),
         });
 
-        const data = await res.json();
+        const data = await parseResponse(response);
 
-        if (!res.ok || !data.success) {
-          showAlert(data.error?.message || 'Gagal melakukan setup admin.');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Daftarkan Administrator';
+        if (!response.ok || !data.success) {
+          console.error('[Setup]', response.status, data);
+
+          if (response.status === 429) {
+            showAlert(
+              'Terlalu banyak percobaan setup. Tunggu beberapa saat sampai rate limit berakhir, lalu coba lagi.'
+            );
+            return;
+          }
+
+          if (response.status === 403) {
+            showAlert(
+              getErrorMessage(data, 'Setup token tidak valid.')
+            );
+            return;
+          }
+
+          if (response.status === 409) {
+            showAlert(
+              getErrorMessage(data, 'Administrator sudah pernah dibuat.')
+            );
+            return;
+          }
+
+          showAlert(
+            getErrorMessage(
+              data,
+              `Setup gagal (HTTP ${response.status}).`
+            )
+          );
+
           return;
         }
 
-        showAlert('Administrator berhasil didaftarkan! Mengalihkan ke login...', true);
+        showAlert(
+          'Administrator berhasil didaftarkan. Mengalihkan ke halaman login...',
+          true
+        );
+
+        form.reset();
+
         setTimeout(() => {
-          window.location.href = '/admin/login.html';
+          window.location.replace('/admin/login.html');
         }, 1500);
-      } catch (err) {
-        showAlert('Terjadi kesalahan jaringan atau server.');
+      } catch (error) {
+        console.error('[Setup request]', error);
+
+        showAlert(
+          'Tidak dapat terhubung ke server. Pastikan backend sedang berjalan.'
+        );
+      } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Daftarkan Administrator';
       }
     });
+
+    checkSetupStatus();
   </script>
 </body>
 </html>

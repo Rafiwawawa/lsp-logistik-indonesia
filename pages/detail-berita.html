@@ -3,211 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detail Artikel - LSP LOGISTIK INDONESIA</title>
+  <title>Detail Berita & Artikel - LSP LOGISTIK INDONESIA</title>
+  <meta name="description" content="Berita dan artikel LSP Logistik Indonesia.">
   <link rel="icon" href="/assets/img/logo-ilcc.jpg">
-  
-  <link rel="stylesheet" href="../assets/css/variables.css">
-  <link rel="stylesheet" href="../assets/css/main.css">
-  <link rel="stylesheet" href="../assets/css/components/header.css">
-  <link rel="stylesheet" href="../assets/css/components/cards.css">
-  <link rel="stylesheet" href="../assets/css/components/modal.css">
-  <link rel="stylesheet" href="../assets/css/components/footer.css">
-  <link rel="stylesheet" href="../assets/css/pages/berita.css">
+
+  <link rel="stylesheet" href="/assets/css/variables.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/components/header.css">
+  <link rel="stylesheet" href="/assets/css/components/cards.css">
+  <link rel="stylesheet" href="/assets/css/components/modal.css">
+  <link rel="stylesheet" href="/assets/css/components/footer.css">
+  <link rel="stylesheet" href="/assets/css/pages/berita.css">
 </head>
 <body>
-
-  <!-- BLOG_HEADER -->
-  <!-- HEADER & STICKY NAVIGATION -->
-  <header class="site-header" id="mainHeader">
-    <!-- BLOG_MENU -->
-    <!-- Main Navbar -->
-    <div class="container header-main">
-      <a href="../index.html" class="header-logo">
-        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav aria-label="Main Navigation">
-        <ul class="nav-menu">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
-          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="layanan.html" class="nav-link">Skema Sertifikasi</a></li>
-                    <li class="nav-item">
-            <a href="berita.html" class="nav-link active">
-              Informasi Terbaru
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
-              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
-        </ul>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="header-actions">
-        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </button>
-
-        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        </button>
-
-        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
-
-        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Off Canvas Mobile Sidebar Navigation -->
-  <div class="mobile-nav-overlay">
-    <div class="mobile-nav-drawer">
-      <div class="mobile-nav-header">
-        <a href="../index.html" class="header-logo">
-          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
-        </a>
-        <button class="modal-close mobile-nav-close">&times;</button>
-      </div>
-      <ul class="mobile-nav-menu">
-        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
-        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
-        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
-        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
-        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
-        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
-        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
-      </ul>
-    </div>
-  </div>
+  <header class="site-header" id="mainHeader"></header>
 
   <main class="section">
     <div class="container news-page-layout">
       <article id="articleContainer">
-        <!-- BLOG_BREADCRUMB -->
         <div class="breadcrumb">
-          <a href="../index.html">Beranda</a>
+          <a href="/">Beranda</a>
           <span class="separator">/</span>
-          <a href="berita.html">Informasi Terbaru</a>
+          <a href="/pages/berita.html">Berita & Artikel</a>
           <span class="separator">/</span>
-          <span class="current" id="articleBreadcrumb">Detail Artikel</span>
+          <span class="current" id="articleBreadcrumb">Detail</span>
         </div>
 
-        <header class="article-header">
-          <h1 class="article-title" id="articleTitle">Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Logistik Indonesia</h1>
-          <div class="article-meta" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 0.75rem;">
-            <span id="articleDate">📅 05 April 2026</span>
-            <span id="articleAuthor">👤 Penulis: Tim LSP Logistik</span>
-            <span id="articleCategory">🏷️ Kategori: <span class="badge badge-info">Edukasi Logistik</span></span>
-          </div>
-
-          <!-- Social Share & Bookmark Toolbar -->
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; align-items: center;">
-            <button class="btn btn-secondary btn-sm" id="btnShareCopy">🔗 Salin Tautan</button>
-            <button class="btn btn-secondary btn-sm" id="btnShareWa" style="background: #25D366; color: #FFF; border-color: #25D366;">💬 WhatsApp</button>
-            <button class="btn btn-secondary btn-sm" id="btnBookmark">⭐ Simpan Artikel</button>
-          </div>
-        </header>
-
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80" alt="Sertifikasi Profesi P3" class="article-featured-image" id="articleImage">
-
-        <!-- BLOG_POST_CONTENT -->
-        <div class="article-body" id="articleBody" style="font-size: 1rem; line-height: 1.8; color: var(--color-text-main);">
-          <p>
-            Pengelolaan Proyek & Logistik Profesional (P3) merupakan disiplin yang sangat penting dalam dunia bisnis nasional saat ini. Kemampuan untuk merencanakan, mengorganisir, mengarahkan, dan mengendalikan sumber daya pengiriman secara efektif adalah kunci kesuksesan organisasi dalam mencapai tujuan strategisnya.
-          </p>
-          <p>
-            LSP Logistik Indonesia Indonesia menyediakan ruang sertifikasi kompetensi sesuai acuan SKKNI No. 354 Tahun 2014 guna memastikan para praktisi logistik, pengantar pos, counter officer, hingga supervisor pengumpulan memiliki kapasitas terukur dan diakui secara nasional oleh Badan Nasional Sertifikasi Profesi (BNSP).
-          </p>
-          <h3 style="margin-top:1.5rem;">Mengapa Sertifikasi Logistik Penting?</h3>
-          <ul>
-            <li>Pengakuan Resmi Negara melalui Lisensi BNSP Republik Indonesia.</li>
-            <li>Peningkatan Efisiensi SLA Pengiriman & Pengurangan Resiko Kerusakan Kargo.</li>
-            <li>Peningkatan Standar Layanan Pelanggan (Service Excellence) pada Industri Pos & Kurir.</li>
-          </ul>
+        <div id="articleLoading" class="card" style="padding:1.5rem;">
+          Memuat konten...
         </div>
 
-        <!-- BLOG_COMMENT SECTION -->
-        <section class="comments-section" style="margin-top: 3rem;">
-          <h3>Diskusi & Komentar (<span id="commentCount">2</span>)</h3>
-          
-          <div id="commentsList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-            <div class="card" style="padding: 1rem; background: var(--color-surface);">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <strong style="color: var(--color-text-main);">Rahmat Hidayat</strong>
-                <span style="font-size: 0.8rem; color: var(--color-text-light);">06 April 2026, 09:15 WIB</span>
-              </div>
-              <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0;">Sangat bermanfaat! Apakah jadwal asesmen untuk skema Counter Officer di Bandung sudah bisa mendaftar?</p>
-            </div>
-            
-            <div class="card" style="padding: 1rem; background: var(--color-surface);">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <strong style="color: var(--color-text-main);">Siti Aminah (PosIND)</strong>
-                <span style="font-size: 0.8rem; color: var(--color-text-light);">06 April 2026, 11:30 WIB</span>
-              </div>
-              <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0;">Informasi yang sangat lugas. Kami dari entitas kurir sangat mendukung implementasi SKKNI 354.</p>
-            </div>
-          </div>
+        <div id="articleContent" style="display:none;">
+          <header class="article-header">
+            <h1 class="article-title" id="articleTitle"></h1>
 
-          <form id="commentForm" class="card" style="padding: 1.5rem; margin-top: 1.5rem;">
-            <h4 style="margin-bottom: 1rem;">Tinggalkan Komentar Anda</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-              <div>
-                <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Nama Lengkap *</label>
-                <input type="text" id="commentNameInput" class="form-control" required placeholder="Nama Anda">
-              </div>
-              <div>
-                <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Email *</label>
-                <input type="email" id="commentEmailInput" class="form-control" required placeholder="email@domain.com">
-              </div>
+            <div class="article-meta" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-top:.75rem;">
+              <span id="articleDate"></span>
+              <span id="articleCategory"></span>
             </div>
-            <div class="form-group" style="margin-bottom: 1rem;">
-              <label class="form-label" style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Komentar *</label>
-              <textarea id="commentTextInput" class="form-control" rows="3" required placeholder="Tuliskan pendapat atau pertanyaan Anda..."></textarea>
+
+            <div style="display:flex; gap:.5rem; margin-top:1rem; flex-wrap:wrap; align-items:center;">
+              <button class="btn btn-secondary btn-sm" id="btnShareCopy">🔗 Salin Tautan</button>
+              <button class="btn btn-secondary btn-sm" id="btnShareWa"
+                style="background:#25D366; color:#FFF; border-color:#25D366;">💬 WhatsApp</button>
             </div>
-            <button type="submit" class="btn btn-primary" style="background:var(--color-secondary); border-color:var(--color-secondary);">Kirim Komentar</button>
-          </form>
-        </section>
+          </header>
+
+          <img id="articleImage" class="article-featured-image" alt="" style="display:none;">
+
+          <div class="article-body" id="articleBody"
+            style="font-size:1rem; line-height:1.8; color:var(--color-text-main);"></div>
+        </div>
       </article>
 
-      <!-- BLOG_SIDEBAR -->
       <aside class="sidebar">
         <div class="widget">
-          <h4 class="widget-title">Cari Artikel</h4>
-          <form action="berita.html" method="GET" style="display: flex; gap: 0.5rem;">
+          <h4 class="widget-title">Cari</h4>
+          <form action="/pages/berita.html" method="GET" style="display:flex; gap:.5rem;">
             <input type="text" name="q" class="form-control" placeholder="Kata kunci...">
-            <button type="submit" class="btn btn-primary" style="background:var(--color-secondary); border-color:var(--color-secondary);">Cari</button>
+            <button type="submit" class="btn btn-primary">Cari</button>
           </form>
         </div>
 
         <div class="widget">
-          <h4 class="widget-title">Artikel Terkait</h4>
-          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-            <a href="detail-berita.html?id=2" style="text-decoration:none; color:var(--color-text-main); font-weight:600; font-size:0.85rem;">Sosialisasi SKKNI No. 354 Tahun 2014 Bidang Pos & Kurir &rarr;</a>
-            <a href="detail-berita.html?id=3" style="text-decoration:none; color:var(--color-text-main); font-weight:600; font-size:0.85rem;">Kerjasama LSP Logistik Indonesia & ASPERINDO Dorong Digitalisasi &rarr;</a>
-            <a href="detail-berita.html?id=4" style="text-decoration:none; color:var(--color-text-main); font-weight:600; font-size:0.85rem;">Bimtek Asesor BNSP Gelombang IV Bandung &rarr;</a>
+          <h4 class="widget-title">Konten Terkait</h4>
+          <div id="relatedArticles" style="display:flex; flex-direction:column; gap:.75rem;">
+            <span style="font-size:.85rem; color:var(--color-text-muted);">Memuat...</span>
           </div>
         </div>
       </aside>
     </div>
   </main>
 
-  <!-- BLOG_FOOTER -->
   <footer class="site-footer">
-    <div class="container">
-      <!-- Injected dynamically by footer.js -->
-    </div>
+    <div class="container"></div>
   </footer>
 
-  <!-- Search Modal Overlay -->
   <div class="modal-backdrop" id="searchModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -216,163 +87,191 @@
       </div>
       <div class="modal-body">
         <div class="search-modal-field">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
           <input type="text" placeholder="Ketik kata kunci...">
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Back To Top Button -->
   <div class="back-to-top" id="backToTopBtn" title="Kembali ke atas">
-    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
   </div>
 
-  <!-- Component Scripts -->
-  <script src="../assets/js/components/header.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+  <script src="/assets/js/components/toast.js"></script>
+  <script src="/assets/js/components/search.js"></script>
+  <script src="/assets/js/components/modal.js"></script>
+  <script src="/assets/js/components/reveal.js"></script>
+  <script src="/assets/js/components/footer.js"></script>
+  <script src="/assets/js/main.js"></script>
 
-  <!-- Feature Scripts -->
-  <script src="../assets/js/components/toast.js"></script>
-  <script src="../assets/js/components/search.js"></script>
-  <script src="../assets/js/components/modal.js"></script>
-  <script src="../assets/js/components/reveal.js"></script>
-  <script src="../assets/js/components/footer.js"></script>
-  <script src="../assets/js/main.js"></script>
-
-  <!-- Dynamic Article Engine -->
   <script>
-    const ARTICLES_DB = {
-      '1': {
-        title: 'Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Logistik Indonesia',
-        date: '05 April 2026',
-        author: 'Tim LSP Logistik',
-        category: 'Edukasi Logistik',
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80',
-        content: `
-          <p>Pengelolaan Proyek & Logistik Profesional (P3) merupakan disiplin yang sangat penting dalam dunia bisnis nasional saat ini. Kemampuan untuk merencanakan, mengorganisir, mengarahkan, dan mengendalikan sumber daya pengiriman secara efektif adalah kunci kesuksesan organisasi dalam mencapai tujuan strategisnya.</p>
-          <p>LSP Logistik Indonesia Indonesia menyediakan ruang sertifikasi kompetensi sesuai acuan SKKNI No. 354 Tahun 2014 guna memastikan para praktisi logistik, pengantar pos, counter officer, hingga supervisor pengumpulan memiliki kapasitas terukur dan diakui secara nasional oleh Badan Nasional Sertifikasi Profesi (BNSP).</p>
-          <h3 style="margin-top:1.5rem;">Mengapa Sertifikasi Logistik Penting?</h3>
-          <ul>
-            <li>Pengakuan Resmi Negara melalui Lisensi BNSP Republik Indonesia.</li>
-            <li>Peningkatan Efisiensi SLA Pengiriman & Pengurangan Resiko Kerusakan Kargo.</li>
-            <li>Peningkatan Standar Layanan Pelanggan (Service Excellence) pada Industri Pos & Kurir.</li>
-          </ul>
-        `
-      },
-      '2': {
-        title: 'Sosialisasi SKKNI No. 354 Tahun 2014 Bidang Keahlian Pos & Kurir',
-        date: '28 Maret 2026',
-        author: 'Tim Standarisasi',
-        category: 'Regulasi SKKNI',
-        image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80',
-        content: `
-          <p>Standar Kompetensi Kerja Nasional Indonesia (SKKNI) No. 354 Tahun 2014 merupakan acuan baku yang ditetapkan oleh Kementerian Ketenagakerjaan Republik Indonesia untuk kualifikasi tenaga kerja di bidang keahlian pos dan logistik.</p>
-          <p>Sosialisasi ini membahas unit-unit kompetensi inti yang dipersyaratkan bagi peran Collecting Supervisor, Counter Officer, Customer Service Officer, serta Pengantar Pos/Kurir di seluruh jaringan operasional pengiriman barang dan dokumen.</p>
-        `
-      },
-      '3': {
-        title: 'Kerjasama LSP Logistik Indonesia & ASPERINDO Dorong Digitalisasi Logistik Nasional',
-        date: '15 Februari 2026',
-        author: 'Humas LSP Logistik',
-        category: 'ASPERINDO & PosIND',
-        image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1000&q=80',
-        content: `
-          <p>ASPERINDO bersama aliansi PosIND resmi memperkuat dukungan terhadap LSP Logistik Indonesia Indonesia dalam mempercepat sertifikasi kompetensi tenaga kerja pos dan logistik berbasis teknologi digital.</p>
-          <p>Langkah ini menargetkan pencetakan ribuan SDM bersertifikat kompetensi yang siap bersaing dalam era ekosistem e-commerce dan rantai pasok global.</p>
-        `
-      },
-      '4': {
-        title: 'Bimtek Asesor Kompetensi Sektor Pos Dan Kurir Gelombang IV Bandung',
-        date: '10 Januari 2026',
-        author: 'Sekretariat LSP',
-        category: 'Bimtek Asesor',
-        image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80',
-        content: `
-          <p>Bimbingan Teknis Asesor Kompetensi yang diselenggarakan oleh LSP Logistik Indonesia di Gedung YPBPI Sarijadi Bandung diikuti oleh 50 calon asesor dari industri pos, ekspres, dan logistik.</p>
-          <p>Para peserta mendapatkan pelatihan teknis pengujian instrumen asesmen APL-01 dan APL-02 sesuai metodologi BNSP Indonesia.</p>
-        `
+    (() => {
+      const loading = document.getElementById('articleLoading');
+      const content = document.getElementById('articleContent');
+      const related = document.getElementById('relatedArticles');
+
+      function formatDate(value) {
+        if (!value) return 'Tanggal belum tersedia';
+
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value;
+
+        return new Intl.DateTimeFormat('id-ID', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        }).format(date);
       }
-    };
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const articleId = urlParams.get('id') || '1';
-      const article = ARTICLES_DB[articleId] || ARTICLES_DB['1'];
+      function renderBody(text) {
+        const container = document.getElementById('articleBody');
+        container.replaceChildren();
 
-      document.getElementById('articleBreadcrumb').textContent = article.title;
-      document.getElementById('articleTitle').textContent = article.title;
-      document.getElementById('articleDate').textContent = '📅 ' + article.date;
-      document.getElementById('articleAuthor').textContent = '👤 Penulis: ' + article.author;
-      document.getElementById('articleCategory').innerHTML = `🏷️ Kategori: <span class="badge badge-info">${article.category}</span>`;
-      document.getElementById('articleImage').src = article.image;
-      document.getElementById('articleBody').innerHTML = article.content;
+        const blocks = String(text || '')
+          .split(/\n\s*\n/)
+          .map(block => block.trim())
+          .filter(Boolean);
 
-      // Share Copy Link
-      document.getElementById('btnShareCopy').addEventListener('click', () => {
-        navigator.clipboard.writeText(window.location.href);
-        if (window.showToast) {
-          window.showToast('Tautan artikel berhasil disalin ke clipboard!', 'success');
+        if (!blocks.length) {
+          const paragraph = document.createElement('p');
+          paragraph.textContent = 'Isi konten belum tersedia.';
+          container.appendChild(paragraph);
+          return;
         }
-      });
 
-      // Share WA
-      document.getElementById('btnShareWa').addEventListener('click', () => {
-        const text = encodeURIComponent(`Baca artikel: ${article.title}\n${window.location.href}`);
-        window.open(`https://wa.me/?text=${text}`, '_blank');
-      });
+        blocks.forEach(block => {
+          const paragraph = document.createElement('p');
+          const lines = block.split('\n');
 
-      // Bookmark
-      let isBookmarked = false;
-      const btnBookmark = document.getElementById('btnBookmark');
-      btnBookmark.addEventListener('click', () => {
-        isBookmarked = !isBookmarked;
-        if (isBookmarked) {
-          btnBookmark.style.background = 'var(--color-secondary)';
-          btnBookmark.style.color = '#FFF';
-          btnBookmark.textContent = '★ Tersimpan';
-          if (window.showToast) window.showToast('Artikel berhasil disimpan ke daftar favorit!', 'info');
-        } else {
-          btnBookmark.style.background = '';
-          btnBookmark.style.color = '';
-          btnBookmark.textContent = '⭐ Simpan Artikel';
-        }
-      });
+          lines.forEach((line, index) => {
+            if (index > 0) paragraph.appendChild(document.createElement('br'));
+            paragraph.appendChild(document.createTextNode(line));
+          });
 
-      // Comment Form Submission
-      const commentForm = document.getElementById('commentForm');
-      const commentsList = document.getElementById('commentsList');
-      const commentCount = document.getElementById('commentCount');
-      let currentCount = 2;
-
-      if (commentForm) {
-        commentForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const name = document.getElementById('commentNameInput').value;
-          const text = document.getElementById('commentTextInput').value;
-
-          const newComment = document.createElement('div');
-          newComment.className = 'card';
-          newComment.style.cssText = 'padding: 1rem; background: var(--color-surface);';
-          newComment.innerHTML = `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-              <strong style="color: var(--color-text-main);">${name}</strong>
-              <span style="font-size: 0.8rem; color: var(--color-text-light);">Baru saja</span>
-            </div>
-            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0;">${text}</p>
-          `;
-
-          commentsList.appendChild(newComment);
-          currentCount++;
-          commentCount.textContent = currentCount;
-
-          if (window.showToast) {
-            window.showToast('Terima kasih! Komentar Anda berhasil dipublikasikan.', 'success');
-          }
-
-          commentForm.reset();
+          container.appendChild(paragraph);
         });
       }
-    });
+
+      function showError(message) {
+        loading.textContent = message;
+        loading.style.display = 'block';
+        content.style.display = 'none';
+      }
+
+      async function loadRelated(current) {
+        try {
+          const response = await fetch('/api/berita?limit=6', {
+            credentials: 'same-origin',
+            cache: 'no-store',
+          });
+
+          const data = await response.json();
+
+          if (!response.ok || !Array.isArray(data.data)) {
+            throw new Error('Gagal memuat konten terkait.');
+          }
+
+          const items = data.data
+            .filter(item => item.slug !== current.slug)
+            .sort((a, b) => Number(b.kategori === current.kategori) - Number(a.kategori === current.kategori))
+            .slice(0, 3);
+
+          if (!items.length) {
+            related.innerHTML = '<span style="font-size:.85rem; color:var(--color-text-muted);">Belum ada konten terkait.</span>';
+            return;
+          }
+
+          related.replaceChildren();
+
+          items.forEach(item => {
+            const link = document.createElement('a');
+            link.href = `/pages/detail-berita.html?slug=${encodeURIComponent(item.slug)}`;
+            link.textContent = `${item.judul} →`;
+            link.style.cssText =
+              'text-decoration:none; color:var(--color-text-main); font-weight:600; font-size:.85rem;';
+            related.appendChild(link);
+          });
+        } catch (error) {
+          console.error('[Related Articles]', error);
+          related.textContent = 'Konten terkait belum dapat dimuat.';
+        }
+      }
+
+      async function loadArticle() {
+        const slug = new URLSearchParams(window.location.search).get('slug');
+
+        if (!slug) {
+          showError('Konten tidak ditemukan. Silakan kembali ke halaman Berita & Artikel.');
+          return;
+        }
+
+        try {
+          const response = await fetch(`/api/berita/${encodeURIComponent(slug)}`, {
+            credentials: 'same-origin',
+            cache: 'no-store',
+          });
+
+          const data = await response.json();
+
+          if (!response.ok || !data.success || !data.data) {
+            throw new Error(data?.error?.message || 'Konten tidak ditemukan.');
+          }
+
+          const article = data.data;
+
+          document.title = `${article.judul} - LSP Logistik Indonesia`;
+          document.getElementById('articleBreadcrumb').textContent = article.judul;
+          document.getElementById('articleTitle').textContent = article.judul;
+          document.getElementById('articleDate').textContent =
+            `📅 ${formatDate(article.published_at || article.created_at)}`;
+          document.getElementById('articleCategory').textContent =
+            `🏷️ ${article.kategori}`;
+
+          const image = document.getElementById('articleImage');
+          if (article.thumbnail_url) {
+            image.src = article.thumbnail_url;
+            image.alt = article.judul;
+            image.style.display = 'block';
+          }
+
+          renderBody(article.isi);
+
+          loading.style.display = 'none';
+          content.style.display = 'block';
+
+          document.getElementById('btnShareCopy').addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(window.location.href);
+              window.showToast?.('Tautan berhasil disalin.', 'success');
+            } catch {
+              window.showToast?.('Tautan belum dapat disalin.', 'error');
+            }
+          });
+
+          document.getElementById('btnShareWa').addEventListener('click', () => {
+            const text = encodeURIComponent(
+              `Baca ${article.kategori.toLowerCase()}: ${article.judul}\n${window.location.href}`
+            );
+            window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener');
+          });
+
+          loadRelated(article);
+        } catch (error) {
+          console.error('[Article Detail]', error);
+          showError(error.message || 'Konten tidak ditemukan.');
+        }
+      }
+
+      loadArticle();
+    })();
   </script>
 </body>
 </html>

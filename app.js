@@ -1,26 +1,18 @@
 const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
-const fs = require('fs');
+
 const { getDB } = require('./database/db');
 const { createSessionMiddleware } = require('./middleware/session');
 const { requireAuth } = require('./middleware/auth');
-
+const serveImage = require('./middleware/serveImage');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
-/**
- * Creates and configures Express application.
- *
- * @param {object} [options]
- * @param {import('better-sqlite3').Database} [options.db] Optional custom database
- * @param {any} [options.sessionStore] Optional custom session store
- * @returns {import('express').Express}
- */
 function createApp(options = {}) {
   const app = express();
   const db = options.db || getDB();
 
-  // ─── Security Headers (Helmet) ─────────────────────────────────────────────
+  // Security headers
   app.use(helmet({
     contentSecurityPolicy: {
       directives: {
@@ -29,50 +21,77 @@ function createApp(options = {}) {
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],
         formAction: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        imgSrc: ["'self'", "data:", "blob:"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com',
+        ],
+        fontSrc: [
+          "'self'",
+          'https://fonts.gstatic.com',
+        ],
+        imgSrc: [
+          "'self'",
+          'data:',
+          'blob:',
+          'https://images.unsplash.com',
+        ],
+        frameSrc: [
+          "'self'",
+          'https://maps.google.com',
+          'https://www.google.com',
+        ],
         connectSrc: ["'self'"],
       },
     },
     crossOriginEmbedderPolicy: false,
   }));
 
-  // ─── Request Body Limits ───────────────────────────────────────────────────
+  // Request body limits
   app.use(express.json({ limit: '1mb' }));
   app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-  // ─── Persistent Session Middleware ─────────────────────────────────────────
-  app.use(createSessionMiddleware({ store: options.sessionStore }));
+  // Session
+  app.use(createSessionMiddleware({
+    store: options.sessionStore,
+  }));
 
-  // ─── Health Check Endpoint ─────────────────────────────────────────────────
+  // Health check
   app.get('/health', (req, res) => {
     try {
-      const activeDb = options.db || getDB();
-      const check = activeDb.prepare('SELECT 1 as alive').get();
-      if (check && check.alive === 1) {
+      const check = db.prepare('SELECT 1 AS alive').get();
+
+      if (check?.alive === 1) {
         return res.status(200).json({ status: 'ok' });
       }
-      return res.status(503).json({ status: 'error', message: 'Database check failed' });
-    } catch (err) {
-      return res.status(503).json({ status: 'error', message: 'Database unavailable' });
+
+      return res.status(503).json({
+        status: 'error',
+        message: 'Database check failed',
+      });
+    } catch {
+      return res.status(503).json({
+        status: 'error',
+        message: 'Database unavailable',
+      });
     }
   });
 
-  // ─── API Routes ─────────────────────────────────────────────────────────────
+  // API
   app.use('/api/auth', require('./api/auth'));
   app.use('/api/galeri', require('./api/galeri'));
   app.use('/api/berita', require('./api/berita'));
   app.use('/api/pengurus', require('./api/pengurus'));
 
-  // Admin API boundary guard (Phase 2 placeholder for Phase 4 admin routes)
+  // Reserved protected admin API boundary
   app.use('/api/admin', requireAuth);
 
-  // Serve uploaded images safely
-  app.get('/media/images/:category/:filename', require('./middleware/serveImage'));
+  // Uploaded images
+  app.get('/media/images/:category/:filename', serveImage);
 
-  // ─── Admin UI Guard & Static Routing ───────────────────────────────────────
+  // Public admin pages
   app.get('/admin/setup', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin', 'setup.html'));
   });
@@ -81,20 +100,18 @@ function createApp(options = {}) {
     res.sendFile(path.join(__dirname, 'admin', 'login.html'));
   });
 
-  // Protected Admin Static UI: Redirect to login if not authenticated
+  // Protect admin UI except login/setup/assets
   app.use('/admin', (req, res, next) => {
-    const isPublicAdminRoute =
-      req.path === '/login.html' ||
+    const publicRoute =
       req.path === '/login' ||
-      req.path === '/setup.html' ||
+      req.path === '/login.html' ||
       req.path === '/setup' ||
+      req.path === '/setup.html' ||
       req.path.startsWith('/assets/');
 
-    if (isPublicAdminRoute) {
-      return next();
-    }
+    if (publicRoute) return next();
 
-    if (!req.session || !req.session.adminId) {
+    if (!req.session?.adminId) {
       return res.redirect('/admin/login.html');
     }
 
@@ -103,9 +120,10 @@ function createApp(options = {}) {
 
   app.use('/admin', express.static(path.join(__dirname, 'admin'), {
     extensions: ['html'],
+    etag: true,
   }));
 
-  // ─── Explicit Public Static File Serving ───────────────────────────────────
+  // Public static resources
   app.use('/assets', express.static(path.join(__dirname, 'assets'), {
     maxAge: '1d',
     etag: true,
@@ -116,17 +134,20 @@ function createApp(options = {}) {
     etag: true,
   }));
 
-  // Root index.html
+  // Homepage
+  const homepage = path.join(__dirname, 'index.html');
+
   app.get('/', (req, res) => {
-    const indexPath = path.join(__dirname, 'index.html');
-    if (fs.existsSync(indexPath)) {
-      res.sendFile(indexPath);
-    } else {
-      res.status(404).send('Not Found');
-    }
+    res.sendFile(homepage);
   });
 
-  // ─── 404 & Centralized Error Handlers ──────────────────────────────────────
+  // Normalize old homepage links.
+  // Example: /index.html -> /
+  app.get('/index.html', (req, res) => {
+    res.redirect(302, '/');
+  });
+
+  // Error handlers must stay last
   app.use(notFoundHandler);
   app.use(errorHandler);
 

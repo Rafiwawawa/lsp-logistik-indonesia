@@ -3,199 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Informasi Terbaru - LSP LOGISTIK INDONESIA</title>
+  <title>Berita & Artikel - LSP LOGISTIK INDONESIA</title>
+  <meta name="description" content="Berita dan artikel terbaru dari LSP Logistik Indonesia.">
   <link rel="icon" href="/assets/img/logo-ilcc.jpg">
-  
-  <link rel="stylesheet" href="../assets/css/variables.css">
-  <link rel="stylesheet" href="../assets/css/main.css">
-  <link rel="stylesheet" href="../assets/css/components/header.css">
-  <link rel="stylesheet" href="../assets/css/components/cards.css">
-  <link rel="stylesheet" href="../assets/css/components/modal.css">
-  <link rel="stylesheet" href="../assets/css/components/footer.css">
-  <link rel="stylesheet" href="../assets/css/pages/berita.css">
+
+  <link rel="stylesheet" href="/assets/css/variables.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/components/header.css">
+  <link rel="stylesheet" href="/assets/css/components/cards.css">
+  <link rel="stylesheet" href="/assets/css/components/modal.css">
+  <link rel="stylesheet" href="/assets/css/components/footer.css">
+  <link rel="stylesheet" href="/assets/css/pages/berita.css">
 </head>
 <body>
+  <header class="site-header" id="mainHeader"></header>
 
-  <!-- BLOG_HEADER -->
-  <!-- HEADER & STICKY NAVIGATION -->
-  <header class="site-header" id="mainHeader">
-    <!-- BLOG_MENU -->
-    <!-- Main Navbar -->
-    <div class="container header-main">
-      <a href="../index.html" class="header-logo">
-        <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img">
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav aria-label="Main Navigation">
-        <ul class="nav-menu">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Beranda</a></li>
-          <li class="nav-item"><a href="profil.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="layanan.html" class="nav-link">Skema Sertifikasi</a></li>
-                    <li class="nav-item">
-            <a href="berita.html" class="nav-link active">
-              Informasi Terbaru
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-item"><a href="berita.html">📰 Berita &amp; Artikel</a></li>
-              <li class="dropdown-item"><a href="galeri.html">🖼️ Galeri Media</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
-        </ul>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="header-actions">
-        <button class="action-btn search-trigger-btn" title="Cari (Tekan /)" aria-label="Buka Pencarian">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </button>
-
-        <button class="action-btn" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Theme">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        </button>
-
-        <a href="https://wa.me/6281288771150" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 0.5rem; background: var(--color-secondary); border-color: var(--color-secondary);">Konsultasi</a>
-
-        <div class="hamburger-btn" aria-label="Toggle Mobile Menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Off Canvas Mobile Sidebar Navigation -->
-  <div class="mobile-nav-overlay">
-    <div class="mobile-nav-drawer">
-      <div class="mobile-nav-header">
-        <a href="../index.html" class="header-logo">
-          <img src="../assets/img/logo-ilcc.jpg" alt="ILCC Logo" class="logo-img" style="height: 48px;">
-        </a>
-        <button class="modal-close mobile-nav-close">&times;</button>
-      </div>
-      <ul class="mobile-nav-menu">
-        <li class="mobile-nav-item"><a href="../index.html">Beranda</a></li>
-        <li class="mobile-nav-item"><a href="profil.html">Profil LSP Logistik</a></li>
-        <li class="mobile-nav-item"><a href="layanan.html">Skema Sertifikasi</a></li>
-        <li class="mobile-nav-item"><a href="berita.html">Informasi Terbaru</a></li>
-        <li class="mobile-nav-item"><a href="galeri.html">Galeri Media</a></li>
-        <li class="mobile-nav-item"><a href="faq.html">FAQ</a></li>
-        <li class="mobile-nav-item"><a href="kontak.html">Kontak Kami</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary) 0%, #001C5E 100%);">
+  <section class="page-header news-page-header">
     <div class="container">
-      <!-- BLOG_BREADCRUMB -->
       <div class="breadcrumb">
-        <a href="../index.html">Beranda</a>
+        <a href="/">Beranda</a>
         <span class="separator">/</span>
-        <span class="current">Informasi Terbaru</span>
+        <span class="current">Berita & Artikel</span>
       </div>
-      <h1>Informasi & Publikasi LSP Logistik Indonesia</h1>
-      <p>Berita seputar pengembangan kompetensi SDM logistik, regulasi SKKNI, dan pendaftaran asesmen.</p>
+      <h1>Berita & Artikel</h1>
+      <p>Ikuti kabar terbaru LSP dan baca artikel seputar sertifikasi, kompetensi, serta industri logistik.</p>
     </div>
   </section>
 
-  <main class="section">
-    <div class="container news-page-layout">
-      <!-- 70% MAIN CONTENT AREA -->
-      <div>
-        <div class="grid grid-cols-2 gap-6" id="newsGrid">
-          <article class="news-card card hover-lift" data-category="Edukasi" data-title="Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Pengelolaan Proyek">
-            <div class="news-thumb">
-              <span class="news-badge badge badge-primary" style="background:var(--color-secondary); color:#FFF;">Edukasi</span>
-              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Sertifikasi Profesi P3">
+  <main class="section news-section">
+    <div class="container news-page-container">
+      <div class="news-filter-wrapper">
+        <div class="news-filter-top">
+          <div>
+            <span class="news-filter-label">Jelajahi Publikasi</span>
+            <div class="news-filter-pills" id="newsFilterPills">
+              <button type="button" class="news-pill-btn active" data-cat="all">
+                Semua <span class="news-pill-count" id="countAll">0</span>
+              </button>
+              <button type="button" class="news-pill-btn" data-cat="Berita">
+                Berita <span class="news-pill-count" id="countBerita">0</span>
+              </button>
+              <button type="button" class="news-pill-btn" data-cat="Artikel">
+                Artikel <span class="news-pill-count" id="countArtikel">0</span>
+              </button>
             </div>
-            <div class="news-content">
-              <div class="news-meta"><span>05 April 2026</span> • Tim LSP Logistik</div>
-              <h3 class="news-title"><a href="detail-berita.html?id=1">Sertifikasi Profesi P3: Meningkatkan Standar Kompetensi Logistik Indonesia</a></h3>
-              <p class="news-excerpt">LSP Logistik Indonesia Indonesia memperkuat daya saing tenaga kerja pos dan kurir nasional melalui sertifikasi kompetensi berlisensi resmi BNSP...</p>
-              <a href="detail-berita.html?id=1" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
-            </div>
-          </article>
+          </div>
+        </div>
 
-          <article class="news-card card hover-lift" data-category="Standarisasi" data-title="Sosialisasi SKKNI No. 354 Tahun 2014 Bidang Keahlian Pos & Kurir">
-            <div class="news-thumb">
-              <span class="news-badge badge badge-accent">Standarisasi</span>
-              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="SKKNI 354">
-            </div>
-            <div class="news-content">
-              <div class="news-meta"><span>28 Maret 2026</span> • Tim Standarisasi</div>
-              <h3 class="news-title"><a href="detail-berita.html?id=2">Sosialisasi SKKNI No. 354 Tahun 2014 Bidang Keahlian Pos & Kurir</a></h3>
-              <p class="news-excerpt">Penjelasan teknis unit kompetensi bagi pengantar pos, counter officer, customer service, & collecting supervisor.</p>
-              <a href="detail-berita.html?id=2" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
-            </div>
-          </article>
-
-          <article class="news-card card hover-lift" data-category="ASPERINDO" data-title="Kerjasama LSP Logistik Indonesia & ASPERINDO Dorong Digitalisasi Logistik Nasional">
-            <div class="news-thumb">
-              <span class="news-badge badge badge-success">ASPERINDO</span>
-              <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80" alt="ASPERINDO Collaboration">
-            </div>
-            <div class="news-content">
-              <div class="news-meta"><span>15 Februari 2026</span> • Humas LSP Logistik</div>
-              <h3 class="news-title"><a href="detail-berita.html?id=3">Kerjasama LSP Logistik Indonesia & ASPERINDO Dorong Digitalisasi Logistik Nasional</a></h3>
-              <p class="news-excerpt">Sinergi bersama PosIND dan ASPERINDO dalam menyiapkan ribuan SDM logistik tersertifikasi menghadapi tantangan e-commerce global.</p>
-              <a href="detail-berita.html?id=3" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
-            </div>
-          </article>
-
-          <article class="news-card card hover-lift" data-category="Edukasi" data-title="Bimtek Asesor Kompetensi Sektor Pos Dan Kurir Gelombang IV Bandung">
-            <div class="news-thumb">
-              <span class="news-badge badge badge-info">Edukasi</span>
-              <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Bimtek Asesor">
-            </div>
-            <div class="news-content">
-              <div class="news-meta"><span>10 Januari 2026</span> • Sekretariat LSP</div>
-              <h3 class="news-title"><a href="detail-berita.html?id=4">Bimtek Asesor Kompetensi Sektor Pos Dan Kurir Gelombang IV Bandung</a></h3>
-              <p class="news-excerpt">Bimbingan teknis perancangan instrumen asesmen APL-02 bagi calon asesor kompetensi dari berbagai perusahaan anggota ASPERINDO.</p>
-              <a href="detail-berita.html?id=4" class="btn btn-secondary btn-sm">Baca Artikel &rarr;</a>
-            </div>
-          </article>
+        <div class="news-search-box">
+          <svg class="news-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input type="search" id="newsSearchInput" class="news-search-input"
+            placeholder="Cari judul, ringkasan, atau isi..." autocomplete="off" aria-label="Cari berita dan artikel">
         </div>
       </div>
 
-      <!-- 30% SIDEBAR AREA -->
-      <aside class="sidebar">
-        <div class="widget">
-          <h4 class="widget-title">Cari Artikel</h4>
-          <input type="text" id="newsSearchInput" class="form-control" placeholder="Ketik kata kunci artikel...">
+      <div class="news-results-header">
+        <div>
+          <span class="news-results-kicker">PUBLIKASI TERBARU</span>
+          <h2>Berita & Artikel LSP Logistik Indonesia</h2>
         </div>
+        <p id="newsResultStatus">Memuat konten...</p>
+      </div>
 
-        <div class="widget">
-          <h4 class="widget-title">Kategori</h4>
-          <ul class="widget-category-list">
-            <li class="widget-category-item"><a href="#" class="news-cat-link active" data-cat="all"><span>Semua Kategori</span> <span class="widget-category-count">4</span></a></li>
-            <li class="widget-category-item"><a href="#" class="news-cat-link" data-cat="Edukasi"><span>Edukasi & Pelatihan</span> <span class="widget-category-count">2</span></a></li>
-            <li class="widget-category-item"><a href="#" class="news-cat-link" data-cat="Standarisasi"><span>Regulasi SKKNI</span> <span class="widget-category-count">1</span></a></li>
-            <li class="widget-category-item"><a href="#" class="news-cat-link" data-cat="ASPERINDO"><span>ASPERINDO & PosIND</span> <span class="widget-category-count">1</span></a></li>
-          </ul>
-        </div>
+      <div class="news-grid" id="newsGrid">
+        <div class="news-loading-card">Memuat berita dan artikel...</div>
+      </div>
 
-        <div class="widget">
-          <h4 class="widget-title">Pengumuman Terkait</h4>
-          <div style="display:flex; flex-direction:column; gap:0.75rem;">
-            <a href="pengumuman.html" style="font-size:0.85rem; font-weight:600; color:var(--color-text-main); text-decoration:none; display:block; padding:0.5rem; background:var(--color-surface); border-radius:var(--radius-sm);">📢 Pendaftaran Uji Asesmen Kolektif Angkatan 2026 Buka Kembali</a>
-          </div>
-        </div>
-      </aside>
+      <div id="newsEmpty" class="news-empty">
+        <div class="news-empty-icon">🔎</div>
+        <h3>Konten tidak ditemukan</h3>
+        <p>Coba gunakan kata kunci lain atau pilih jenis konten yang berbeda.</p>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnResetNewsFilter">Reset Filter</button>
+      </div>
     </div>
   </main>
 
-  <!-- BLOG_FOOTER -->
   <footer class="site-footer">
-    <div class="container">
-      <!-- Injected by footer.js -->
-    </div>
+    <div class="container"></div>
   </footer>
 
-  <!-- Search Modal Overlay -->
   <div class="modal-backdrop" id="searchModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -204,79 +93,253 @@
       </div>
       <div class="modal-body">
         <div class="search-modal-field">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
           <input type="text" placeholder="Ketik kata kunci...">
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Back To Top Button -->
   <div class="back-to-top" id="backToTopBtn" title="Kembali ke atas">
-    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
   </div>
 
-  <!-- Component Scripts -->
-  <script src="../assets/js/components/header.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+  <script src="/assets/js/components/toast.js"></script>
+  <script src="/assets/js/components/search.js"></script>
+  <script src="/assets/js/components/modal.js"></script>
+  <script src="/assets/js/components/reveal.js"></script>
+  <script src="/assets/js/components/footer.js"></script>
+  <script src="/assets/js/main.js"></script>
 
-  <!-- Feature Scripts -->
-  <script src="../assets/js/components/toast.js"></script>
-  <script src="../assets/js/components/search.js"></script>
-  <script src="../assets/js/components/modal.js"></script>
-  <script src="../assets/js/components/reveal.js"></script>
-  <script src="../assets/js/components/footer.js"></script>
-  <script src="../assets/js/main.js"></script>
-
-  <!-- Page Logic Script -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const newsCards = document.querySelectorAll('#newsGrid .news-card');
+    (() => {
+      const state = {
+        items: [],
+        category: 'all',
+        query: '',
+      };
+
+      const grid = document.getElementById('newsGrid');
+      const empty = document.getElementById('newsEmpty');
+      const status = document.getElementById('newsResultStatus');
       const searchInput = document.getElementById('newsSearchInput');
-      const categoryLinks = document.querySelectorAll('.news-cat-link');
+      const resetButton = document.getElementById('btnResetNewsFilter');
+      const categoryButtons = [...document.querySelectorAll('.news-pill-btn')];
 
-      function filterArticles() {
-        const activeLink = document.querySelector('.news-cat-link.active');
-        const filterCategory = activeLink ? activeLink.getAttribute('data-cat') : 'all';
-        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
 
-        newsCards.forEach(card => {
-          const cat = card.getAttribute('data-category');
-          const title = card.getAttribute('data-title').toLowerCase();
-          const matchesCategory = (filterCategory === 'all' || cat === filterCategory);
-          const matchesQuery = (!query || title.includes(query));
+      function formatDate(value) {
+        if (!value) return 'Tanggal belum tersedia';
 
-          if (matchesCategory && matchesQuery) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value;
+
+        return new Intl.DateTimeFormat('id-ID', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        }).format(date);
+      }
+
+      function excerpt(item) {
+        const source = (item.ringkasan || item.isi || '').trim();
+        return source || 'Baca informasi selengkapnya mengenai publikasi ini.';
+      }
+
+      function renderCounts() {
+        document.getElementById('countAll').textContent = state.items.length;
+        document.getElementById('countBerita').textContent =
+          state.items.filter(item => item.kategori === 'Berita').length;
+        document.getElementById('countArtikel').textContent =
+          state.items.filter(item => item.kategori === 'Artikel').length;
+      }
+
+      function getFilteredItems() {
+        const query = state.query.toLowerCase();
+
+        return state.items.filter(item => {
+          const matchesCategory =
+            state.category === 'all' || item.kategori === state.category;
+
+          const searchable = [
+            item.judul,
+            item.ringkasan,
+            item.isi,
+          ].join(' ').toLowerCase();
+
+          return matchesCategory && (!query || searchable.includes(query));
         });
       }
 
-      categoryLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          categoryLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-          filterArticles();
+      function renderThumbnail(item) {
+        if (item.thumbnail_url) {
+          return `
+            <div class="news-thumb">
+              <img src="${escapeHtml(item.thumbnail_url)}" alt="${escapeHtml(item.judul)}" loading="lazy">
+              <span class="news-type-badge">${escapeHtml(item.kategori)}</span>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="news-thumb news-thumb-placeholder">
+            <img src="/assets/img/logo-ilcc.jpg" alt="" aria-hidden="true">
+            <span class="news-type-badge">${escapeHtml(item.kategori)}</span>
+          </div>
+        `;
+      }
+
+      function render() {
+        const items = getFilteredItems();
+
+        empty.classList.toggle('show', items.length === 0);
+        status.textContent = `Menampilkan ${items.length} dari ${state.items.length} konten`;
+
+        if (!items.length) {
+          grid.innerHTML = '';
+          return;
+        }
+
+        grid.innerHTML = items.map(item => {
+          const detailUrl = `/pages/detail-berita.html?slug=${encodeURIComponent(item.slug)}`;
+
+          return `
+            <article class="news-card card hover-lift">
+              ${renderThumbnail(item)}
+
+              <div class="news-content">
+                <div class="news-meta">
+                  <span>${escapeHtml(formatDate(item.published_at || item.created_at))}</span>
+                  <span class="news-meta-dot">•</span>
+                  <span>LSP Logistik Indonesia</span>
+                </div>
+
+                <h3 class="news-title">
+                  <a href="${detailUrl}">${escapeHtml(item.judul)}</a>
+                </h3>
+
+                <p class="news-excerpt">${escapeHtml(excerpt(item))}</p>
+
+                <div class="news-footer">
+                  <a href="${detailUrl}" class="news-read-more">
+                    Baca Selengkapnya
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function syncUrl() {
+        const params = new URLSearchParams();
+
+        if (state.category !== 'all') params.set('cat', state.category);
+        if (state.query) params.set('q', state.query);
+
+        const query = params.toString();
+        history.replaceState(null, '', query ? `${location.pathname}?${query}` : location.pathname);
+      }
+
+      function setCategory(category) {
+        state.category = category;
+
+        categoryButtons.forEach(button => {
+          button.classList.toggle('active', button.dataset.cat === category);
+        });
+
+        syncUrl();
+        render();
+      }
+
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          setCategory(button.dataset.cat);
         });
       });
 
-      if (searchInput) {
-        searchInput.addEventListener('input', filterArticles);
+      searchInput.addEventListener('input', () => {
+        state.query = searchInput.value.trim();
+        syncUrl();
+        render();
+      });
+
+      resetButton.addEventListener('click', () => {
+        state.category = 'all';
+        state.query = '';
+        searchInput.value = '';
+
+        categoryButtons.forEach(button => {
+          button.classList.toggle('active', button.dataset.cat === 'all');
+        });
+
+        syncUrl();
+        render();
+        searchInput.focus();
+      });
+
+      async function loadContent() {
+        try {
+          const response = await fetch('/api/berita?limit=100', {
+            credentials: 'same-origin',
+            cache: 'no-store',
+          });
+
+          const data = await response.json();
+
+          if (!response.ok || !data.success || !Array.isArray(data.data)) {
+            throw new Error(data?.error?.message || 'Gagal memuat konten.');
+          }
+
+          state.items = data.data;
+          renderCounts();
+
+          const params = new URLSearchParams(location.search);
+          const initialCategory = params.get('cat');
+          const initialQuery = params.get('q');
+
+          if (initialQuery) {
+            state.query = initialQuery;
+            searchInput.value = initialQuery;
+          }
+
+          if (['Berita', 'Artikel'].includes(initialCategory)) {
+            state.category = initialCategory;
+          }
+
+          categoryButtons.forEach(button => {
+            button.classList.toggle('active', button.dataset.cat === state.category);
+          });
+
+          render();
+        } catch (error) {
+          console.error('[Berita Page]', error);
+          status.textContent = 'Konten gagal dimuat';
+          grid.innerHTML = `
+            <div class="news-loading-card">
+              Berita dan artikel belum dapat dimuat. Silakan coba kembali.
+            </div>
+          `;
+        }
       }
 
-      // Check URL parameters for ?cat=...
-      const urlParams = new URLSearchParams(window.location.search);
-      const initialCat = urlParams.get('cat');
-      if (initialCat) {
-        categoryLinks.forEach(link => {
-          if (link.getAttribute('data-cat').toLowerCase() === initialCat.toLowerCase()) {
-            link.click();
-          }
-        });
-      }
-    });
+      loadContent();
+    })();
   </script>
 </body>
 </html>
