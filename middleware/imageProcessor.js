@@ -76,7 +76,11 @@ function createMulterForCategory(category) {
     storage,
 
     limits: {
-      fileSize: MAX_SIZE,
+      fileSize: MAX_SIZE,   // 5 MiB per file
+      files: 1,             // only one file per request
+      fields: 10,           // max text fields per form
+      parts: 11,            // total parts (fields + files)
+      fieldSize: 64 * 1024, // 64 KiB per text field
     },
 
     fileFilter: (req, file, cb) => {

@@ -3,7 +3,8 @@ const fs = require('fs');
 const crypto = require('crypto');
 
 const { getDB } = require('../database/db');
-const { requireAuth } = require('../middleware/auth');
+const { requireAuth, ABSOLUTE_TIMEOUT_MS } = require('../middleware/auth');
+const { csrfProtection } = require('../middleware/csrf');
 const { createMulterForCategory, processImage } = require('../middleware/imageProcessor');
 const { sanitizeText, removeManagedImage } = require('../utils/apiHelpers');
 
@@ -13,8 +14,20 @@ const upload = createMulterForCategory('berita');
 const ALLOWED_STATUS = new Set(['draft', 'terbit']);
 const ALLOWED_CATEGORIES = new Set(['Berita', 'Artikel']);
 
+/**
+ * Checks whether the request carries a fully-valid, non-expired admin session.
+ * Mirrors the full logic in requireAuth (including absolute 12-hour timeout).
+ */
 function isAdmin(req) {
-  return Boolean(req.session?.adminId);
+  if (!req.session || !req.session.adminId) return false;
+  if (req.session.authenticatedAt) {
+    const elapsed = Date.now() - req.session.authenticatedAt;
+    if (elapsed > ABSOLUTE_TIMEOUT_MS) {
+      req.session.destroy(() => {});
+      return false;
+    }
+  }
+  return true;
 }
 
 function isAdminScope(req) {
@@ -198,7 +211,7 @@ router.get('/:slug', (req, res, next) => {
  * POST /api/berita
  * Admin only.
  */
-router.post('/', requireAuth, upload.single('thumbnail'), async (req, res, next) => {
+router.post('/', requireAuth, csrfProtection, upload.single('thumbnail'), async (req, res, next) => {
   const judul = sanitizeText(req.body.judul);
   const isi = sanitizeText(req.body.isi);
   const ringkasan = sanitizeText(req.body.ringkasan);
@@ -309,7 +322,7 @@ router.post('/', requireAuth, upload.single('thumbnail'), async (req, res, next)
  * PUT /api/berita/:id
  * Admin only.
  */
-router.put('/:id', requireAuth, upload.single('thumbnail'), async (req, res, next) => {
+router.put('/:id', requireAuth, csrfProtection, upload.single('thumbnail'), async (req, res, next) => {
   const id = Number(req.params.id);
 
   if (!Number.isInteger(id) || id <= 0) {
@@ -457,7 +470,7 @@ router.put('/:id', requireAuth, upload.single('thumbnail'), async (req, res, nex
  * DELETE /api/berita/:id
  * Admin only.
  */
-router.delete('/:id', requireAuth, async (req, res, next) => {
+router.delete('/:id', requireAuth, csrfProtection, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
 

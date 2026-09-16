@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
+const { csrfProtection } = require('../middleware/csrf');
 
 const {
   createMulterForCategory,
@@ -99,6 +100,7 @@ router.get(
 router.put(
   '/:id',
   requireAuth,
+  csrfProtection,
   upload.single('foto'),
   async (req, res, next) => {
     const id =

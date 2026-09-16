@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
+const { csrfProtection } = require('../middleware/csrf');
 const {
   createMulterForCategory,
   processImage,
@@ -78,6 +79,7 @@ router.get('/', (req, res, next) => {
 router.post(
   '/',
   requireAuth,
+  csrfProtection,
   upload.single('foto'),
   async (req, res, next) => {
     if (!req.file) {
@@ -250,6 +252,7 @@ router.post(
 router.delete(
   '/:id',
   requireAuth,
+  csrfProtection,
   async (req, res, next) => {
     try {
       const id = Number(
