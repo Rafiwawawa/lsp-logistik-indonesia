@@ -44,6 +44,11 @@ const server = app.listen(PORT, () => {
   console.log(`📡 Health check: http://localhost:${PORT}/health\n`);
 });
 
+// Configure HTTP timeouts (Node 22+ compatible)
+server.requestTimeout = 180000;
+server.headersTimeout = 30000;
+server.keepAliveTimeout = 5000;
+
 // 5. Graceful Shutdown Handler
 function gracefulShutdown(signal) {
   console.log(`\nReceived ${signal}. Starting graceful shutdown...`);

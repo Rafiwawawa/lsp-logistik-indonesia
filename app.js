@@ -4,7 +4,8 @@ const path = require('path');
 
 const { getDB } = require('./database/db');
 const { createSessionMiddleware } = require('./middleware/session');
-const { requireAuth } = require('./middleware/auth');
+const { requireAuth, isValidAdminSession } = require('./middleware/auth');
+const { publicApiLimiter, mediaLimiter } = require('./middleware/rateLimiter');
 const serveImage = require('./middleware/serveImage');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
@@ -81,15 +82,15 @@ function createApp(options = {}) {
 
   // API
   app.use('/api/auth', require('./api/auth'));
-  app.use('/api/galeri', require('./api/galeri'));
-  app.use('/api/berita', require('./api/berita'));
-  app.use('/api/pengurus', require('./api/pengurus'));
+  app.use('/api/berita', publicApiLimiter, require('./api/berita'));
+  app.use('/api/galeri', publicApiLimiter, require('./api/galeri'));
+  app.use('/api/pengurus', publicApiLimiter, require('./api/pengurus'));
 
   // Reserved protected admin API boundary
   app.use('/api/admin', requireAuth);
 
   // Uploaded images
-  app.get('/media/images/:category/:filename', serveImage);
+  app.get('/media/images/:category/:filename', mediaLimiter, serveImage);
 
   // Public admin pages
   app.get('/admin/setup', (req, res) => {
@@ -111,7 +112,11 @@ function createApp(options = {}) {
 
     if (publicRoute) return next();
 
-    if (!req.session?.adminId) {
+    const sessionCheck = isValidAdminSession(req);
+    if (!sessionCheck.valid) {
+      if (req.session && typeof req.session.destroy === 'function') {
+        req.session.destroy(() => {});
+      }
       return res.redirect('/admin/login.html');
     }
 

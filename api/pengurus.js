@@ -4,6 +4,7 @@ const fs = require('fs');
 const { getDB } = require('../database/db');
 const { requireAuth } = require('../middleware/auth');
 const { csrfProtection } = require('../middleware/csrf');
+const { adminMutationLimiter } = require('../middleware/rateLimiter');
 
 const {
   createMulterForCategory,
@@ -100,6 +101,7 @@ router.get(
 router.put(
   '/:id',
   requireAuth,
+  adminMutationLimiter,
   csrfProtection,
   upload.single('foto'),
   async (req, res, next) => {
