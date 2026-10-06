@@ -109,9 +109,9 @@
         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;" id="searchFilterPills">
           <button class="gallery-filter-btn active" data-filter="all">Semua Hasil</button>
           <button class="gallery-filter-btn" data-filter="Skema Sertifikasi">Skema Sertifikasi</button>
-          <button class="gallery-filter-btn" data-filter="Berita">Berita & Artikel</button>
-          <button class="gallery-filter-btn" data-filter="Agenda">Agenda Uji</button>
-          <button class="gallery-filter-btn" data-filter="Dokumen">Dokumen Form</button>
+          <button class="gallery-filter-btn" data-filter="konten">Berita & Artikel</button>
+          <button class="gallery-filter-btn" data-filter="Profil">Profil</button>
+          <button class="gallery-filter-btn" data-filter="FAQ">FAQ</button>
         </div>
 
         <div id="searchResultsList" class="grid grid-cols-1 gap-4">
@@ -132,11 +132,11 @@
         <div class="widget">
           <h4 class="widget-title">Topik Populer</h4>
           <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
-            <a href="search.html?q=Collecting" class="badge badge-info" style="text-decoration:none;">#Collecting</a>
-            <a href="search.html?q=Counter" class="badge badge-info" style="text-decoration:none;">#Counter Officer</a>
+            <a href="search.html?q=Gudang" class="badge badge-info" style="text-decoration:none;">#Gudang</a>
+            <a href="search.html?q=Sertifikasi" class="badge badge-info" style="text-decoration:none;">#Sertifikasi</a>
             <a href="search.html?q=SKKNI" class="badge badge-info" style="text-decoration:none;">#SKKNI 354</a>
             <a href="search.html?q=BNSP" class="badge badge-info" style="text-decoration:none;">#Lisensi BNSP</a>
-            <a href="search.html?q=ASPERINDO" class="badge badge-info" style="text-decoration:none;">#ASPERINDO</a>
+            <a href="search.html?q=Asesmen" class="badge badge-info" style="text-decoration:none;">#Asesmen</a>
             <a href="search.html?q=APL-01" class="badge badge-info" style="text-decoration:none;">#APL-01 Form</a>
           </div>
         </div>
@@ -184,87 +184,6 @@
   <script src="../assets/js/main.js"></script>
 
   <!-- Page Logic Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const queryParam = urlParams.get('q') || '';
-      
-      const searchHeader = document.getElementById('searchPageHeader');
-      const searchSubheader = document.getElementById('searchPageSubheader');
-      const searchInput = document.getElementById('pageSearchInput');
-      const searchBtn = document.getElementById('pageSearchBtn');
-      const resultsList = document.getElementById('searchResultsList');
-      const filterPills = document.querySelectorAll('#searchFilterPills .gallery-filter-btn');
-
-      if (searchInput) searchInput.value = queryParam;
-
-      let currentCategory = 'all';
-
-      function renderResults(q, category = 'all') {
-        const query = q.trim();
-        searchHeader.textContent = query ? `Hasil Pencarian: "${query}"` : 'Semua Hasil Pencarian';
-        
-        let allResults = query ? window.performLspSearch(query) : window.LSP_SEARCH_DATA;
-
-        if (category !== 'all') {
-          allResults = allResults.filter(item => item.category === category);
-        }
-
-        searchSubheader.textContent = `Ditemukan ${allResults.length} item yang sesuai dengan kriteria.`;
-
-        if (allResults.length === 0) {
-          resultsList.innerHTML = `
-            <div class="card" style="padding: 2.5rem; text-align: center;">
-              <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-              <h3>Hasil Tidak Ditemukan</h3>
-              <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Coba gunakan kata kunci lain seperti "Collecting", "BNSP", "SKKNI", "APL-01", atau "Asperindo".</p>
-              <a href="../index.html" class="btn btn-primary btn-sm" style="background: var(--color-secondary); border-color: var(--color-secondary);">Kembali ke Beranda</a>
-            </div>
-          `;
-          return;
-        }
-
-        resultsList.innerHTML = allResults.map(item => `
-          <article class="card hover-lift" style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span class="badge badge-info">${item.category}</span>
-              <span style="font-size: 0.75rem; color: var(--color-text-light);">LSP Logistik Indonesia Official</span>
-            </div>
-            <h3 style="margin: 0.25rem 0;"><a href="${item.url}">${item.title}</a></h3>
-            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">${item.desc}</p>
-            <div style="margin-top: 0.5rem;">
-              <a href="${item.url}" class="btn btn-secondary btn-sm" style="font-size: 0.8rem;">Lihat Detail &rarr;</a>
-            </div>
-          </article>
-        `).join('');
-      }
-
-      renderResults(queryParam, currentCategory);
-
-      filterPills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          filterPills.forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          currentCategory = pill.getAttribute('data-filter');
-          renderResults(searchInput ? searchInput.value : queryParam, currentCategory);
-        });
-      });
-
-      if (searchBtn && searchInput) {
-        searchBtn.addEventListener('click', () => {
-          const val = searchInput.value;
-          const newUrl = window.location.pathname + '?q=' + encodeURIComponent(val);
-          window.history.pushState({ path: newUrl }, '', newUrl);
-          renderResults(val, currentCategory);
-        });
-
-        searchInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            searchBtn.click();
-          }
-        });
-      }
-    });
-  </script>
+  <script src="/assets/js/pages/search-page.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
    LSP IND Logistik Indonesia
    ========================================================================== */
 
-window.LSP_SEARCH_DATA = [
+const LSP_STATIC_SEARCH_DATA = [
   // 1 Skema Sertifikasi Resmi
   {
     id: 'skema-1',
@@ -13,33 +13,6 @@ window.LSP_SEARCH_DATA = [
     url: 'layanan.html',
     tags: ['supervisor', 'gudang', 'distribusi', 'skkni', 'skkk', 'stock take', 'cycle count', 'pergerakan barang', 'pengeluaran barang', 'retur', 'kendaraan']
   },
-
-  // Berita & Informasi Resmi PDF
-  {
-    id: 'berita-1',
-    title: 'Profil LSP Logistik Indonesia (P3) Didirikan Oleh Asosiasi Logistik Indonesia (ALI)',
-    category: 'Berita',
-    desc: 'LSP Logistik Indonesia (P3) terlisensi BNSP No. BNSP-LSP-093-ID & SK Perpanjangan KEP.1757/BNSP/IX/2022 mendukung pengakuan kompetensi nasional.',
-    url: 'detail-berita.html?id=1',
-    tags: ['ali', 'asosiasi logistik indonesia', 'bnsp-lsp-093-id', 'p3', 'lisensi']
-  },
-  {
-    id: 'berita-2',
-    title: 'Manfaat Sertifikasi Bagi Perusahaan, Atasan, Dan Peserta Logistik',
-    category: 'Berita',
-    desc: 'Penjelasan manfaat sertifikasi profesi logistik dalam meningkatkan standar kualifikasi, jenjang karier, dan penempatan personil kerja.',
-    url: 'detail-berita.html?id=2',
-    tags: ['manfaat', 'sertifikasi', 'perusahaan', 'peserta', 'karier']
-  },
-  {
-    id: 'berita-3',
-    title: 'Struktur Organisasi LSP Logistik Indonesia Pimpinan Ir. Mahendra Rianto, CSLP',
-    category: 'Berita',
-    desc: 'Susunan pengarah, direktur, sekretaris, komite skema, manajer sertifikasi, dan manajer mutu LSP Logistik Indonesia.',
-    url: 'detail-berita.html?id=3',
-    tags: ['mahendra rianto', 'organisasi', 'direktur', 'manajer mutu', 'komite skema']
-  },
-
 
   // Profil & FAQ
   {
@@ -60,8 +33,58 @@ window.LSP_SEARCH_DATA = [
   }
 ];
 
+window.LSP_SEARCH_DATA = LSP_STATIC_SEARCH_DATA;
+window.LSP_SEARCH_ERROR = false;
+let searchDataPromise;
+
+window.loadLspSearchData = function() {
+  if (searchDataPromise) return searchDataPromise;
+
+  searchDataPromise = (async () => {
+    const articles = [];
+    const limit = 100;
+
+    try {
+      for (let offset = 0; ; offset += limit) {
+        const response = await fetch(`/api/berita?limit=${limit}&offset=${offset}`, {
+          credentials: 'same-origin',
+          cache: 'no-store',
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const payload = await response.json();
+        if (!payload.success || !Array.isArray(payload.data)) {
+          throw new Error('Format data berita tidak valid.');
+        }
+
+        articles.push(...payload.data);
+        if (payload.data.length < limit) break;
+      }
+
+      window.LSP_SEARCH_DATA = [
+        ...LSP_STATIC_SEARCH_DATA,
+        ...articles.filter(item => item.slug && item.status === 'terbit').map(item => ({
+          title: item.judul || '',
+          category: item.kategori === 'Artikel' ? 'Artikel' : 'Berita',
+          desc: String(item.ringkasan || item.isi || '').replace(/\s+/g, ' ').slice(0, 180),
+          url: `/pages/detail-berita.html?slug=${encodeURIComponent(item.slug)}`,
+          tags: [],
+        })),
+      ];
+      window.LSP_SEARCH_ERROR = false;
+    } catch (error) {
+      console.error('[Search data]', error);
+      window.LSP_SEARCH_ERROR = true;
+    }
+
+    return window.LSP_SEARCH_DATA;
+  })();
+
+  return searchDataPromise;
+};
+
 window.performLspSearch = function(query) {
-  if (!query || query.trim() === '') return [];
+  if (!query || query.trim().length < 2) return [];
   const q = query.toLowerCase().trim();
   
   return window.LSP_SEARCH_DATA.filter(item => {
@@ -83,7 +106,6 @@ function initSearchModal() {
 
   // Detect path relative to pages/
   const isSubfolder = window.location.pathname.includes('/pages/');
-  const rootPath = isSubfolder ? '../' : './';
   const pagesPath = isSubfolder ? '' : 'pages/';
 
   // Create container for live search results if missing
@@ -116,7 +138,7 @@ function initSearchModal() {
   });
 
 function escapeHTML(str) {
-  return str.replace(/[&<>'"]/g, 
+  return String(str ?? '').replace(/[&<>'"]/g,
     tag => ({
       '&': '&amp;',
       '<': '&lt;',
@@ -129,42 +151,54 @@ function escapeHTML(str) {
 
 // Live search inside modal
   if (searchInput && resultsContainer) {
-    searchInput.addEventListener('input', (e) => {
-      const q = e.target.value;
+    const renderModalResults = () => {
+      const q = searchInput.value.trim();
       const results = window.performLspSearch(q);
 
-      if (!q.trim()) {
+      if (!q) {
         resultsContainer.innerHTML = '';
+        return;
+      }
+
+      if (q.length < 2) {
+        resultsContainer.textContent = 'Ketik minimal 2 karakter untuk mencari.';
+        return;
+      }
+
+      if (window.LSP_SEARCH_ERROR) {
+        resultsContainer.textContent = 'Berita belum dapat dimuat. Silakan coba lagi nanti.';
         return;
       }
 
       if (results.length === 0) {
         resultsContainer.innerHTML = `
           <div style="padding: 1rem; text-align: center; color: var(--color-text-muted); font-size: 0.9rem; background: var(--color-surface); border-radius: var(--radius-md);">
-            Tidak ada hasil untuk "<strong>${escapeHTML(q)}</strong>". Tekan Enter untuk mencari lebih lanjut.
+            Tidak ada hasil untuk "<strong>${escapeHTML(q)}</strong>".
           </div>
         `;
       } else {
         resultsContainer.innerHTML = results.slice(0, 5).map(item => {
-          let itemUrl = item.url;
-          if (!isSubfolder && itemUrl.startsWith('detail-berita')) {
-            itemUrl = 'pages/' + itemUrl;
-          } else if (!isSubfolder && !itemUrl.startsWith('pages/') && !itemUrl.startsWith('../')) {
-            itemUrl = 'pages/' + itemUrl;
-          } else if (isSubfolder && itemUrl === 'profil.html') {
-            itemUrl = 'profil.html';
-          }
+          const itemUrl = item.url.startsWith('/') ? item.url : `/pages/${item.url}`;
           return `
-            <a href="${itemUrl}" class="search-result-item" style="display: block; padding: 0.75rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: transform 0.2s, border-color 0.2s;">
+            <a href="${escapeHTML(itemUrl)}" class="search-result-item" style="display: block; padding: 0.75rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: transform 0.2s, border-color 0.2s;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                <span style="font-weight: 600; color: var(--color-text-main); font-size: 0.95rem;">${item.title}</span>
-                <span style="font-size: 0.75rem; background: var(--color-secondary-soft); color: var(--color-secondary); padding: 0.15rem 0.5rem; border-radius: 99px; font-weight: 600;">${item.category}</span>
+                <span style="font-weight: 600; color: var(--color-text-main); font-size: 0.95rem;">${escapeHTML(item.title)}</span>
+                <span style="font-size: 0.75rem; background: var(--color-secondary-soft); color: var(--color-secondary); padding: 0.15rem 0.5rem; border-radius: 99px; font-weight: 600;">${escapeHTML(item.category)}</span>
               </div>
-              <p style="font-size: 0.825rem; color: var(--color-text-muted); margin: 0; line-height: 1.4;">${item.desc}</p>
+              <p style="font-size: 0.825rem; color: var(--color-text-muted); margin: 0; line-height: 1.4;">${escapeHTML(item.desc)}</p>
             </a>
           `;
         }).join('');
       }
+    };
+
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value.trim().length < 2) {
+        renderModalResults();
+        return;
+      }
+      resultsContainer.textContent = 'Memuat hasil pencarian...';
+      window.loadLspSearchData().then(renderModalResults);
     });
 
     // Handle Enter key inside searchInput to open search.html
@@ -193,4 +227,3 @@ function escapeHTML(str) {
 }
 
 document.addEventListener('DOMContentLoaded', initSearchModal);
-

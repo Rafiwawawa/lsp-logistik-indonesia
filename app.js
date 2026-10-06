@@ -22,7 +22,8 @@ function createApp(options = {}) {
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],
         formAction: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        scriptSrcAttr: ["'none'"],
         styleSrc: [
           "'self'",
           "'unsafe-inline'",
