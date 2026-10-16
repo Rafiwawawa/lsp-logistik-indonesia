@@ -10,11 +10,11 @@ function initAccordions() {
       const item = header.parentElement;
       const group = item.parentElement;
 
-      // Close other items in the same group if single-open behavior is preferred
-      const activeItem = group.querySelector('.accordion-item.active');
-      if (activeItem && activeItem !== item) {
-        activeItem.classList.remove('active');
-      }
+      // Search and "Buka Semua" can leave several answers open.
+      // A manual click restores the one-answer-at-a-time behavior.
+      group.querySelectorAll('.accordion-item.active').forEach(activeItem => {
+        if (activeItem !== item) activeItem.classList.remove('active');
+      });
 
       item.classList.toggle('active');
     });

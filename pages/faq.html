@@ -177,7 +177,7 @@
 
       <!-- FAQ Status Bar & Counter -->
       <div class="faq-status-bar" id="faqStatusBar">
-        <span>Menampilkan <strong id="faqVisibleCount">33</strong> dari 33 pertanyaan</span>
+        <span>Menampilkan <strong id="faqVisibleCount">33</strong> dari <strong id="faqTotalCount">33</strong> pertanyaan</span>
         <span id="faqActiveCategoryLabel" style="font-weight: 600; color: var(--color-primary);">Semua Kategori</span>
       </div>
 
@@ -676,107 +676,6 @@
   <script src="../assets/js/main.js"></script>
 
   <!-- Page Logic Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const filterPills = document.querySelectorAll('#faqFilterPills .faq-pill-btn');
-      const faqItems = document.querySelectorAll('#faqAccordionGroup .accordion-item');
-      const searchInput = document.getElementById('faqSearchInput');
-      const btnExpandAll = document.getElementById('btnExpandAll');
-      const btnCollapseAll = document.getElementById('btnCollapseAll');
-      const visibleCountEl = document.getElementById('faqVisibleCount');
-      const activeCatLabelEl = document.getElementById('faqActiveCategoryLabel');
-      const noResultsEl = document.getElementById('faqNoResults');
-      const btnResetSearch = document.getElementById('btnResetSearch');
-
-      const categoryNames = {
-        'all': 'Semua Kategori',
-        'umum': 'Informasi Umum',
-        'pendaftaran': 'Pendaftaran & APL-02',
-        'bukti': 'Bukti Kompetensi (VATM)',
-        'pelaksanaan': 'Pelaksanaan Uji di TUK',
-        'prinsip': 'Prinsip Asesmen & Keputusan'
-      };
-
-      function filterFaq() {
-        const activePill = document.querySelector('#faqFilterPills .faq-pill-btn.active');
-        const category = activePill ? activePill.getAttribute('data-filter') : 'all';
-        const q = searchInput ? searchInput.value.toLowerCase().trim() : '';
-
-        let visibleCount = 0;
-
-        faqItems.forEach(item => {
-          const cat = item.getAttribute('data-category');
-          const question = (item.getAttribute('data-question') || '').toLowerCase();
-          const bodyText = item.querySelector('.accordion-body')?.textContent.toLowerCase() || '';
-
-          const matchesCategory = (category === 'all' || cat === category);
-          const matchesQuery = (!q || question.includes(q) || bodyText.includes(q));
-
-          if (matchesCategory && matchesQuery) {
-            item.style.display = 'block';
-            if (q) item.classList.add('active'); // Auto expand on live search
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        // Update Counter and Status
-        if (visibleCountEl) visibleCountEl.textContent = visibleCount;
-        if (activeCatLabelEl) activeCatLabelEl.textContent = categoryNames[category] || 'Semua Kategori';
-
-        // Show/Hide No Results Box
-        if (noResultsEl) {
-          noResultsEl.style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-      }
-
-      // Filter Pill Clicks
-      filterPills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          filterPills.forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          filterFaq();
-        });
-      });
-
-      // Search Input
-      if (searchInput) {
-        searchInput.addEventListener('input', filterFaq);
-      }
-
-      // Reset Search
-      if (btnResetSearch) {
-        btnResetSearch.addEventListener('click', () => {
-          if (searchInput) searchInput.value = '';
-          const allPill = document.querySelector('#faqFilterPills [data-filter="all"]');
-          if (allPill) {
-            filterPills.forEach(p => p.classList.remove('active'));
-            allPill.classList.add('active');
-          }
-          filterFaq();
-        });
-      }
-
-      // Expand All
-      if (btnExpandAll) {
-        btnExpandAll.addEventListener('click', () => {
-          faqItems.forEach(item => {
-            if (item.style.display !== 'none') item.classList.add('active');
-          });
-        });
-      }
-
-      // Collapse All
-      if (btnCollapseAll) {
-        btnCollapseAll.addEventListener('click', () => {
-          faqItems.forEach(item => item.classList.remove('active'));
-        });
-      }
-
-      // Initial filter run
-      filterFaq();
-    });
-  </script>
+  <script src="/assets/js/pages/faq.js"></script>
 </body>
 </html>

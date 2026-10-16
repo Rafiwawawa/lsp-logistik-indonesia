@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "node --test test/**/*.test.js",
+    "test": "node --test",
     "migrate": "node database/migrate.js",
     "db:check": "node database/check.js",
     "admin:reset-password": "node scripts/reset-password.js"
@@ -31,6 +31,8 @@
     "xss": "^1.0.15"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.5",
     "supertest": "^7.2.2"
   }
 }

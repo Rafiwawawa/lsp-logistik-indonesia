@@ -31,3 +31,10 @@ Thumbs.db
 /uploads/galeri/
 /uploads/berita/
 /uploads/pengurus/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
