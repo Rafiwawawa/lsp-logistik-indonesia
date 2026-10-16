@@ -36,8 +36,10 @@ const LSP_STATIC_SEARCH_DATA = [
 window.LSP_SEARCH_DATA = LSP_STATIC_SEARCH_DATA;
 window.LSP_SEARCH_ERROR = false;
 let searchDataPromise;
+const LSP_SEARCH_API_TIMEOUT_MS = 5000;
 
 window.loadLspSearchData = function() {
+  // Keep the settled promise on failure too, so each keystroke cannot retry the API.
   if (searchDataPromise) return searchDataPromise;
 
   searchDataPromise = (async () => {
@@ -46,19 +48,27 @@ window.loadLspSearchData = function() {
 
     try {
       for (let offset = 0; ; offset += limit) {
-        const response = await fetch(`/api/berita?limit=${limit}&offset=${offset}`, {
-          credentials: 'same-origin',
-          cache: 'no-store',
-        });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), LSP_SEARCH_API_TIMEOUT_MS);
 
-        const payload = await response.json();
-        if (!payload.success || !Array.isArray(payload.data)) {
-          throw new Error('Format data berita tidak valid.');
+        try {
+          const response = await fetch(`/api/berita?limit=${limit}&offset=${offset}`, {
+            credentials: 'same-origin',
+            cache: 'no-store',
+            signal: controller.signal,
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const payload = await response.json();
+          if (!payload.success || !Array.isArray(payload.data)) {
+            throw new Error('Format data berita tidak valid.');
+          }
+
+          articles.push(...payload.data);
+          if (payload.data.length < limit) break;
+        } finally {
+          clearTimeout(timeoutId);
         }
-
-        articles.push(...payload.data);
-        if (payload.data.length < limit) break;
       }
 
       window.LSP_SEARCH_DATA = [
@@ -165,12 +175,11 @@ function escapeHTML(str) {
         return;
       }
 
-      if (window.LSP_SEARCH_ERROR) {
-        resultsContainer.textContent = 'Berita belum dapat dimuat. Silakan coba lagi nanti.';
-        return;
-      }
-
       if (results.length === 0) {
+        if (window.LSP_SEARCH_ERROR) {
+          resultsContainer.textContent = 'Berita belum dapat dimuat. Muat ulang halaman untuk mencoba lagi.';
+          return;
+        }
         resultsContainer.innerHTML = `
           <div style="padding: 1rem; text-align: center; color: var(--color-text-muted); font-size: 0.9rem; background: var(--color-surface); border-radius: var(--radius-md);">
             Tidak ada hasil untuk "<strong>${escapeHTML(q)}</strong>".

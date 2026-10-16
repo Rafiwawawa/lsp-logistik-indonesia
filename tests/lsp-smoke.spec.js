@@ -3,7 +3,7 @@
  * LSP Logistik Indonesia — Browser Smoke Tests
  *
  * Read-only. No login, no mutations, no form submissions.
- * Runs against the local Express server on http://localhost:4000.
+ * Runs against the local Express server configured by Playwright baseURL.
  * Third-party resource failures (Google Maps, fonts, WhatsApp CDN, etc.)
  * are tolerated; only first-party failures are treated as bugs.
  */
@@ -14,13 +14,13 @@ import { test, expect } from '@playwright/test';
 // ---------------------------------------------------------------------------
 
 /**
- * True if the request URL is served by our own Express server (port 4000).
+ * True if the request URL matches the configured Playwright server origin.
  * @param {{ url: () => string }} req
+ * @param {string} firstPartyOrigin
  */
-function isFirstParty(req) {
+function isFirstParty(req, firstPartyOrigin) {
   try {
-    const url = new URL(req.url());
-    return url.hostname === 'localhost' && url.port === '4000';
+    return new URL(req.url()).origin === firstPartyOrigin;
   } catch {
     return false;
   }
@@ -36,7 +36,12 @@ test.describe('Homepage', () => {
   /** @type {{ url: string; status: number }[]} */
   let firstPartyFailures;
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, baseURL }) => {
+    if (!baseURL) {
+      throw new Error('Playwright baseURL is required for first-party smoke checks.');
+    }
+    const firstPartyOrigin = new URL(baseURL).origin;
+
     jsErrors = [];
     firstPartyFailures = [];
 
@@ -47,7 +52,7 @@ test.describe('Homepage', () => {
 
     // Collect first-party network failures (hard failures — no HTTP response).
     page.on('requestfailed', (req) => {
-      if (isFirstParty(req)) {
+      if (isFirstParty(req, firstPartyOrigin)) {
         firstPartyFailures.push({
           url: req.url(),
           status: 0,
@@ -57,7 +62,7 @@ test.describe('Homepage', () => {
 
     // Collect first-party HTTP error responses (4xx / 5xx).
     page.on('response', (res) => {
-      if (isFirstParty(res.request()) && res.status() >= 400) {
+      if (isFirstParty(res.request(), firstPartyOrigin) && res.status() >= 400) {
         firstPartyFailures.push({ url: res.url(), status: res.status() });
       }
     });
@@ -91,15 +96,9 @@ test.describe('Homepage', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
-    // Exclude /api/* routes that legitimately return 404 when the SQLite DB has
-    // no content yet (e.g. /api/berita on a freshly migrated database).
-    const unexpectedFailures = firstPartyFailures.filter(
-      (f) => !(f.url.includes('/api/') && f.status === 404),
-    );
-
     expect(
-      unexpectedFailures,
-      `First-party failures: ${JSON.stringify(unexpectedFailures, null, 2)}`,
+      firstPartyFailures,
+      `First-party failures: ${JSON.stringify(firstPartyFailures, null, 2)}`,
     ).toHaveLength(0);
   });
 });
@@ -114,6 +113,15 @@ test('/health endpoint returns { status: "ok" }', async ({ request }) => {
 
   const body = await res.json();
   expect(body.status).toBe('ok');
+});
+
+test('/api/berita collection returns its public collection contract', async ({ request }) => {
+  const res = await request.get('/api/berita?limit=1');
+  expect(res.status(), 'News collection endpoint should be available').toBe(200);
+
+  const body = await res.json();
+  expect(body.success).toBe(true);
+  expect(body.data).toEqual(expect.any(Array));
 });
 
 // ---------------------------------------------------------------------------

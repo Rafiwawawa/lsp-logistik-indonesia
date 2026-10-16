@@ -13,6 +13,9 @@ test('global search uses published CMS news and links by slug', async () => {
   const context = {
     window: {},
     document: { addEventListener() {} },
+    AbortController,
+    setTimeout,
+    clearTimeout,
     fetch: async url => {
       requests.push(url);
       return {
@@ -126,6 +129,9 @@ test('dedicated search page loads CMS news before rendering search results', asy
     },
     URLSearchParams,
     URL,
+    AbortController,
+    setTimeout,
+    clearTimeout,
     fetch: async url => {
       requests.push(url);
       return {

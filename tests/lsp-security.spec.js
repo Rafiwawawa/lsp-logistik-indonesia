@@ -2,11 +2,12 @@
 /**
  * LSP Logistik Indonesia — Browser & API Security Tests
  *
- * READ-ONLY. No mutations, no login with real credentials, no file uploads.
+ * Uses isolated test data and sends requests, including rejected POSTs.
+ * No login with real credentials or file uploads.
  * All checks are derived from the actual implementation in app.js,
  * middleware/, and api/. No endpoint behaviour is assumed without reading code.
  *
- * Runs against the local Express server at http://localhost:4000.
+ * Runs against the local Express server configured by Playwright baseURL.
  */
 import { test, expect } from '@playwright/test';
 
@@ -195,13 +196,13 @@ test.describe('Auth API — unauthenticated rejection', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Section 4 — CSRF Protection on Mutating Auth Endpoints
+// Section 4 — Protection on Mutating Auth Endpoints
 //
-// Source: api/auth.js — POST /api/auth/login uses csrfProtection middleware.
-// Without a session and CSRF token, POST /login must return 403.
+// Source: api/auth.js — login uses csrfProtection; setup uses X-Setup-Token.
+// Requests missing the applicable token must return 403.
 // ---------------------------------------------------------------------------
 
-test.describe('CSRF protection on auth mutations', () => {
+test.describe('Auth mutation protections', () => {
   test('POST /api/auth/login without CSRF token returns 403', async ({ request }) => {
     // No session cookie, no X-CSRF-Token header
     const res = await request.post('/api/auth/login', {
@@ -215,19 +216,19 @@ test.describe('CSRF protection on auth mutations', () => {
     expect(body.error?.code).toBe('CSRF_ERROR');
   });
 
-  test('POST /api/auth/setup without CSRF token still fails with CSRF_ERROR or SETUP_LOCKED', async ({ request }) => {
-    // POST /api/auth/setup does NOT use csrfProtection (it uses X-Setup-Token instead),
-    // but with an invalid/missing setup token the endpoint returns 403.
-    // We just verify it doesn't return 200.
+  test('POST /api/auth/setup rejects an invalid X-Setup-Token while setup is open', async ({ request }) => {
+    const setupStatus = await request.get('/api/auth/setup-status');
+    expect(setupStatus.status()).toBe(200);
+    expect((await setupStatus.json()).data.setupRequired).toBe(true);
+
     const res = await request.post('/api/auth/setup', {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Setup-Token': 'invalid-playwright-token' },
       data: { username: 'hacker', password: 'hacked12345678' },
     });
-    // Either SETUP_LOCKED (403) because admin already exists,
-    // or INVALID_SETUP_TOKEN (403) because no token was provided.
     expect(res.status()).toBe(403);
     const body = await res.json();
     expect(body.success).toBe(false);
+    expect(body.error?.code).toBe('INVALID_SETUP_TOKEN');
   });
 });
 

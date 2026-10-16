@@ -44,7 +44,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       : (window.LSP_SEARCH_DATA || []);
 
     if (category !== 'all') {
-      allResults = allResults.filter(item => item.category === category);
+      allResults = allResults.filter(item => category === 'konten'
+        ? item.category === 'Berita' || item.category === 'Artikel'
+        : item.category === category);
     }
 
     if (searchSubheader) {
