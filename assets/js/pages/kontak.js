@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const msg = document.getElementById('contactMessage').value || 'Saya ingin bertanya mengenai permohonan sertifikasi LSP Logistik Indonesia.';
 
       const waText = encodeURIComponent(`Halo Sekretariat LSP LOGISTIK INDONESIA,\nSaya ${name}.\nTopik: ${subject}\nPesan: ${msg}`);
-      window.open(`https://wa.me/6281288771150?text=${waText}`, '_blank');
+      window.open(`https://wa.me/6281288771150?text=${waText}`, '_blank', 'noopener,noreferrer');
     });
   }
 });

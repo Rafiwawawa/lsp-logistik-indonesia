@@ -141,4 +141,59 @@ describe('Security Phase 2B: Strict CSP & Inline Script Extraction', () => {
       assert.ok(res.text.length > 0, `Script ${scriptPath} should return non-empty content`);
     }
   });
+
+  test('kontak.js direct WhatsApp button triggers window.open with noopener and noreferrer', () => {
+    const vm = require('node:vm');
+    const kontakPath = path.resolve(__dirname, '../assets/js/pages/kontak.js');
+    const kontakSource = fs.readFileSync(kontakPath, 'utf8');
+
+    let clickHandler = null;
+    let openedUrl = null;
+    let openedTarget = null;
+    let openedFeatures = null;
+
+    const elements = {
+      contactName: { value: 'Budi' },
+      contactSubject: { value: 'Sertifikasi' },
+      contactMessage: { value: 'Pertanyaan' },
+      btnDirectWa: {
+        addEventListener(event, fn) {
+          if (event === 'click') clickHandler = fn;
+        },
+      },
+    };
+
+    let domLoadedHandler = null;
+    const context = {
+      window: {
+        open(url, target, features) {
+          openedUrl = url;
+          openedTarget = target;
+          openedFeatures = features;
+          return null;
+        },
+      },
+      document: {
+        addEventListener(event, fn) {
+          if (event === 'DOMContentLoaded') domLoadedHandler = fn;
+        },
+        querySelectorAll() { return []; },
+        getElementById(id) { return elements[id] || null; },
+      },
+      encodeURIComponent,
+    };
+    context.window.window = context.window;
+    context.window.document = context.document;
+
+    vm.runInNewContext(kontakSource, context);
+    assert.ok(domLoadedHandler);
+    domLoadedHandler();
+    assert.ok(clickHandler);
+    clickHandler();
+
+    assert.ok(openedUrl && openedUrl.startsWith('https://wa.me/6281288771150'));
+    assert.equal(openedTarget, '_blank');
+    assert.ok(openedFeatures && openedFeatures.includes('noopener'));
+    assert.ok(openedFeatures && openedFeatures.includes('noreferrer'));
+  });
 });
